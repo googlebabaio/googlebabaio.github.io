@@ -11,31 +11,36 @@ tags: ["杂七杂八"]
 
 # github
 注册
-创建仓库 username.github.io
+创建仓库 `googlebabaio.github.io`
 
 # hugo
-下载最新的hugo
-进入到某个文件夹, 创建想要的站点名字
+
+## 安装
+下载最新的hugo,解压,编辑环境变量
+
+## 创建站点
+进入到某个文件夹, 创建想要的站点名字,比如叫`lalala`
 ```
-hugo create new xxx
+hugo create new lalala
 ```
 
-下载模板
-
-新建文档
+## 新建文档
 ```
 hugo new posts/xxx/xxx.md
 ```
 
-build文档
+## 下载模板
+```
+git clone https://github.com/coderzh/hugo-pacman-theme.git themes/myfav
+```
+
+## build文档
 ```
 hugo --theme=beautifulhugo --baseUrl="https://googlebaba.io/"
 ```
 
-
-将public下面的所有上传到github仓库`username.github.io`
-
-# github
+## 上传静态网页到github仓库
+将public下面的所有上传到github仓库`googlebabaio.github.io`
 
 
 # 模板参数说明

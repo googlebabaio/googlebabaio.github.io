@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>linux on 蛋蛋的小黑屋</title>
+    <link>https://googlebaba.io/tags/linux/</link>
+    <description>Recent content in linux on 蛋蛋的小黑屋</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>xrzp@qq.com (suredandan)</managingEditor>
+    <webMaster>xrzp@qq.com (suredandan)</webMaster>
+    <lastBuildDate>Mon, 10 Jun 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://googlebaba.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>记录一下用lvm的步骤</title>
+      <link>https://googlebaba.io/post/2019/06/add-https-using-tencent/</link>
+      <pubDate>Mon, 10 Jun 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/06/add-https-using-tencent/</guid>
+      <description>&lt;p&gt;现在一般网站都要加上https访问,才让人有安全,所以本文记录一下怎么给自己的网站加上https安全证书的&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>记录一下用lvm的步骤</title>
+      <link>https://googlebaba.io/post/2019/06/lvm-manage/</link>
+      <pubDate>Mon, 10 Jun 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/06/lvm-manage/</guid>
+      <description>&lt;p&gt;经常使用lvm进行目录的扩展,记录一下相关命令.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title> harbor中物理删除不要的镜像 - </title>
+  <meta name="description" content="" />
+  <meta property="og:title" content="harbor中物理删除不要的镜像" />
+  <meta name="twitter:title" content="harbor中物理删除不要的镜像" />
+  <meta name="description" content="记录下在harbor中物理删除不要的镜像">
+  <meta property="og:description" content="记录下在harbor中物理删除不要的镜像">
+  <meta name="twitter:description" content="记录下在harbor中物理删除不要的镜像">
+  <meta name="author" content="suredandan"/>
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@suredandan" />
+  <meta name="twitter:creator" content="@suredandan" />
+  <meta property="og:url" content="https://googlebaba.io/post/2019/06/harbor-hard-delete-imgs/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="蛋蛋的小黑屋" />
+
+  <meta name="generator" content="Hugo 0.55.6" />
+  <link rel="canonical" href="https://googlebaba.io/post/2019/06/harbor-hard-delete-imgs/" />
+  <link rel="alternate" href="https://googlebaba.io/index.xml" type="application/rss+xml" title="蛋蛋的小黑屋">
+  <script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/jquery-1.12.4.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  
+  
+  <link rel="stylesheet" href="https://googlebaba.io/css/main.css" />
+  <link rel="stylesheet" href="https://googlebaba.io/css/search.css" />
+  
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" integrity="sha256-sCl5PUOGMLfFYctzDW3MtRib0ctyUvI9Qsmq2wXOeBY=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" integrity="sha256-BFeI1V+Vh1Rk37wswuOYn5lsTcaU96hGaI7OUVCLjPc=" crossorigin="anonymous" />
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">切换导航</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://googlebaba.io/">蛋蛋的小黑屋</a>
+    </div>
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="博客" href="/post">博客</a>
+              
+              
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">书籍</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://googlebaba.io/k8scookbook">K8s-Cookbook</a>
+                
+                
+                  <a href="https://googlebaba.io/oraclecookbook">Oracle-Cookbook</a>
+                
+                
+                  <a href="https://googlebaba.io/mysqlcookbook">MySQL-Cookbook</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="关于我" href="/page/about/">关于我</a>
+              
+              
+            </li>
+          
+        
+          
+            <li>
+              <a title="分类" href="/tags">分类</a>
+              
+              
+            </li>
+          
+        
+
+        
+
+        
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="蛋蛋的小黑屋" href="https://googlebaba.io/">
+            <img class="avatar-img" src="https://googlebaba.io/img/avatar-icon.png" alt="蛋蛋的小黑屋" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-md-offset-0">
+            <div class="post-heading">
+                <h1 align="center">harbor中物理删除不要的镜像</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main" itemscope itemtype="http://schema.org/Article">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> 2019年6月10日</h4>
+    </section>
+	
+    <h5 id="tags">Tags: 
+        
+        <a href="https://googlebaba.io/tags/k8s/">k8s</a> &nbsp;
+        
+        <a href="https://googlebaba.io/tags/harbor/">harbor</a> &nbsp;
+    </h5>
+</div>
+
+            
+            <article role="main" class="blog-post" itemprop="articleBody" id="content">
+                
+  
+
+
+                <p>记录下在harbor中物理删除不要的镜像</p>
+
+<blockquote>
+<p>参考：<a href="https://github.com/goharbor/harbor/blob/master/docs/user_guide.md">harbor的用户指南</a></p>
+</blockquote>
+
+<h2 id="物理删除harbor中不要的镜像">物理删除harbor中不要的镜像</h2>
+
+<p><img src="../assets/markdown-img-paste-2019053019111544.png" alt="" /></p>
+
+<p>在harbor的UI端删除镜像的操作是逻辑删除的,需要物理删除不要的镜像达到<strong>释放空间</strong>的目的,是需要将harbor停下来再删除的。
+步骤如下：</p>
+
+<h3 id="查看harbor相关镜像的名称">查看harbor相关镜像的名称</h3>
+
+<pre><code>[root@master harbor]# docker images
+REPOSITORY                             TAG                 IMAGE ID            CREATED             SIZE
+ubuntu                                 latest              93fd78260bd1        3 weeks ago         86.2MB
+debian                                 stretch             4879790bd60d        3 weeks ago         101MB
+jenkins/jenkins                        lts-alpine          bcc31d32159f        4 weeks ago         221MB
+centos                                 latest              75835a67d134        2 months ago        200MB
+vmware/redis-photon                    v1.5.0              7c03076402d9        7 months ago        207MB
+vmware/clair-photon                    v2.0.1-v1.5.0       7ae4e0670a3f        7 months ago        301MB
+vmware/notary-server-photon            v0.5.1-v1.5.0       0b2b23300552        7 months ago        211MB
+vmware/notary-signer-photon            v0.5.1-v1.5.0       67c41b4a1283        7 months ago        209MB
+vmware/registry-photon                 v2.6.2-v1.5.0       3059f44f4b9a        7 months ago        198MB
+vmware/nginx-photon                    v1.5.0              e100456182fc        7 months ago        135MB
+vmware/harbor-log                      v1.5.0              62bb6b8350d9        7 months ago        200MB
+vmware/harbor-jobservice               v1.5.0              aca9fd2e867f        7 months ago        194MB
+vmware/harbor-ui                       v1.5.0              1055166068d0        7 months ago        212MB
+vmware/harbor-adminserver              v1.5.0              019bc4544829        7 months ago        183MB
+vmware/harbor-db                       v1.5.0              82354dcf564f        7 months ago        526MB
+vmware/mariadb-photon                  v1.5.0              403e7e656499        7 months ago        526MB
+vmware/postgresql-photon               v1.5.0              35c891dea9cf        7 months ago        221MB
+vmware/harbor-migrator                 v1.5.0              466c57ab0dc3        7 months ago        1.16GB
+vmware/photon                          1.0                 4b481ecbef2a        7 months ago        130MB
+</code></pre>
+
+<p>注意:我们接下来将用到的镜像是<code>vmware/registry-photon:v2.6.2-v1.5.0</code></p>
+
+<h3 id="停止harbor">停止harbor</h3>
+
+<pre><code>[root@master harbor]# docker-compose stop
+Stopping nginx              ... done
+Stopping harbor-jobservice  ... done
+Stopping harbor-ui          ... done
+Stopping registry           ... done
+Stopping harbor-adminserver ... done
+Stopping harbor-db          ... done
+Stopping redis              ... done
+Stopping harbor-log         ... done
+</code></pre>
+
+<h3 id="物理删除">物理删除</h3>
+
+<pre><code>docker run -it --name gc --rm --volumes-from registry vmware/registry-photon:v2.6.2-v1.5.0 garbage-collect  /etc/registry/config.yml
+</code></pre>
+
+<p>注意,如果只想看下会删除哪些镜像而不是真正的去删除,则需要加上选项<code>--dry-run</code>
+如下:</p>
+
+<pre><code>docker run -it --name gc --rm --volumes-from registry vmware/registry-photon:v2.6.2-v1.5.0 garbage-collect --dry-run /etc/registry/config.yml
+</code></pre>
+
+<h3 id="启动harbor">启动harbor</h3>
+
+<pre><code>[root@master harbor]# docker-compose up -d
+Creating network &quot;harbor_harbor&quot; with the default driver
+Creating harbor-log ... done
+Creating registry           ... done
+Creating harbor-adminserver ... done
+Creating redis              ... done
+Creating harbor-db          ... done
+Creating harbor-ui          ... done
+Creating harbor-jobservice  ... done
+Creating nginx              ... done
+[root@master harbor]# docker-compose ps
+       Name                     Command                       State                                          Ports
+-------------------------------------------------------------------------------------------------------------------------------------------------
+harbor-adminserver   /harbor/start.sh                 Up (health: starting)
+harbor-db            /usr/local/bin/docker-entr ...   Up (health: starting)   3306/tcp
+harbor-jobservice    /harbor/start.sh                 Up
+harbor-log           /bin/sh -c /usr/local/bin/ ...   Up (health: starting)   127.0.0.1:1514-&gt;10514/tcp
+harbor-ui            /harbor/start.sh                 Up (health: starting)
+nginx                nginx -g daemon off;             Up (health: starting)   0.0.0.0:8443-&gt;443/tcp, 0.0.0.0:4443-&gt;4443/tcp, 0.0.0.0:8888-&gt;80/tcp
+redis                docker-entrypoint.sh redis ...   Up                      6379/tcp
+registry             /entrypoint.sh serve /etc/ ...   Up (health: starting)   5000/tcp
+</code></pre>
+
+<h3 id="再次查看空间">再次查看空间</h3>
+
+<pre><code>df -h /harbor的初始化目录
+</code></pre>
+            </article>
+
+            <ul class="pager blog-pager">
+                
+                <li class="previous">
+                    <a href="https://googlebaba.io/post/2019/06/add-dns-in-pod/" data-toggle="tooltip" data-placement="top" title="给pod里的集群添加自定义DNS解析">&larr; 前一篇</a>
+                </li>
+                 
+                <li class="next">
+                    <a href="https://googlebaba.io/post/2019/06/etcd-backup-recover/" data-toggle="tooltip" data-placement="top" title="etcd的备份与恢复">后一篇 &rarr;</a>
+                </li>
+                
+            </ul>
+            
+            <div>
+                 
+                <h2>See Also</h2>
+                <ul>
+                    
+                    <li><a href="/post/2019/06/etcd-backup-recover/">etcd的备份与恢复</a></li>
+                    
+                    <li><a href="/post/2019/06/add-dns-in-pod/">给pod里的集群添加自定义DNS解析</a></li>
+                    
+                </ul>
+                
+            </div>
+            
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> 2019年6月10日</h4>
+    </section>
+	
+    <h5 id="tags">Tags: 
+        
+        <a href="https://googlebaba.io/tags/k8s/">k8s</a> &nbsp;
+        
+        <a href="https://googlebaba.io/tags/harbor/">harbor</a> &nbsp;
+    </h5>
+</div>
+
+            
+            </div>
+            
+            
+                
+                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+<aside id=comments>
+    
+	
+    
+</aside>
+
+</div>
+
+                
+            
+        </div>
+    </div>
+    </section>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:xrzp@qq.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.facebook.com/suredandan" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/googlebabaio" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/suredandan" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/suredandan" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://stackoverflow.com/suredandan" title="StackOverflow">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-stack-overflow fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://telegram.me/138888888888" title="Telegram">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-telegram fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="https://googlebaba.io/index.xml" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+        &copy;2017-2019
+          
+            
+              <a href="https://googlebaba.io">suredandan</a>
+            
+          
+          
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://googlebaba.io/">蛋蛋的小黑屋</a>
+          
+        </p>
+
+        
+        <p class="credits theme-by text-muted">
+          由 <a href="http://gohugo.io">Hugo v0.55.6</a> 强力驱动 &nbsp;&bull;&nbsp; 主题 <a href="https://github.com/rootsongjc/beautifulhugo">Beautiful Hugo</a> 移植自 <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/bootstrap.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe-ui-default.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/auto-render.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/main.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/prism.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/katex.min.js"></script>
+<script> renderMathInElement(document.body); </script>
+
+
+
+  </body>
+</html>
+

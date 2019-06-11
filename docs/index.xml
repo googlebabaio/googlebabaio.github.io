@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>蛋蛋的小黑屋</title>
+    <link>https://googlebaba.io/</link>
+    <description>Recent content on 蛋蛋的小黑屋</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>xrzp@qq.com (suredandan)</managingEditor>
+    <webMaster>xrzp@qq.com (suredandan)</webMaster>
+    <lastBuildDate>Mon, 10 Jun 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://googlebaba.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>etcd的备份与恢复</title>
+      <link>https://googlebaba.io/post/2019/06/etcd-backup-recover/</link>
+      <pubDate>Mon, 10 Jun 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/06/etcd-backup-recover/</guid>
+      <description>&lt;p&gt;记录一下etcd的备份与恢复命令&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>harbor中物理删除不要的镜像</title>
+      <link>https://googlebaba.io/post/2019/06/harbor-hard-delete-imgs/</link>
+      <pubDate>Mon, 10 Jun 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/06/harbor-hard-delete-imgs/</guid>
+      <description>&lt;p&gt;记录下在harbor中物理删除不要的镜像&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>给pod里的集群添加自定义DNS解析</title>
+      <link>https://googlebaba.io/post/2019/06/add-dns-in-pod/</link>
+      <pubDate>Mon, 10 Jun 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/06/add-dns-in-pod/</guid>
+      <description>&lt;p&gt;有时候的需求是需要集群中的pod能访问自定义的一些域名,但又不能都一一写在container里面的/etc/hosts中，这样就需要用自定义dns来实现。
+coredns 自带 hosts 插件， 允许像配置 hosts 一样配置自定义 DNS 解析，修改 kube-system 中 configMap 的 coredns 添加&lt;code&gt;hosts&lt;/code&gt;那一段设置即可。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>记录一下用lvm的步骤</title>
+      <link>https://googlebaba.io/post/2019/06/add-https-using-tencent/</link>
+      <pubDate>Mon, 10 Jun 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/06/add-https-using-tencent/</guid>
+      <description>&lt;p&gt;现在一般网站都要加上https访问,才让人有安全,所以本文记录一下怎么给自己的网站加上https安全证书的&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>记录一下用lvm的步骤</title>
+      <link>https://googlebaba.io/post/2019/06/lvm-manage/</link>
+      <pubDate>Mon, 10 Jun 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/06/lvm-manage/</guid>
+      <description>&lt;p&gt;经常使用lvm进行目录的扩展,记录一下相关命令.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>hugo&#43;github搭建自己的博客</title>
+      <link>https://googlebaba.io/post/2019/06/buildblogfromgithub/</link>
+      <pubDate>Thu, 06 Jun 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/06/buildblogfromgithub/</guid>
+      <description>&lt;p&gt;记录一下用hugo+github搭建自己的博客的一些关键点&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>关于我</title>
+      <link>https://googlebaba.io/page/about/</link>
+      <pubDate>Wed, 20 Mar 2019 23:28:02 +0800</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/page/about/</guid>
+      <description> 自我介绍 我叫蛋蛋，是一名女儿奴，热爱技术。
+会如下的技能栈:  Java Python Oracle MySQL Cloud Native  Docker Kuernetes Istio Prometheus   有如下一些认证:  Oracle 10gOCM Oracle 10gOCM CNCF CKA  </description>
+    </item>
+    
+  </channel>
+</rss>

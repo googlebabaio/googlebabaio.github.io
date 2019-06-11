@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title> 记录一下用lvm的步骤 - </title>
+  <meta name="description" content="" />
+  <meta property="og:title" content="记录一下用lvm的步骤" />
+  <meta name="twitter:title" content="记录一下用lvm的步骤" />
+  <meta name="description" content="经常使用lvm进行目录的扩展,记录一下相关命令.">
+  <meta property="og:description" content="经常使用lvm进行目录的扩展,记录一下相关命令.">
+  <meta name="twitter:description" content="经常使用lvm进行目录的扩展,记录一下相关命令.">
+  <meta name="author" content="suredandan"/>
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@suredandan" />
+  <meta name="twitter:creator" content="@suredandan" />
+  <meta property="og:url" content="https://googlebaba.io/post/2019/06/lvm-manage/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="蛋蛋的小黑屋" />
+
+  <meta name="generator" content="Hugo 0.55.6" />
+  <link rel="canonical" href="https://googlebaba.io/post/2019/06/lvm-manage/" />
+  <link rel="alternate" href="https://googlebaba.io/index.xml" type="application/rss+xml" title="蛋蛋的小黑屋">
+  <script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/jquery-1.12.4.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  
+  
+  <link rel="stylesheet" href="https://googlebaba.io/css/main.css" />
+  <link rel="stylesheet" href="https://googlebaba.io/css/search.css" />
+  
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" integrity="sha256-sCl5PUOGMLfFYctzDW3MtRib0ctyUvI9Qsmq2wXOeBY=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" integrity="sha256-BFeI1V+Vh1Rk37wswuOYn5lsTcaU96hGaI7OUVCLjPc=" crossorigin="anonymous" />
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">切换导航</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://googlebaba.io/">蛋蛋的小黑屋</a>
+    </div>
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="博客" href="/post">博客</a>
+              
+              
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">书籍</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://googlebaba.io/k8scookbook">K8s-Cookbook</a>
+                
+                
+                  <a href="https://googlebaba.io/oraclecookbook">Oracle-Cookbook</a>
+                
+                
+                  <a href="https://googlebaba.io/mysqlcookbook">MySQL-Cookbook</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="关于我" href="/page/about/">关于我</a>
+              
+              
+            </li>
+          
+        
+          
+            <li>
+              <a title="分类" href="/tags">分类</a>
+              
+              
+            </li>
+          
+        
+
+        
+
+        
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="蛋蛋的小黑屋" href="https://googlebaba.io/">
+            <img class="avatar-img" src="https://googlebaba.io/img/avatar-icon.png" alt="蛋蛋的小黑屋" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-md-offset-0">
+            <div class="post-heading">
+                <h1 align="center">记录一下用lvm的步骤</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main" itemscope itemtype="http://schema.org/Article">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> 2019年6月10日</h4>
+    </section>
+	
+    <h5 id="tags">Tags: 
+        
+        <a href="https://googlebaba.io/tags/linux/">linux</a> &nbsp;
+    </h5>
+</div>
+
+            
+            <article role="main" class="blog-post" itemprop="articleBody" id="content">
+                
+  
+  <aside class="toc">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#1-创建pv">1.创建pv</a></li>
+<li><a href="#2-创建vg">2.创建vg</a></li>
+<li><a href="#3-创建lv">3.创建lv</a></li>
+<li><a href="#4-格式化磁盘">4.格式化磁盘</a></li>
+<li><a href="#5-创建挂载点-并挂载">5.创建挂载点,并挂载</a></li>
+</ul></li>
+</ul>
+</nav>
+  </aside>
+  
+
+
+                <p>经常使用lvm进行目录的扩展,记录一下相关命令.</p>
+
+<h2 id="1-创建pv">1.创建pv</h2>
+
+<pre><code>lvm&gt; pvcreate /dev/vdb
+  Physical volume &quot;/dev/vdb&quot; successfully created.
+</code></pre>
+
+<h2 id="2-创建vg">2.创建vg</h2>
+
+<pre><code>lvm&gt; vgcreate vgdata
+  No command with matching syntax recognised.  Run 'vgcreate --help' for more information.
+  Correct command syntax is:
+  vgcreate VG_new PV ...
+
+lvm&gt; vgcreate vgdata /dev/vdb
+  Volume group &quot;vgdata&quot; successfully created
+lvm&gt; vgdisplay
+  --- Volume group ---
+  VG Name               vgdata
+  System ID
+  Format                lvm2
+  Metadata Areas        1
+  Metadata Sequence No  1
+  VG Access             read/write
+  VG Status             resizable
+  MAX LV                0
+  Cur LV                0
+  Open LV               0
+  Max PV                0
+  Cur PV                1
+  Act PV                1
+  VG Size               &lt;350.00 GiB
+  PE Size               4.00 MiB
+  Total PE              89599
+  Alloc PE / Size       0 / 0
+  Free  PE / Size       89599 / &lt;350.00 GiB
+  VG UUID               Et2eCf-amVd-wDln-6NK1-IDza-YcnC-8XC2Dk
+
+  --- Volume group ---
+  VG Name               centos
+  System ID
+  Format                lvm2
+  Metadata Areas        1
+  Metadata Sequence No  3
+  VG Access             read/write
+  VG Status             resizable
+  MAX LV                0
+  Cur LV                2
+  Open LV               2
+  Max PV                0
+  Cur PV                1
+  Act PV                1
+  VG Size               &lt;49.00 GiB
+  PE Size               4.00 MiB
+  Total PE              12543
+  Alloc PE / Size       12543 / &lt;49.00 GiB
+  Free  PE / Size       0 / 0
+  VG UUID               3sPMh3-cxGR-wlD3-AhL4-uGfZ-HmCj-kmrPwU
+</code></pre>
+
+<h2 id="3-创建lv">3.创建lv</h2>
+
+<pre><code>lvm&gt; lvcreate -L 100G -n dockerdir vgdata
+  Logical volume &quot;dockerdir&quot; created.
+lvm&gt; lvcreate -L 100G -n harbordir  vgdata
+  Logical volume &quot;harbordir&quot; created.
+lvm&gt; lvcreate -L 120G -n nfsdir  vgdata
+  Logical volume &quot;nfsdir&quot; created.
+
+lvm&gt; lvdisplay vgdata
+  --- Logical volume ---
+  LV Path                /dev/vgdata/dockerdir
+  LV Name                dockerdir
+  VG Name                vgdata
+  LV UUID                NxYNDV-TS7Q-igO3-um3Q-ByHk-GZv2-tomFS0
+  LV Write Access        read/write
+  LV Creation host, time host-192-168-3-6, 2019-05-27 11:17:48 +0800
+  LV Status              available
+  # open                 0
+  LV Size                100.00 GiB
+  Current LE             25600
+  Segments               1
+  Allocation             inherit
+  Read ahead sectors     auto
+  - currently set to     8192
+  Block device           253:2
+
+  --- Logical volume ---
+  LV Path                /dev/vgdata/harbordir
+  LV Name                harbordir
+  VG Name                vgdata
+  LV UUID                m1lNfZ-QYqv-Lo1n-hTSu-WBy9-yAuv-fGsfNA
+  LV Write Access        read/write
+  LV Creation host, time host-192-168-3-6, 2019-05-27 11:18:29 +0800
+  LV Status              available
+  # open                 0
+  LV Size                100.00 GiB
+  Current LE             25600
+  Segments               1
+  Allocation             inherit
+  Read ahead sectors     auto
+  - currently set to     8192
+  Block device           253:3
+
+  --- Logical volume ---
+  LV Path                /dev/vgdata/nfsdir
+  LV Name                nfsdir
+  VG Name                vgdata
+  LV UUID                D02GtI-MPdw-Tzuz-tKmD-1TTc-pPOo-j4vGRk
+  LV Write Access        read/write
+  LV Creation host, time host-192-168-3-6, 2019-05-27 11:18:47 +0800
+  LV Status              available
+  # open                 0
+  LV Size                120.00 GiB
+  Current LE             30720
+  Segments               1
+  Allocation             inherit
+  Read ahead sectors     auto
+  - currently set to     8192
+  Block device           253:4
+
+lvm&gt; exit
+  Exiting.
+</code></pre>
+
+<h2 id="4-格式化磁盘">4.格式化磁盘</h2>
+
+<pre><code>mkfs.ext4 /dev/vgdata/dockerdir
+mkfs.ext4 /dev/vgdata/nfsdir
+mkfs.ext4 /dev/vgdata/harbordir
+</code></pre>
+
+<h2 id="5-创建挂载点-并挂载">5.创建挂载点,并挂载</h2>
+
+<pre><code>[root@host-192-168-3-6 ~]# mkdir /nfsdata
+[root@host-192-168-3-6 ~]# mkdir /harbordata
+[root@host-192-168-3-6 ~]# mkdir /dockerdata
+[root@host-192-168-3-6 ~]# vim /etc/fstab
+
+[root@host-192-168-3-6 ~]# cat /etc/fstab
+#
+# /etc/fstab
+# Created by anaconda on Fri Apr 26 16:10:55 2019
+#
+# Accessible filesystems, by reference, are maintained under '/dev/disk'
+# See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info
+#
+/dev/mapper/centos-root /                       xfs     defaults        0 0
+UUID=4ec1bdd6-fcd8-48c5-ab4e-f905e9e4df27 /boot                   xfs     defaults        0 0
+/dev/mapper/centos-swap swap                    swap    defaults        0 0
+/dev/vgdata/dockerdir /dockerdata ext4 defaults 0 0
+/dev/vgdata/nfsdir /nfsdata ext4 defaults 0 0
+/dev/vgdata/harbordir /harbordata ext4 defaults 0 0
+
+
+[root@host-192-168-3-6 ~]# mount -a
+[root@host-192-168-3-6 ~]# df -h
+文件系统                      容量  已用  可用 已用% 挂载点
+/dev/mapper/centos-root        44G  1.3G   43G    3% /
+devtmpfs                       16G     0   16G    0% /dev
+tmpfs                          16G     0   16G    0% /dev/shm
+tmpfs                          16G  8.5M   16G    1% /run
+tmpfs                          16G     0   16G    0% /sys/fs/cgroup
+/dev/vda1                    1014M  142M  873M   14% /boot
+/dev/mapper/vgdata-dockerdir   99G   61M   94G    1% /dockerdata
+/dev/mapper/vgdata-nfsdir     118G   61M  112G    1% /nfsdata
+/dev/mapper/vgdata-harbordir   99G   61M   94G    1% /harbordata
+</code></pre>
+            </article>
+
+            <ul class="pager blog-pager">
+                
+                <li class="previous">
+                    <a href="https://googlebaba.io/post/2019/06/buildblogfromgithub/" data-toggle="tooltip" data-placement="top" title="hugo&#43;github搭建自己的博客">&larr; 前一篇</a>
+                </li>
+                 
+                <li class="next">
+                    <a href="https://googlebaba.io/post/2019/06/add-https-using-tencent/" data-toggle="tooltip" data-placement="top" title="记录一下用lvm的步骤">后一篇 &rarr;</a>
+                </li>
+                
+            </ul>
+            
+            <div>
+                 
+                <h2>See Also</h2>
+                <ul>
+                    
+                    <li><a href="/post/2019/06/add-https-using-tencent/">记录一下用lvm的步骤</a></li>
+                    
+                </ul>
+                
+            </div>
+            
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> 2019年6月10日</h4>
+    </section>
+	
+    <h5 id="tags">Tags: 
+        
+        <a href="https://googlebaba.io/tags/linux/">linux</a> &nbsp;
+    </h5>
+</div>
+
+            
+            </div>
+            
+            
+                
+                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+<aside id=comments>
+    
+	
+    
+</aside>
+
+</div>
+
+                
+            
+        </div>
+    </div>
+    </section>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:xrzp@qq.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.facebook.com/suredandan" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/googlebabaio" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/suredandan" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/suredandan" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://stackoverflow.com/suredandan" title="StackOverflow">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-stack-overflow fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://telegram.me/138888888888" title="Telegram">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-telegram fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="https://googlebaba.io/index.xml" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+        &copy;2017-2019
+          
+            
+              <a href="https://googlebaba.io">suredandan</a>
+            
+          
+          
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://googlebaba.io/">蛋蛋的小黑屋</a>
+          
+        </p>
+
+        
+        <p class="credits theme-by text-muted">
+          由 <a href="http://gohugo.io">Hugo v0.55.6</a> 强力驱动 &nbsp;&bull;&nbsp; 主题 <a href="https://github.com/rootsongjc/beautifulhugo">Beautiful Hugo</a> 移植自 <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/bootstrap.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe-ui-default.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/auto-render.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/main.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/prism.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/katex.min.js"></script>
+<script> renderMathInElement(document.body); </script>
+
+
+
+  </body>
+</html>
+

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>杂七杂八 on 蛋蛋的小黑屋</title>
+    <link>https://googlebaba.io/tags/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB/</link>
+    <description>Recent content in 杂七杂八 on 蛋蛋的小黑屋</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>xrzp@qq.com (suredandan)</managingEditor>
+    <webMaster>xrzp@qq.com (suredandan)</webMaster>
+    <lastBuildDate>Thu, 06 Jun 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://googlebaba.io/tags/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>hugo&#43;github搭建自己的博客</title>
+      <link>https://googlebaba.io/post/2019/06/buildblogfromgithub/</link>
+      <pubDate>Thu, 06 Jun 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/06/buildblogfromgithub/</guid>
+      <description>&lt;p&gt;记录一下用hugo+github搭建自己的博客的一些关键点&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>关于我</title>
+      <link>https://googlebaba.io/page/about/</link>
+      <pubDate>Wed, 20 Mar 2019 23:28:02 +0800</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/page/about/</guid>
+      <description> 自我介绍 我叫蛋蛋，是一名女儿奴，热爱技术。
+会如下的技能栈:  Java Python Oracle MySQL Cloud Native  Docker Kuernetes Istio Prometheus   有如下一些认证:  Oracle 10gOCM Oracle 10gOCM CNCF CKA  </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -11,7 +11,7 @@ pygmentCodeFences = true
 
 
 
-  
+
 [Params]
   subtitle = "在仰望星空的同时,千万不要忘了脚踏实地,因为世界上的很多伟大都是熬出来的。"
   logo = "img/avatar-icon.png"
@@ -55,27 +55,28 @@ pygmentCodeFences = true
     weight = 3
 
 [[menu.main]]
-    identifier = "samples"
+    identifier = "mybooks"
     name = "书籍"
     weight = 2
 
 [[menu.main]]
-    parent = "samples"
-    name = "Big Image Sample"
-    url = "post/2017-03-07-bigimg-sample"
+    parent = "mybooks"
+    name = "K8s-Cookbook"
+    url = "https://googlebaba.io/k8scookbook"
     weight = 1
 
 [[menu.main]]
-    parent = "samples"
-    name = "Math Sample"
-    url = "post/2017-03-05-math-sample"
+    parent = "mybooks"
+    name = "Oracle-Cookbook"
+    url = "https://googlebaba.io/oraclecookbook"
     weight = 2
 
 [[menu.main]]
-    parent = "samples"
-    name = "Code Sample"
-    url = "post/2016-03-08-code-sample"
+    parent = "mybooks"
+    name = "MySQL-Cookbook"
+    url = "https://googlebaba.io/mysqlcookbook"
     weight = 3
+
 
 [[menu.main]]
     name = "分类"

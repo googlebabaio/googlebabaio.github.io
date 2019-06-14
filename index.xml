@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>xrzp@qq.com (suredandan)</managingEditor>
     <webMaster>xrzp@qq.com (suredandan)</webMaster>
-    <lastBuildDate>Mon, 10 Jun 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 11 Jun 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://googlebaba.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>centos7.4上给apache加上https的步骤</title>
+      <link>https://googlebaba.io/post/2019/06/add-https-using-tencent/</link>
+      <pubDate>Tue, 11 Jun 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/06/add-https-using-tencent/</guid>
+      <description>&lt;p&gt;现在一般网站都要加上https访问,才让人有安全,所以本文记录一下怎么给自己的网站加上https安全证书的&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>etcd的备份与恢复</title>
@@ -42,15 +51,6 @@ coredns 自带 hosts 插件， 允许像配置 hosts 一样配置自定义 DNS �
     
     <item>
       <title>记录一下用lvm的步骤</title>
-      <link>https://googlebaba.io/post/2019/06/add-https-using-tencent/</link>
-      <pubDate>Mon, 10 Jun 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
-      <guid>https://googlebaba.io/post/2019/06/add-https-using-tencent/</guid>
-      <description>&lt;p&gt;现在一般网站都要加上https访问,才让人有安全,所以本文记录一下怎么给自己的网站加上https安全证书的&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>记录一下用lvm的步骤</title>
       <link>https://googlebaba.io/post/2019/06/lvm-manage/</link>
       <pubDate>Mon, 10 Jun 2019 00:00:00 +0000</pubDate>
       <author>xrzp@qq.com (suredandan)</author>
@@ -75,6 +75,15 @@ coredns 自带 hosts 插件， 允许像配置 hosts 一样配置自定义 DNS �
       <guid>https://googlebaba.io/page/about/</guid>
       <description> 自我介绍 我叫蛋蛋，是一名女儿奴，热爱技术。
 会如下的技能栈:  Java Python Oracle MySQL Cloud Native  Docker Kuernetes Istio Prometheus   有如下一些认证:  Oracle 10gOCM Oracle 10gOCM CNCF CKA  </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://googlebaba.io/post/2019/06/config-grafana/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/06/config-grafana/</guid>
+      <description></description>
     </item>
     
   </channel>

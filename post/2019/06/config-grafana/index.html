@@ -5,23 +5,20 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title> centos7.4上给apache加上https的步骤 - </title>
+  <title> 蛋蛋的小黑屋 - </title>
   <meta name="description" content="" />
-  <meta property="og:title" content="centos7.4上给apache加上https的步骤" />
-  <meta name="twitter:title" content="centos7.4上给apache加上https的步骤" />
-  <meta name="description" content="现在一般网站都要加上https访问,才让人有安全,所以本文记录一下怎么给自己的网站加上https安全证书的">
-  <meta property="og:description" content="现在一般网站都要加上https访问,才让人有安全,所以本文记录一下怎么给自己的网站加上https安全证书的">
-  <meta name="twitter:description" content="现在一般网站都要加上https访问,才让人有安全,所以本文记录一下怎么给自己的网站加上https安全证书的">
+  <meta property="og:title" content="蛋蛋的小黑屋" />
+  <meta name="twitter:title" content="蛋蛋的小黑屋" />
   <meta name="author" content="suredandan"/>
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@suredandan" />
   <meta name="twitter:creator" content="@suredandan" />
-  <meta property="og:url" content="https://googlebaba.io/post/2019/06/add-https-using-tencent/" />
+  <meta property="og:url" content="https://googlebaba.io/post/2019/06/config-grafana/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="蛋蛋的小黑屋" />
 
   <meta name="generator" content="Hugo 0.55.6" />
-  <link rel="canonical" href="https://googlebaba.io/post/2019/06/add-https-using-tencent/" />
+  <link rel="canonical" href="https://googlebaba.io/post/2019/06/config-grafana/" />
   <link rel="alternate" href="https://googlebaba.io/index.xml" type="application/rss+xml" title="蛋蛋的小黑屋">
   <script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/jquery-1.12.4.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
@@ -179,25 +176,7 @@
 
 
 
-  
-
-  <header class="header-section ">
-    
-    <div class="intro-header no-img">
-      
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 col-md-12 col-md-offset-0">
-            <div class="post-heading">
-                <h1 align="center">centos7.4上给apache加上https的步骤</h1>
-                
-                
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
+  <div class="intro-header"></div>
 
 
     
@@ -209,12 +188,10 @@
             
 <div>
     <section id="datecount">
-        <h4 id="date"> 2019年6月11日</h4>
+        <h4 id="date"> 0001年1月1日</h4>
     </section>
 	
     <h5 id="tags">Tags: 
-        
-        <a href="https://googlebaba.io/tags/linux/">linux</a> &nbsp;
     </h5>
 </div>
 
@@ -224,63 +201,20 @@
   
 
 
-                <p>现在一般网站都要加上https访问,才让人有安全,所以本文记录一下怎么给自己的网站加上https安全证书的</p>
+                <p><img src="assets/markdown-img-paste-20190611101340646.png" alt="" /></p>
 
-<h1 id="centos7-4上给apache加上https的步骤">centos7.4上给apache加上https的步骤</h1>
-
-<h2 id="1-申请ssl证书">1.申请ssl证书</h2>
-
-<p>我是去腾讯上申请的免费的DV证书,最后下载下来的证书是这样的</p>
-
-<p><img src="../assets/markdown-img-paste-20181218135943245.png" alt="" /></p>
-
-<p>打开apache的</p>
-
-<p><img src="../assets/markdown-img-paste-20181218140006885.png" alt="" /></p>
-
-<p>将这3个证书传到服务器的 /etc/httpd/ssl目录</p>
-
-<h2 id="2-安装mod-ssl">2.安装mod_ssl</h2>
-
-<p>yum install -y mod_ssl</p>
-
-<h2 id="3-修改ssl的配置">3.修改ssl的配置</h2>
-
-<p>vim /etc/httpd/conf.d/ssl.conf</p>
-
-<pre><code>DocumentRoot &quot;/var/www/html&quot;
-ServerName www.googlebaba.io:443
-
-SSLEngine on
-
-SSLCertificateFile /etc/httpd/ssl/2_www.googlebaba.io.crt
-SSLCertificateKeyFile /etc/httpd/ssl/3_www.googlebaba.io.key
-SSLCertificateChainFile /etc/httpd/ssl/1_root_bundle.crt
-</code></pre>
-
-<h2 id="4-重启服务并验证">4.重启服务并验证</h2>
-
-<pre><code>systemctl restart httpd
-</code></pre>
             </article>
 
             <ul class="pager blog-pager">
-                
-                <li class="previous">
-                    <a href="https://googlebaba.io/post/2019/06/etcd-backup-recover/" data-toggle="tooltip" data-placement="top" title="etcd的备份与恢复">&larr; 前一篇</a>
-                </li>
                  
+                <li class="next">
+                    <a href="https://googlebaba.io/post/2019/06/buildblogfromgithub/" data-toggle="tooltip" data-placement="top" title="hugo&#43;github搭建自己的博客">后一篇 &rarr;</a>
+                </li>
+                
             </ul>
             
             <div>
                  
-                <h2>See Also</h2>
-                <ul>
-                    
-                    <li><a href="/post/2019/06/lvm-manage/">记录一下用lvm的步骤</a></li>
-                    
-                </ul>
-                
             </div>
             
             
@@ -288,12 +222,10 @@ SSLCertificateChainFile /etc/httpd/ssl/1_root_bundle.crt
             
 <div>
     <section id="datecount">
-        <h4 id="date"> 2019年6月11日</h4>
+        <h4 id="date"> 0001年1月1日</h4>
     </section>
 	
     <h5 id="tags">Tags: 
-        
-        <a href="https://googlebaba.io/tags/linux/">linux</a> &nbsp;
     </h5>
 </div>
 

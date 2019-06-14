@@ -4,13 +4,30 @@
   
   <url>
     <loc>https://googlebaba.io/post/</loc>
-    <lastmod>2019-06-10T00:00:00+00:00</lastmod>
+    <lastmod>2019-06-11T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://googlebaba.io/tags/</loc>
-    <lastmod>2019-06-10T00:00:00+00:00</lastmod>
+    <lastmod>2019-06-11T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/06/add-https-using-tencent/</loc>
+    <lastmod>2019-06-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/tags/linux/</loc>
+    <lastmod>2019-06-11T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/</loc>
+    <lastmod>2019-06-11T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -49,24 +66,7 @@
   </url>
   
   <url>
-    <loc>https://googlebaba.io/tags/linux/</loc>
-    <lastmod>2019-06-10T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://googlebaba.io/post/2019/06/add-dns-in-pod/</loc>
-    <lastmod>2019-06-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://googlebaba.io/</loc>
-    <lastmod>2019-06-10T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://googlebaba.io/post/2019/06/add-https-using-tencent/</loc>
     <lastmod>2019-06-10T00:00:00+00:00</lastmod>
   </url>
   
@@ -95,6 +95,11 @@
   <url>
     <loc>https://googlebaba.io/page/about/</loc>
     <lastmod>2019-03-20T23:28:02+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/06/config-grafana/</loc>
+    <priority>0</priority>
   </url>
   
   <url>

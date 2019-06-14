@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>xrzp@qq.com (suredandan)</managingEditor>
     <webMaster>xrzp@qq.com (suredandan)</webMaster>
-    <lastBuildDate>Mon, 10 Jun 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 11 Jun 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://googlebaba.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>linux</title>
+      <link>https://googlebaba.io/tags/linux/</link>
+      <pubDate>Tue, 11 Jun 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/tags/linux/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>coredns</title>
@@ -45,15 +54,6 @@
       <pubDate>Mon, 10 Jun 2019 00:00:00 +0000</pubDate>
       <author>xrzp@qq.com (suredandan)</author>
       <guid>https://googlebaba.io/tags/k8s/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>linux</title>
-      <link>https://googlebaba.io/tags/linux/</link>
-      <pubDate>Mon, 10 Jun 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
-      <guid>https://googlebaba.io/tags/linux/</guid>
       <description></description>
     </item>
     

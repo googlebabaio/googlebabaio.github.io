@@ -5,20 +5,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title> 蛋蛋的小黑屋 - </title>
+  <title> pod示例 - </title>
   <meta name="description" content="" />
-  <meta property="og:title" content="蛋蛋的小黑屋" />
-  <meta name="twitter:title" content="蛋蛋的小黑屋" />
+  <meta property="og:title" content="pod示例" />
+  <meta name="twitter:title" content="pod示例" />
+  <meta name="description" content="apiVersion: v1 kind: Pod metadata: name: stop-apps spec: initContainers: - name: init image: busybox imagePullPolicy : IfNotPresent command: [&#39;sh&#39;, &#39;-c&#39;, &#39; echo &quot;df -h &gt; /root/running/yes.txt&quot; &gt; /tmp/app-a.sh;chmod &#43;x /tmp/app-a.sh&#39; ] volumeMounts: - name: app-running-volume mountPath: /tmp containers: - name: myapps image: centos:7.5.1804 imagePullPolicy: IfNotPresent command: [&#39;sh&#39;, &#39;-c&#39;,&#39; /root/running/app-a.sh; sleep 3600; &#39;] volumeMounts: - name: app-running-volume mountPath: /root/running - name: app-logs-volume mountPath: /root/logs lifecycle: postStart: exec: command: [&quot;bash&quot;, &quot;-c&quot;, &quot;echo begin &gt;&gt; /root/logs/message&quot;] preStop: exec: command: [&quot;bash&quot;, &quot;-c&quot;, &quot;echo Bye &gt;&gt; /root/logs/message&quot;] volumes: - name: app-running-volume hostPath: path: /tmp/running type: Directory - name: app-logs-volume hostPath: path: /tmp/logs type: Directory nodeSelector: kubernetes.">
+  <meta property="og:description" content="apiVersion: v1 kind: Pod metadata: name: stop-apps spec: initContainers: - name: init image: busybox imagePullPolicy : IfNotPresent command: [&#39;sh&#39;, &#39;-c&#39;, &#39; echo &quot;df -h &gt; /root/running/yes.txt&quot; &gt; /tmp/app-a.sh;chmod &#43;x /tmp/app-a.sh&#39; ] volumeMounts: - name: app-running-volume mountPath: /tmp containers: - name: myapps image: centos:7.5.1804 imagePullPolicy: IfNotPresent command: [&#39;sh&#39;, &#39;-c&#39;,&#39; /root/running/app-a.sh; sleep 3600; &#39;] volumeMounts: - name: app-running-volume mountPath: /root/running - name: app-logs-volume mountPath: /root/logs lifecycle: postStart: exec: command: [&quot;bash&quot;, &quot;-c&quot;, &quot;echo begin &gt;&gt; /root/logs/message&quot;] preStop: exec: command: [&quot;bash&quot;, &quot;-c&quot;, &quot;echo Bye &gt;&gt; /root/logs/message&quot;] volumes: - name: app-running-volume hostPath: path: /tmp/running type: Directory - name: app-logs-volume hostPath: path: /tmp/logs type: Directory nodeSelector: kubernetes.">
+  <meta name="twitter:description" content="apiVersion: v1 kind: Pod metadata: name: stop-apps spec: initContainers: - name: init image: busybox imagePullPolicy : IfNotPresent command: [&#39;sh&#39;, &#39;-c&#39;, &#39; echo &quot;df -h &gt; …">
   <meta name="author" content="suredandan"/>
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@suredandan" />
   <meta name="twitter:creator" content="@suredandan" />
-  <meta property="og:url" content="https://googlebaba.io/post/2019/06/config-grafana/" />
+  <meta property="og:url" content="https://googlebaba.io/post/2019/06/pod-all-example/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="蛋蛋的小黑屋" />
 
   <meta name="generator" content="Hugo 0.55.6" />
-  <link rel="canonical" href="https://googlebaba.io/post/2019/06/config-grafana/" />
+  <link rel="canonical" href="https://googlebaba.io/post/2019/06/pod-all-example/" />
   <link rel="alternate" href="https://googlebaba.io/index.xml" type="application/rss+xml" title="蛋蛋的小黑屋">
   <script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/jquery-1.12.4.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
@@ -176,7 +179,25 @@
 
 
 
-  <div class="intro-header"></div>
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-md-offset-0">
+            <div class="post-heading">
+                <h1 align="center">pod示例</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
 
 
     
@@ -188,10 +209,12 @@
             
 <div>
     <section id="datecount">
-        <h4 id="date"> 0001年1月1日</h4>
+        <h4 id="date"> 2019年6月19日</h4>
     </section>
 	
     <h5 id="tags">Tags: 
+        
+        <a href="https://googlebaba.io/tags/k8s/">k8s</a> &nbsp;
     </h5>
 </div>
 
@@ -201,24 +224,83 @@
   
 
 
-                <p><img src="assets/markdown-img-paste-20190611101340646.png" alt="" /></p>
+                <pre><code>apiVersion: v1
+kind: Pod
+metadata:
+  name: stop-apps
+spec:
+  initContainers:
+  - name: init
+    image: busybox
+    imagePullPolicy : IfNotPresent
+    command: ['sh', '-c', ' echo &quot;df -h &gt; /root/running/yes.txt&quot; &gt; /tmp/app-a.sh;chmod +x /tmp/app-a.sh' ]
+    volumeMounts:
+    - name: app-running-volume
+      mountPath: /tmp
+  containers:
+  - name: myapps
+    image: centos:7.5.1804
+    imagePullPolicy: IfNotPresent
+    command: ['sh', '-c',' /root/running/app-a.sh; sleep 3600; ']
+    volumeMounts:
+    - name: app-running-volume
+      mountPath: /root/running
+    - name: app-logs-volume
+      mountPath: /root/logs
+    lifecycle:
+      postStart:
+        exec:
+          command: [&quot;bash&quot;, &quot;-c&quot;, &quot;echo begin &gt;&gt; /root/logs/message&quot;]
+      preStop:
+        exec:
+          command: [&quot;bash&quot;, &quot;-c&quot;, &quot;echo Bye &gt;&gt; /root/logs/message&quot;]
+  volumes:
+  - name: app-running-volume
+    hostPath:
+      path: /tmp/running
+      type: Directory
+  - name: app-logs-volume
+    hostPath:
+      path: /tmp/logs
+      type: Directory
+  nodeSelector:
+    kubernetes.io/hostname: host-192-168-3-124
+</code></pre>
+
+<ul>
+<li>安装: init container</li>
+<li>启动: 钩子postStart</li>
+<li>停止: 钩子prestop</li>
+<li>卸载: 钩子prestop</li>
+</ul>
 
             </article>
 
             <ul class="pager blog-pager">
                 
                 <li class="previous">
-                    <a href="https://googlebaba.io/post/2019/06/config-k8s-dashboard-for-other-browser/" data-toggle="tooltip" data-placement="top" title="">&larr; 前一篇</a>
+                    <a href="https://googlebaba.io/post/2019/06/add-https-using-tencent/" data-toggle="tooltip" data-placement="top" title="centos7.4上给apache加上https的步骤">&larr; 前一篇</a>
                 </li>
                  
                 <li class="next">
-                    <a href="https://googlebaba.io/post/2019/06/client-go-example/" data-toggle="tooltip" data-placement="top" title="">后一篇 &rarr;</a>
+                    <a href="https://googlebaba.io/post/2019/06/golang-env-config/" data-toggle="tooltip" data-placement="top" title="golang环境配置">后一篇 &rarr;</a>
                 </li>
                 
             </ul>
             
             <div>
                  
+                <h2>See Also</h2>
+                <ul>
+                    
+                    <li><a href="/post/2019/06/etcd-backup-recover/">etcd的备份与恢复</a></li>
+                    
+                    <li><a href="/post/2019/06/harbor-hard-delete-imgs/">harbor中物理删除不要的镜像</a></li>
+                    
+                    <li><a href="/post/2019/06/add-dns-in-pod/">给pod里的集群添加自定义DNS解析</a></li>
+                    
+                </ul>
+                
             </div>
             
             
@@ -226,10 +308,12 @@
             
 <div>
     <section id="datecount">
-        <h4 id="date"> 0001年1月1日</h4>
+        <h4 id="date"> 2019年6月19日</h4>
     </section>
 	
     <h5 id="tags">Tags: 
+        
+        <a href="https://googlebaba.io/tags/k8s/">k8s</a> &nbsp;
     </h5>
 </div>
 

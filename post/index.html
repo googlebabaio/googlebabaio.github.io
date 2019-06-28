@@ -192,6 +192,118 @@
         <div class="posts-list">
           
             <article class="post-preview">
+              <a href="https://googlebaba.io/post/2019/06/kubeadm-cmd-option/">
+                <h2 class="post-title">kubeadm 命令说明</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                发表于 2019年6月28日
+              </p>
+              <div class="post-entry">
+                
+                  <p>在k8s1.14之后,kubeadm安装已经快要成为事实的标准,在之前参加的CKA考试中,发现部署的环境以及是使用kubeadm部署的了，所以对kubeadm的使用也必需要有所了解了！</p>
+                  <a href="https://googlebaba.io/post/2019/06/kubeadm-cmd-option/" class="post-read-more">[阅读全文]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                  
+                    #<a href="https://googlebaba.io/tags/k8s/">k8s</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://googlebaba.io/post/2019/06/job-for-download/">
+                <h2 class="post-title">利用job来完成download的示例</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                发表于 2019年6月28日
+              </p>
+              <div class="post-entry">
+                
+                  <p>给出一个利用job来完成download的示例</p>
+                  <a href="https://googlebaba.io/post/2019/06/job-for-download/" class="post-read-more">[阅读全文]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                  
+                    #<a href="https://googlebaba.io/tags/k8s/">k8s</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://googlebaba.io/post/2019/06/golang-env-config/">
+                <h2 class="post-title">golang环境配置</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                发表于 2019年6月19日
+              </p>
+              <div class="post-entry">
+                
+                  golang环境配置 goroot
+/usr/local/go  gopath
+mkdir -p /sure/goproject cd /sure/goproject mkdir src pkg bin  下载解压
+wget https://dl.google.com/go/go1.12.4.linux-amd64.tar.gz tar -C /usr/local -zxvf go1.12.4.linux-amd64.tar.gz  编辑环境变量 vim /etc/profile
+export GOROOT=/usr/local/go export PATH=$PATH:$GOROOT/bin export GOPATH=/sure/goproject  go的环境一个实例 go_project // go_project为GOPATH目录 -- bin -- myApp1 // 编译生成 -- myApp2 // 编译生成 -- myApp3 // 编译生成 -- pkg -- src -- myApp1 // project1 -- models -- controllers -- others -- main.go -- myApp2 // project2 -- models -- controllers -- others -- main.
+                  <a href="https://googlebaba.io/post/2019/06/golang-env-config/" class="post-read-more">[阅读全文]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                  
+                    #<a href="https://googlebaba.io/tags/golang/">golang</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://googlebaba.io/post/2019/06/pod-all-example/">
+                <h2 class="post-title">pod示例</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                发表于 2019年6月19日
+              </p>
+              <div class="post-entry">
+                
+                  apiVersion: v1 kind: Pod metadata: name: stop-apps spec: initContainers: - name: init image: busybox imagePullPolicy : IfNotPresent command: ['sh', '-c', ' echo &quot;df -h &gt; /root/running/yes.txt&quot; &gt; /tmp/app-a.sh;chmod +x /tmp/app-a.sh' ] volumeMounts: - name: app-running-volume mountPath: /tmp containers: - name: myapps image: centos:7.5.1804 imagePullPolicy: IfNotPresent command: ['sh', '-c',' /root/running/app-a.sh; sleep 3600; '] volumeMounts: - name: app-running-volume mountPath: /root/running - name: app-logs-volume mountPath: /root/logs lifecycle: postStart: exec: command: [&quot;bash&quot;, &quot;-c&quot;, &quot;echo begin &gt;&gt; /root/logs/message&quot;] preStop: exec: command: [&quot;bash&quot;, &quot;-c&quot;, &quot;echo Bye &gt;&gt; /root/logs/message&quot;] volumes: - name: app-running-volume hostPath: path: /tmp/running type: Directory - name: app-logs-volume hostPath: path: /tmp/logs type: Directory nodeSelector: kubernetes.
+                  <a href="https://googlebaba.io/post/2019/06/pod-all-example/" class="post-read-more">[阅读全文]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                  
+                    #<a href="https://googlebaba.io/tags/k8s/">k8s</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+            <article class="post-preview">
               <a href="https://googlebaba.io/post/2019/06/add-https-using-tencent/">
                 <h2 class="post-title">centos7.4上给apache加上https的步骤</h2>
 
@@ -307,6 +419,33 @@ coredns 自带 hosts 插件， 允许像配置 hosts 一样配置自定义 DNS �
             </article>
           
             <article class="post-preview">
+              <a href="https://googlebaba.io/post/2019/06/cncf-total/">
+                <h2 class="post-title">记录一下用lvm的步骤</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                发表于 2019年6月10日
+              </p>
+              <div class="post-entry">
+                
+                  <p>经常使用lvm进行目录的扩展,记录一下相关命令.</p>
+                  <a href="https://googlebaba.io/post/2019/06/cncf-total/" class="post-read-more">[阅读全文]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                  
+                    #<a href="https://googlebaba.io/tags/linux/">linux</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+            <article class="post-preview">
               <a href="https://googlebaba.io/post/2019/06/lvm-manage/">
                 <h2 class="post-title">记录一下用lvm的步骤</h2>
 
@@ -333,64 +472,68 @@ coredns 自带 hosts 插件， 允许像配置 hosts 一样配置自定义 DNS �
 
             </article>
           
-            <article class="post-preview">
-              <a href="https://googlebaba.io/post/2019/06/buildblogfromgithub/">
-                <h2 class="post-title">hugo&#43;github搭建自己的博客</h2>
-
-                
-                  <h3 class="post-subtitle">
-                    小小的记录一下
-                  </h3>
-                
-              </a>
-
-              <p class="post-meta">
-                发表于 2019年6月6日
-              </p>
-              <div class="post-entry">
-                
-                  <p>记录一下用hugo+github搭建自己的博客的一些关键点</p>
-                  <a href="https://googlebaba.io/post/2019/06/buildblogfromgithub/" class="post-read-more">[阅读全文]</a>
-                
-              </div>
-
-              
-                <span class="post-meta">
-                  
-                    #<a href="https://googlebaba.io/tags/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB/">杂七杂八</a>&nbsp;
-                  
-                </span>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://googlebaba.io/post/2019/06/config-grafana/">
-                <h2 class="post-title"></h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                发表于 0001年1月1日
-              </p>
-              <div class="post-entry">
-                
-                  <p><img src="assets/markdown-img-paste-20190611101340646.png" alt="" /></p>
-
-                
-              </div>
-
-              
-
-            </article>
-          
         </div>
+        
+          <ul class="pager main-pager">
+            
+            
+              <li class="next">
+                <a href="/post/page/2">下一页 &rarr;</a>
+              </li>
+            
+          </ul>
         
       </div>
     <div align="center" class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         
 
+<ul class="pagination">
+    
+    <li class="page-item">
+        <a href="/post/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+    </li>
+    
+    <li class="page-item disabled">
+    <a href="" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+    </li>
+    
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item active"><a class="page-link" href="/post/">1</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/post/page/2/">2</a></li>
+    
+    
+    <li class="page-item">
+    <a href="/post/page/2/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+    </li>
+    
+    <li class="page-item">
+        <a href="/post/page/2/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+    </li>
+    
+</ul>
+
+        
+        
+        
         
         
         

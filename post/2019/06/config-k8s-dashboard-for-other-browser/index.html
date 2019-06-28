@@ -9,16 +9,22 @@
   <meta name="description" content="" />
   <meta property="og:title" content="蛋蛋的小黑屋" />
   <meta name="twitter:title" content="蛋蛋的小黑屋" />
+  <meta name="description" content="在部署完k8s集群后,往往会部署dashborad作为基础监控的一个手段.
+但有时候,部署好的dashboard在其他浏览器上无法正常访问,本文将提供解决的一个参考.">
+  <meta property="og:description" content="在部署完k8s集群后,往往会部署dashborad作为基础监控的一个手段.
+但有时候,部署好的dashboard在其他浏览器上无法正常访问,本文将提供解决的一个参考.">
+  <meta name="twitter:description" content="在部署完k8s集群后,往往会部署dashborad作为基础监控的一个手段.
+但有时候,部署好的dashboard在其他浏览器上无法正常访问,本文将提供解决的一个参考.">
   <meta name="author" content="suredandan"/>
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@suredandan" />
   <meta name="twitter:creator" content="@suredandan" />
-  <meta property="og:url" content="https://googlebaba.io/post/2019/06/config-grafana/" />
+  <meta property="og:url" content="https://googlebaba.io/post/2019/06/config-k8s-dashboard-for-other-browser/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="蛋蛋的小黑屋" />
 
   <meta name="generator" content="Hugo 0.55.6" />
-  <link rel="canonical" href="https://googlebaba.io/post/2019/06/config-grafana/" />
+  <link rel="canonical" href="https://googlebaba.io/post/2019/06/config-k8s-dashboard-for-other-browser/" />
   <link rel="alternate" href="https://googlebaba.io/index.xml" type="application/rss+xml" title="蛋蛋的小黑屋">
   <script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/jquery-1.12.4.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
@@ -201,18 +207,61 @@
   
 
 
-                <p><img src="assets/markdown-img-paste-20190611101340646.png" alt="" /></p>
+                <p>在部署完k8s集群后,往往会部署dashborad作为基础监控的一个手段.
+但有时候,部署好的dashboard在其他浏览器上无法正常访问,本文将提供解决的一个参考.</p>
 
+<p>1、使用APIServer的CA生成证书</p>
+
+<pre><code>cat &gt; dashboard-csr.json &lt;&lt;EOF
+{
+    &quot;CN&quot;: &quot;Dashboard&quot;,
+    &quot;hosts&quot;: [],
+    &quot;key&quot;: {
+        &quot;algo&quot;: &quot;rsa&quot;,
+        &quot;size&quot;: 2048
+    },
+    &quot;names&quot;: [
+        {
+            &quot;C&quot;: &quot;CN&quot;,
+            &quot;L&quot;: &quot;BeiJing&quot;,
+            &quot;ST&quot;: &quot;BeiJing&quot;
+        }
+    ]
+}
+EOF
+</code></pre>
+
+<p>APIServer的CA证书目录</p>
+
+<pre><code>K8S_CA=$1
+cfssl gencert -ca=$K8S_CA/ca.pem -ca-key=$K8S_CA/ca-key.pem -config=$K8S_CA/ca-config.json -profile=kubernetes dashboard-csr.json | cfssljson -bare dashboard
+</code></pre>
+
+<p>2、 删除默认的secret，用自签证书创建新的secret</p>
+
+<pre><code>kubectl delete secret kubernetes-dashboard-certs -n kube-system
+kubectl create secret generic kubernetes-dashboard-certs --from-file=./ -n kube-system
+</code></pre>
+
+<p>3、修改 dashboard-controller.yaml 文件，在args下面增加证书两行</p>
+
+<pre><code>       args:
+         # PLATFORM-SPECIFIC ARGS HERE
+         - --auto-generate-certificates
+         - --tls-key-file=dashboard-key.pem
+         - --tls-cert-file=dashboard.pem
+</code></pre>
+
+<p>最后重新提交</p>
+
+<pre><code>kubectl apply -f dashboard-controller.yaml
+</code></pre>
             </article>
 
             <ul class="pager blog-pager">
-                
-                <li class="previous">
-                    <a href="https://googlebaba.io/post/2019/06/config-k8s-dashboard-for-other-browser/" data-toggle="tooltip" data-placement="top" title="">&larr; 前一篇</a>
-                </li>
                  
                 <li class="next">
-                    <a href="https://googlebaba.io/post/2019/06/client-go-example/" data-toggle="tooltip" data-placement="top" title="">后一篇 &rarr;</a>
+                    <a href="https://googlebaba.io/post/2019/06/config-grafana/" data-toggle="tooltip" data-placement="top" title="">后一篇 &rarr;</a>
                 </li>
                 
             </ul>

@@ -5,20 +5,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title> 蛋蛋的小黑屋 - </title>
+  <title> kubeadm 命令说明 - </title>
   <meta name="description" content="" />
-  <meta property="og:title" content="蛋蛋的小黑屋" />
-  <meta name="twitter:title" content="蛋蛋的小黑屋" />
+  <meta property="og:title" content="kubeadm 命令说明" />
+  <meta name="twitter:title" content="kubeadm 命令说明" />
+  <meta name="description" content="在k8s1.14之后,kubeadm安装已经快要成为事实的标准,在之前参加的CKA考试中,发现部署的环境以及是使用kubeadm部署的了，所以对kubeadm的使用也必需要有所了解了！">
+  <meta property="og:description" content="在k8s1.14之后,kubeadm安装已经快要成为事实的标准,在之前参加的CKA考试中,发现部署的环境以及是使用kubeadm部署的了，所以对kubeadm的使用也必需要有所了解了！">
+  <meta name="twitter:description" content="在k8s1.14之后,kubeadm安装已经快要成为事实的标准,在之前参加的CKA考试中,发现部署的环境以及是使用kubeadm部署的了，所以对kubeadm的使用也必需要有所了解了！">
   <meta name="author" content="suredandan"/>
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@suredandan" />
   <meta name="twitter:creator" content="@suredandan" />
-  <meta property="og:url" content="https://googlebaba.io/post/2019/06/config-grafana/" />
+  <meta property="og:url" content="https://googlebaba.io/post/2019/06/kubeadm-cmd-option/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="蛋蛋的小黑屋" />
 
   <meta name="generator" content="Hugo 0.55.6" />
-  <link rel="canonical" href="https://googlebaba.io/post/2019/06/config-grafana/" />
+  <link rel="canonical" href="https://googlebaba.io/post/2019/06/kubeadm-cmd-option/" />
   <link rel="alternate" href="https://googlebaba.io/index.xml" type="application/rss+xml" title="蛋蛋的小黑屋">
   <script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/jquery-1.12.4.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
@@ -176,7 +179,25 @@
 
 
 
-  <div class="intro-header"></div>
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-md-offset-0">
+            <div class="post-heading">
+                <h1 align="center">kubeadm 命令说明</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
 
 
     
@@ -188,10 +209,12 @@
             
 <div>
     <section id="datecount">
-        <h4 id="date"> 0001年1月1日</h4>
+        <h4 id="date"> 2019年6月28日</h4>
     </section>
 	
     <h5 id="tags">Tags: 
+        
+        <a href="https://googlebaba.io/tags/k8s/">k8s</a> &nbsp;
     </h5>
 </div>
 
@@ -201,24 +224,91 @@
   
 
 
-                <p><img src="assets/markdown-img-paste-20190611101340646.png" alt="" /></p>
+                <p>在k8s1.14之后,kubeadm安装已经快要成为事实的标准,在之前参加的CKA考试中,发现部署的环境以及是使用kubeadm部署的了，所以对kubeadm的使用也必需要有所了解了！</p>
 
+<h1 id="概述">概述</h1>
+
+<p>在安装完master节点后，最后会出现提示的信息，告知节点怎么添加，如下</p>
+
+<pre><code> kubeadm join 172.26.243.110:6443 --token 5e01an.651vofaq7w7b7h3a \
+ --discovery-token-ca-cert-hash sha256:4ab1554087ab674b0ec716a4eafc28211fb8e4d5338ffa33f896e2984e929054
+</code></pre>
+
+<h2 id="kubeadm-join-后面一般跟有3个值"><code>kubeadm join</code> 后面一般跟有3个值</h2>
+
+<ul>
+<li>172.26.243.110:6443 这个是apiserver的地址，需要按照实际的情况来填</li>
+<li>token: 一般为24小时有效的令牌可以使用添加节点的信息(也可以创建永不过期的token)</li>
+<li>discovery-token-ca-cert-hash : ca证书sha256编码</li>
+</ul>
+
+<h2 id="token"><code>--token</code></h2>
+
+<p>token的查看</p>
+
+<pre><code>kubeadm token list
+</code></pre>
+
+<p>token的创建</p>
+
+<pre><code>kubeadm token create
+</code></pre>
+
+<p>永久token的创建</p>
+
+<pre><code># kubeadm token create --ttl 0
+b9y0pe.t854qjr9kqk8vt6r
+
+# kubeadm token list | grep forever
+b9y0pe.t854qjr9kqk8vt6r   &lt;forever&gt;   &lt;never&gt;   authentication,signing   &lt;none&gt;  system:bootstrappers:kubeadm:default-node-token
+</code></pre>
+
+<h2 id="discovery-token-ca-cert-hash"><code>--discovery-token-ca-cert-hash</code></h2>
+
+<p>ca证书sha256编码的获取方式:</p>
+
+<pre><code>openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2&gt;/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //'
+</code></pre>
+
+<h1 id="在忘记token的情况下-node节点加入k8s集群的步骤">在忘记token的情况下,node节点加入k8s集群的步骤</h1>
+
+<ul>
+<li>1.获取apiserver的信息  ${apiserver:port}</li>
+<li>2.创建或者获取一个token ${token}</li>
+<li>3.获取ca证书的sha256编码 ${token-ca-cert-hash}</li>
+
+<li><p>4.组装命令</p>
+
+<pre><code>kubeadm join ${apiserver:port} --token ${token} --discovery-token-ca-cert-hash ${token-ca-cert-hash}
+</code></pre></li>
+</ul>
             </article>
 
             <ul class="pager blog-pager">
                 
                 <li class="previous">
-                    <a href="https://googlebaba.io/post/2019/06/config-k8s-dashboard-for-other-browser/" data-toggle="tooltip" data-placement="top" title="">&larr; 前一篇</a>
+                    <a href="https://googlebaba.io/post/2019/06/job-for-download/" data-toggle="tooltip" data-placement="top" title="利用job来完成download的示例">&larr; 前一篇</a>
                 </li>
                  
-                <li class="next">
-                    <a href="https://googlebaba.io/post/2019/06/client-go-example/" data-toggle="tooltip" data-placement="top" title="">后一篇 &rarr;</a>
-                </li>
-                
             </ul>
             
             <div>
                  
+                <h2>See Also</h2>
+                <ul>
+                    
+                    <li><a href="/post/2019/06/job-for-download/">利用job来完成download的示例</a></li>
+                    
+                    <li><a href="/post/2019/06/pod-all-example/">pod示例</a></li>
+                    
+                    <li><a href="/post/2019/06/etcd-backup-recover/">etcd的备份与恢复</a></li>
+                    
+                    <li><a href="/post/2019/06/harbor-hard-delete-imgs/">harbor中物理删除不要的镜像</a></li>
+                    
+                    <li><a href="/post/2019/06/add-dns-in-pod/">给pod里的集群添加自定义DNS解析</a></li>
+                    
+                </ul>
+                
             </div>
             
             
@@ -226,10 +316,12 @@
             
 <div>
     <section id="datecount">
-        <h4 id="date"> 0001年1月1日</h4>
+        <h4 id="date"> 2019年6月28日</h4>
     </section>
 	
     <h5 id="tags">Tags: 
+        
+        <a href="https://googlebaba.io/tags/k8s/">k8s</a> &nbsp;
     </h5>
 </div>
 

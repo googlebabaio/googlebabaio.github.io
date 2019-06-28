@@ -5,20 +5,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title> 蛋蛋的小黑屋 - </title>
+  <title> 利用job来完成download的示例 - </title>
   <meta name="description" content="" />
-  <meta property="og:title" content="蛋蛋的小黑屋" />
-  <meta name="twitter:title" content="蛋蛋的小黑屋" />
+  <meta property="og:title" content="利用job来完成download的示例" />
+  <meta name="twitter:title" content="利用job来完成download的示例" />
+  <meta name="description" content="给出一个利用job来完成download的示例">
+  <meta property="og:description" content="给出一个利用job来完成download的示例">
+  <meta name="twitter:description" content="给出一个利用job来完成download的示例">
   <meta name="author" content="suredandan"/>
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@suredandan" />
   <meta name="twitter:creator" content="@suredandan" />
-  <meta property="og:url" content="https://googlebaba.io/post/2019/06/config-grafana/" />
+  <meta property="og:url" content="https://googlebaba.io/post/2019/06/job-for-download/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="蛋蛋的小黑屋" />
 
   <meta name="generator" content="Hugo 0.55.6" />
-  <link rel="canonical" href="https://googlebaba.io/post/2019/06/config-grafana/" />
+  <link rel="canonical" href="https://googlebaba.io/post/2019/06/job-for-download/" />
   <link rel="alternate" href="https://googlebaba.io/index.xml" type="application/rss+xml" title="蛋蛋的小黑屋">
   <script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/jquery-1.12.4.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
@@ -176,7 +179,25 @@
 
 
 
-  <div class="intro-header"></div>
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-md-offset-0">
+            <div class="post-heading">
+                <h1 align="center">利用job来完成download的示例</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
 
 
     
@@ -188,10 +209,12 @@
             
 <div>
     <section id="datecount">
-        <h4 id="date"> 0001年1月1日</h4>
+        <h4 id="date"> 2019年6月28日</h4>
     </section>
 	
     <h5 id="tags">Tags: 
+        
+        <a href="https://googlebaba.io/tags/k8s/">k8s</a> &nbsp;
     </h5>
 </div>
 
@@ -201,24 +224,66 @@
   
 
 
-                <p><img src="assets/markdown-img-paste-20190611101340646.png" alt="" /></p>
+                <p>给出一个利用job来完成download的示例</p>
 
+<pre><code>apiVersion: batch/v1
+kind: Job
+metadata:
+  name: testdownload
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: testdownload
+        command: [&quot;wget&quot;, &quot;-c&quot;, &quot;https://wordpress.org/latest.zip&quot;, &quot;-O&quot;,&quot;/tmp/peiqi11.zip&quot;]
+        image: busybox
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - name: download-volume
+          subPath: shuju1
+          mountPath: /tmp
+      volumes:
+      - name: download-volume
+        hostPath:
+          path: /tmp
+          type: Directory
+      nodeSelector:
+        name: edge-node
+</code></pre>
+
+<p>需要注意的是<code>subPath</code>,最后真正的下载放文件存放的路径会<code>path</code>+<code>subpath</code>,即在: <code>/tmp/shuju1/</code>下</p>
             </article>
 
             <ul class="pager blog-pager">
                 
                 <li class="previous">
-                    <a href="https://googlebaba.io/post/2019/06/config-k8s-dashboard-for-other-browser/" data-toggle="tooltip" data-placement="top" title="">&larr; 前一篇</a>
+                    <a href="https://googlebaba.io/post/2019/06/golang-env-config/" data-toggle="tooltip" data-placement="top" title="golang环境配置">&larr; 前一篇</a>
                 </li>
                  
                 <li class="next">
-                    <a href="https://googlebaba.io/post/2019/06/client-go-example/" data-toggle="tooltip" data-placement="top" title="">后一篇 &rarr;</a>
+                    <a href="https://googlebaba.io/post/2019/06/kubeadm-cmd-option/" data-toggle="tooltip" data-placement="top" title="kubeadm 命令说明">后一篇 &rarr;</a>
                 </li>
                 
             </ul>
             
             <div>
                  
+                <h2>See Also</h2>
+                <ul>
+                    
+                    <li><a href="/post/2019/06/kubeadm-cmd-option/">kubeadm 命令说明</a></li>
+                    
+                    <li><a href="/post/2019/06/pod-all-example/">pod示例</a></li>
+                    
+                    <li><a href="/post/2019/06/etcd-backup-recover/">etcd的备份与恢复</a></li>
+                    
+                    <li><a href="/post/2019/06/harbor-hard-delete-imgs/">harbor中物理删除不要的镜像</a></li>
+                    
+                    <li><a href="/post/2019/06/add-dns-in-pod/">给pod里的集群添加自定义DNS解析</a></li>
+                    
+                </ul>
+                
             </div>
             
             
@@ -226,10 +291,12 @@
             
 <div>
     <section id="datecount">
-        <h4 id="date"> 0001年1月1日</h4>
+        <h4 id="date"> 2019年6月28日</h4>
     </section>
 	
     <h5 id="tags">Tags: 
+        
+        <a href="https://googlebaba.io/tags/k8s/">k8s</a> &nbsp;
     </h5>
 </div>
 

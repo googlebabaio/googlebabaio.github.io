@@ -7,10 +7,37 @@
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>xrzp@qq.com (suredandan)</managingEditor>
     <webMaster>xrzp@qq.com (suredandan)</webMaster>
-    <lastBuildDate>Mon, 10 Jun 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 28 Jun 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://googlebaba.io/tags/k8s/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>kubeadm 命令说明</title>
+      <link>https://googlebaba.io/post/2019/06/kubeadm-cmd-option/</link>
+      <pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/06/kubeadm-cmd-option/</guid>
+      <description>&lt;p&gt;在k8s1.14之后,kubeadm安装已经快要成为事实的标准,在之前参加的CKA考试中,发现部署的环境以及是使用kubeadm部署的了，所以对kubeadm的使用也必需要有所了解了！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>利用job来完成download的示例</title>
+      <link>https://googlebaba.io/post/2019/06/job-for-download/</link>
+      <pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/06/job-for-download/</guid>
+      <description>&lt;p&gt;给出一个利用job来完成download的示例&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>pod示例</title>
+      <link>https://googlebaba.io/post/2019/06/pod-all-example/</link>
+      <pubDate>Wed, 19 Jun 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/06/pod-all-example/</guid>
+      <description>apiVersion: v1 kind: Pod metadata: name: stop-apps spec: initContainers: - name: init image: busybox imagePullPolicy : IfNotPresent command: [&#39;sh&#39;, &#39;-c&#39;, &#39; echo &amp;quot;df -h &amp;gt; /root/running/yes.txt&amp;quot; &amp;gt; /tmp/app-a.sh;chmod +x /tmp/app-a.sh&#39; ] volumeMounts: - name: app-running-volume mountPath: /tmp containers: - name: myapps image: centos:7.5.1804 imagePullPolicy: IfNotPresent command: [&#39;sh&#39;, &#39;-c&#39;,&#39; /root/running/app-a.sh; sleep 3600; &#39;] volumeMounts: - name: app-running-volume mountPath: /root/running - name: app-logs-volume mountPath: /root/logs lifecycle: postStart: exec: command: [&amp;quot;bash&amp;quot;, &amp;quot;-c&amp;quot;, &amp;quot;echo begin &amp;gt;&amp;gt; /root/logs/message&amp;quot;] preStop: exec: command: [&amp;quot;bash&amp;quot;, &amp;quot;-c&amp;quot;, &amp;quot;echo Bye &amp;gt;&amp;gt; /root/logs/message&amp;quot;] volumes: - name: app-running-volume hostPath: path: /tmp/running type: Directory - name: app-logs-volume hostPath: path: /tmp/logs type: Directory nodeSelector: kubernetes.</description>
+    </item>
     
     <item>
       <title>etcd的备份与恢复</title>

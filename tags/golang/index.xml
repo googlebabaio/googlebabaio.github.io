@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>golang on 蛋蛋的小黑屋</title>
+    <link>https://googlebaba.io/tags/golang/</link>
+    <description>Recent content in golang on 蛋蛋的小黑屋</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>xrzp@qq.com (suredandan)</managingEditor>
+    <webMaster>xrzp@qq.com (suredandan)</webMaster>
+    <lastBuildDate>Wed, 19 Jun 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://googlebaba.io/tags/golang/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>golang环境配置</title>
+      <link>https://googlebaba.io/post/2019/06/golang-env-config/</link>
+      <pubDate>Wed, 19 Jun 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/06/golang-env-config/</guid>
+      <description>golang环境配置 goroot
+/usr/local/go  gopath
+mkdir -p /sure/goproject cd /sure/goproject mkdir src pkg bin  下载解压
+wget https://dl.google.com/go/go1.12.4.linux-amd64.tar.gz tar -C /usr/local -zxvf go1.12.4.linux-amd64.tar.gz  编辑环境变量 vim /etc/profile
+export GOROOT=/usr/local/go export PATH=$PATH:$GOROOT/bin export GOPATH=/sure/goproject  go的环境一个实例 go_project // go_project为GOPATH目录 -- bin -- myApp1 // 编译生成 -- myApp2 // 编译生成 -- myApp3 // 编译生成 -- pkg -- src -- myApp1 // project1 -- models -- controllers -- others -- main.go -- myApp2 // project2 -- models -- controllers -- others -- main.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -192,6 +192,87 @@
         <div class="posts-list">
           
             <article class="post-preview">
+              <a href="https://googlebaba.io/post/2019/06/kubeadm-cmd-option/">
+                <h2 class="post-title">kubeadm 命令说明</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                发表于 2019年6月28日
+              </p>
+              <div class="post-entry">
+                
+                  <p>在k8s1.14之后,kubeadm安装已经快要成为事实的标准,在之前参加的CKA考试中,发现部署的环境以及是使用kubeadm部署的了，所以对kubeadm的使用也必需要有所了解了！</p>
+                  <a href="https://googlebaba.io/post/2019/06/kubeadm-cmd-option/" class="post-read-more">[阅读全文]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                  
+                    #<a href="https://googlebaba.io/tags/k8s/">k8s</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://googlebaba.io/post/2019/06/job-for-download/">
+                <h2 class="post-title">利用job来完成download的示例</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                发表于 2019年6月28日
+              </p>
+              <div class="post-entry">
+                
+                  <p>给出一个利用job来完成download的示例</p>
+                  <a href="https://googlebaba.io/post/2019/06/job-for-download/" class="post-read-more">[阅读全文]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                  
+                    #<a href="https://googlebaba.io/tags/k8s/">k8s</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://googlebaba.io/post/2019/06/pod-all-example/">
+                <h2 class="post-title">pod示例</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                发表于 2019年6月19日
+              </p>
+              <div class="post-entry">
+                
+                  apiVersion: v1 kind: Pod metadata: name: stop-apps spec: initContainers: - name: init image: busybox imagePullPolicy : IfNotPresent command: ['sh', '-c', ' echo &quot;df -h &gt; /root/running/yes.txt&quot; &gt; /tmp/app-a.sh;chmod +x /tmp/app-a.sh' ] volumeMounts: - name: app-running-volume mountPath: /tmp containers: - name: myapps image: centos:7.5.1804 imagePullPolicy: IfNotPresent command: ['sh', '-c',' /root/running/app-a.sh; sleep 3600; '] volumeMounts: - name: app-running-volume mountPath: /root/running - name: app-logs-volume mountPath: /root/logs lifecycle: postStart: exec: command: [&quot;bash&quot;, &quot;-c&quot;, &quot;echo begin &gt;&gt; /root/logs/message&quot;] preStop: exec: command: [&quot;bash&quot;, &quot;-c&quot;, &quot;echo Bye &gt;&gt; /root/logs/message&quot;] volumes: - name: app-running-volume hostPath: path: /tmp/running type: Directory - name: app-logs-volume hostPath: path: /tmp/logs type: Directory nodeSelector: kubernetes.
+                  <a href="https://googlebaba.io/post/2019/06/pod-all-example/" class="post-read-more">[阅读全文]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                  
+                    #<a href="https://googlebaba.io/tags/k8s/">k8s</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+            <article class="post-preview">
               <a href="https://googlebaba.io/post/2019/06/etcd-backup-recover/">
                 <h2 class="post-title">etcd的备份与恢复</h2>
 
@@ -285,6 +366,9 @@ coredns 自带 hosts 插件， 允许像配置 hosts 一样配置自定义 DNS �
     <div align="center" class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         
 
+        
+        
+        
         
         
         

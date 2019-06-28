@@ -9,16 +9,19 @@
   <meta name="description" content="" />
   <meta property="og:title" content="蛋蛋的小黑屋" />
   <meta name="twitter:title" content="蛋蛋的小黑屋" />
+  <meta name="description" content="package main import ( &quot;fmt&quot; &quot;time&quot; metav1 &quot;k8s.io/apimachinery/pkg/apis/meta/v1&quot; &quot;k8s.io/client-go/kubernetes&quot; &quot;k8s.io/client-go/rest&quot; ) func main() { // 通过集群内部配置创建 k8s 配置信息，通过 KUBERNETES_SERVICE_HOST 和 KUBERNETES_SERVICE_PORT 环境变量方式获取 // 若集群使用 TLS 认证方式，则默认读取集群内部 tokenFile 和 CAFile // tokenFile = &quot;/var/run/secrets/kubernetes.io/serviceaccount/token&quot; // rootCAFile = &quot;/var/run/secrets/kubernetes.io/serviceaccount/ca.crt&quot; config, err := rest.InClusterConfig() if err != nil { panic(err.Error()) } // 根据指定的 config 创建一个新的 clientset clientset, err := kubernetes.NewForConfig(config) if err != nil { panic(err.Error()) } for { // 通过实现 clientset 的 CoreV1Interface 接口列表中的 PodsGetter 接口方法 Pods(namespace string)返回 PodInterface // PodInterface 接口拥有操作 Pod 资源的方法，例如 Create、Update、Get、List 等方法 // 注意：Pods() 方法中 namespace 不指定则获取 Cluster 所有 Pod 列表 pods, err := clientset.">
+  <meta property="og:description" content="package main import ( &quot;fmt&quot; &quot;time&quot; metav1 &quot;k8s.io/apimachinery/pkg/apis/meta/v1&quot; &quot;k8s.io/client-go/kubernetes&quot; &quot;k8s.io/client-go/rest&quot; ) func main() { // 通过集群内部配置创建 k8s 配置信息，通过 KUBERNETES_SERVICE_HOST 和 KUBERNETES_SERVICE_PORT 环境变量方式获取 // 若集群使用 TLS 认证方式，则默认读取集群内部 tokenFile 和 CAFile // tokenFile = &quot;/var/run/secrets/kubernetes.io/serviceaccount/token&quot; // rootCAFile = &quot;/var/run/secrets/kubernetes.io/serviceaccount/ca.crt&quot; config, err := rest.InClusterConfig() if err != nil { panic(err.Error()) } // 根据指定的 config 创建一个新的 clientset clientset, err := kubernetes.NewForConfig(config) if err != nil { panic(err.Error()) } for { // 通过实现 clientset 的 CoreV1Interface 接口列表中的 PodsGetter 接口方法 Pods(namespace string)返回 PodInterface // PodInterface 接口拥有操作 Pod 资源的方法，例如 Create、Update、Get、List 等方法 // 注意：Pods() 方法中 namespace 不指定则获取 Cluster 所有 Pod 列表 pods, err := clientset.">
+  <meta name="twitter:description" content="package main import ( &quot;fmt&quot; &quot;time&quot; metav1 &quot;k8s.io/apimachinery/pkg/apis/meta/v1&quot; &quot;k8s.io/client-go/kubernetes&quot; &quot;k8s.io/client-go/rest&quot; ) func main() { …">
   <meta name="author" content="suredandan"/>
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@suredandan" />
   <meta name="twitter:creator" content="@suredandan" />
-  <meta property="og:url" content="https://googlebaba.io/post/2019/06/config-grafana/" />
+  <meta property="og:url" content="https://googlebaba.io/post/2019/06/client-go-example/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="蛋蛋的小黑屋" />
 
   <meta name="generator" content="Hugo 0.55.6" />
-  <link rel="canonical" href="https://googlebaba.io/post/2019/06/config-grafana/" />
+  <link rel="canonical" href="https://googlebaba.io/post/2019/06/client-go-example/" />
   <link rel="alternate" href="https://googlebaba.io/index.xml" type="application/rss+xml" title="蛋蛋的小黑屋">
   <script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/jquery-1.12.4.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
@@ -201,18 +204,78 @@
   
 
 
-                <p><img src="assets/markdown-img-paste-20190611101340646.png" alt="" /></p>
+                <pre><code>package main
+
+import (
+    &quot;fmt&quot;
+    &quot;time&quot;
+    metav1 &quot;k8s.io/apimachinery/pkg/apis/meta/v1&quot;
+    &quot;k8s.io/client-go/kubernetes&quot;
+    &quot;k8s.io/client-go/rest&quot;
+)
+
+func main() {
+    // 通过集群内部配置创建 k8s 配置信息，通过 KUBERNETES_SERVICE_HOST 和 KUBERNETES_SERVICE_PORT 环境变量方式获取
+    // 若集群使用 TLS 认证方式，则默认读取集群内部 tokenFile 和 CAFile
+    // tokenFile  = &quot;/var/run/secrets/kubernetes.io/serviceaccount/token&quot;
+    // rootCAFile = &quot;/var/run/secrets/kubernetes.io/serviceaccount/ca.crt&quot;
+    config, err := rest.InClusterConfig()
+    if err != nil {
+        panic(err.Error())
+    }
+
+    // 根据指定的 config 创建一个新的 clientset
+    clientset, err := kubernetes.NewForConfig(config)
+    if err != nil {
+        panic(err.Error())
+    }
+    for {
+        // 通过实现 clientset 的 CoreV1Interface 接口列表中的 PodsGetter 接口方法 Pods(namespace string)返回 PodInterface
+        // PodInterface 接口拥有操作 Pod 资源的方法，例如 Create、Update、Get、List 等方法
+        // 注意：Pods() 方法中 namespace 不指定则获取 Cluster 所有 Pod 列表
+        pods, err := clientset.CoreV1().Pods(&quot;&quot;).List(metav1.ListOptions{})
+        if err != nil {
+            panic(err.Error())
+        }
+        fmt.Printf(&quot;There are %d pods in the k8s cluster\n&quot;, len(pods.Items))
+
+        // 获取指定 namespace 中的 Pod 列表信息
+        namespce := &quot;default&quot;
+        pods, err = clientset.CoreV1().Pods(namespce).List(metav1.ListOptions{})
+        if err != nil {
+            panic(err)
+        }
+        fmt.Printf(&quot;\nThere are %d pods in namespaces %s\n&quot;, len(pods.Items), namespce)
+        for _, pod := range pods.Items {
+            fmt.Printf(&quot;Name: %s, Status: %s, CreateTime: %s\n&quot;, pod.ObjectMeta.Name, pod.Status.Phase, pod.ObjectMeta.CreationTimestamp)
+        }
+
+        // 获取所有的 Namespaces 列表信息
+        ns, err := clientset.CoreV1().Namespaces().List(metav1.ListOptions{})
+        if err != nil {
+            panic(err)
+        }
+        nss := ns.Items
+        fmt.Printf(&quot;\nThere are %d namespaces in cluster\n&quot;, len(nss))
+        for _, ns := range nss {
+            fmt.Printf(&quot;Name: %s, Status: %s, CreateTime: %s\n&quot;, ns.ObjectMeta.Name, ns.Status.Phase, ns.CreationTimestamp)
+        }
+
+        time.Sleep(10 * time.Second)
+    }
+}
+</code></pre>
 
             </article>
 
             <ul class="pager blog-pager">
                 
                 <li class="previous">
-                    <a href="https://googlebaba.io/post/2019/06/config-k8s-dashboard-for-other-browser/" data-toggle="tooltip" data-placement="top" title="">&larr; 前一篇</a>
+                    <a href="https://googlebaba.io/post/2019/06/config-grafana/" data-toggle="tooltip" data-placement="top" title="">&larr; 前一篇</a>
                 </li>
                  
                 <li class="next">
-                    <a href="https://googlebaba.io/post/2019/06/client-go-example/" data-toggle="tooltip" data-placement="top" title="">后一篇 &rarr;</a>
+                    <a href="https://googlebaba.io/post/2019/06/buildblogfromgithub/" data-toggle="tooltip" data-placement="top" title="hugo&#43;github搭建自己的博客">后一篇 &rarr;</a>
                 </li>
                 
             </ul>

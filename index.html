@@ -293,11 +293,7 @@
 
               <div class="post-entry">
                 
-                  golang环境配置 goroot
-/usr/local/go  gopath
-mkdir -p /sure/goproject cd /sure/goproject mkdir src pkg bin  下载解压
-wget https://dl.google.com/go/go1.12.4.linux-amd64.tar.gz tar -C /usr/local -zxvf go1.12.4.linux-amd64.tar.gz  编辑环境变量 vim /etc/profile
-export GOROOT=/usr/local/go export PATH=$PATH:$GOROOT/bin export GOPATH=/sure/goproject  go的环境一个实例 go_project // go_project为GOPATH目录 -- bin -- myApp1 // 编译生成 -- myApp2 // 编译生成 -- myApp3 // 编译生成 -- pkg -- src -- myApp1 // project1 -- models -- controllers -- others -- main.go -- myApp2 // project2 -- models -- controllers -- others -- main.
+                  <p>给出一个常用的golang环境配置的步骤</p>
                   <a href="https://googlebaba.io/post/2019/06/golang-env-config/" class="post-read-more">[阅读全文]</a>
                 
               </div>
@@ -325,7 +321,7 @@ export GOROOT=/usr/local/go export PATH=$PATH:$GOROOT/bin export GOPATH=/sure/go
 
               <div class="post-entry">
                 
-                  apiVersion: v1 kind: Pod metadata: name: stop-apps spec: initContainers: - name: init image: busybox imagePullPolicy : IfNotPresent command: ['sh', '-c', ' echo &quot;df -h &gt; /root/running/yes.txt&quot; &gt; /tmp/app-a.sh;chmod +x /tmp/app-a.sh' ] volumeMounts: - name: app-running-volume mountPath: /tmp containers: - name: myapps image: centos:7.5.1804 imagePullPolicy: IfNotPresent command: ['sh', '-c',' /root/running/app-a.sh; sleep 3600; '] volumeMounts: - name: app-running-volume mountPath: /root/running - name: app-logs-volume mountPath: /root/logs lifecycle: postStart: exec: command: [&quot;bash&quot;, &quot;-c&quot;, &quot;echo begin &gt;&gt; /root/logs/message&quot;] preStop: exec: command: [&quot;bash&quot;, &quot;-c&quot;, &quot;echo Bye &gt;&gt; /root/logs/message&quot;] volumes: - name: app-running-volume hostPath: path: /tmp/running type: Directory - name: app-logs-volume hostPath: path: /tmp/logs type: Directory nodeSelector: kubernetes.
+                  <p>给出一个pod的使用示例,包括: <code>volume</code>,<code>initContainer</code>,<code>hook</code></p>
                   <a href="https://googlebaba.io/post/2019/06/pod-all-example/" class="post-read-more">[阅读全文]</a>
                 
               </div>

@@ -9,9 +9,9 @@
   <meta name="description" content="" />
   <meta property="og:title" content="pod示例" />
   <meta name="twitter:title" content="pod示例" />
-  <meta name="description" content="apiVersion: v1 kind: Pod metadata: name: stop-apps spec: initContainers: - name: init image: busybox imagePullPolicy : IfNotPresent command: [&#39;sh&#39;, &#39;-c&#39;, &#39; echo &quot;df -h &gt; /root/running/yes.txt&quot; &gt; /tmp/app-a.sh;chmod &#43;x /tmp/app-a.sh&#39; ] volumeMounts: - name: app-running-volume mountPath: /tmp containers: - name: myapps image: centos:7.5.1804 imagePullPolicy: IfNotPresent command: [&#39;sh&#39;, &#39;-c&#39;,&#39; /root/running/app-a.sh; sleep 3600; &#39;] volumeMounts: - name: app-running-volume mountPath: /root/running - name: app-logs-volume mountPath: /root/logs lifecycle: postStart: exec: command: [&quot;bash&quot;, &quot;-c&quot;, &quot;echo begin &gt;&gt; /root/logs/message&quot;] preStop: exec: command: [&quot;bash&quot;, &quot;-c&quot;, &quot;echo Bye &gt;&gt; /root/logs/message&quot;] volumes: - name: app-running-volume hostPath: path: /tmp/running type: Directory - name: app-logs-volume hostPath: path: /tmp/logs type: Directory nodeSelector: kubernetes.">
-  <meta property="og:description" content="apiVersion: v1 kind: Pod metadata: name: stop-apps spec: initContainers: - name: init image: busybox imagePullPolicy : IfNotPresent command: [&#39;sh&#39;, &#39;-c&#39;, &#39; echo &quot;df -h &gt; /root/running/yes.txt&quot; &gt; /tmp/app-a.sh;chmod &#43;x /tmp/app-a.sh&#39; ] volumeMounts: - name: app-running-volume mountPath: /tmp containers: - name: myapps image: centos:7.5.1804 imagePullPolicy: IfNotPresent command: [&#39;sh&#39;, &#39;-c&#39;,&#39; /root/running/app-a.sh; sleep 3600; &#39;] volumeMounts: - name: app-running-volume mountPath: /root/running - name: app-logs-volume mountPath: /root/logs lifecycle: postStart: exec: command: [&quot;bash&quot;, &quot;-c&quot;, &quot;echo begin &gt;&gt; /root/logs/message&quot;] preStop: exec: command: [&quot;bash&quot;, &quot;-c&quot;, &quot;echo Bye &gt;&gt; /root/logs/message&quot;] volumes: - name: app-running-volume hostPath: path: /tmp/running type: Directory - name: app-logs-volume hostPath: path: /tmp/logs type: Directory nodeSelector: kubernetes.">
-  <meta name="twitter:description" content="apiVersion: v1 kind: Pod metadata: name: stop-apps spec: initContainers: - name: init image: busybox imagePullPolicy : IfNotPresent command: [&#39;sh&#39;, &#39;-c&#39;, &#39; echo &quot;df -h &gt; …">
+  <meta name="description" content="给出一个pod的使用示例,包括: volume,initContainer,hook">
+  <meta property="og:description" content="给出一个pod的使用示例,包括: volume,initContainer,hook">
+  <meta name="twitter:description" content="给出一个pod的使用示例,包括: volume,initContainer,hook">
   <meta name="author" content="suredandan"/>
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@suredandan" />
@@ -224,7 +224,9 @@
   
 
 
-                <pre><code>apiVersion: v1
+                <p>给出一个pod的使用示例,包括: <code>volume</code>,<code>initContainer</code>,<code>hook</code></p>
+
+<pre><code>apiVersion: v1
 kind: Pod
 metadata:
   name: stop-apps
@@ -273,7 +275,6 @@ spec:
 <li>停止: 钩子prestop</li>
 <li>卸载: 钩子prestop</li>
 </ul>
-
             </article>
 
             <ul class="pager blog-pager">

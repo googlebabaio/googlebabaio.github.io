@@ -3,21 +3,74 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://googlebaba.io/post/2019/07/istio1-hello-istio-arch/</loc>
+    <lastmod>2019-07-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://googlebaba.io/post/</loc>
-    <lastmod>2019-06-28T00:00:00+00:00</lastmod>
+    <lastmod>2019-07-05T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://googlebaba.io/tags/</loc>
-    <lastmod>2019-06-28T00:00:00+00:00</lastmod>
+    <lastmod>2019-07-05T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://googlebaba.io/tags/k8s/</loc>
-    <lastmod>2019-06-28T00:00:00+00:00</lastmod>
+    <loc>https://googlebaba.io/tags/istio/</loc>
+    <lastmod>2019-07-05T00:00:00+00:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/07/istio2-bookinfo-example-1/</loc>
+    <lastmod>2019-07-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/</loc>
+    <lastmod>2019-07-05T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/07/second-half-plan/</loc>
+    <lastmod>2019-07-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/tags/k8s/</loc>
+    <lastmod>2019-07-01T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/tags/linux/</loc>
+    <lastmod>2019-07-01T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/07/pod-hostalias/</loc>
+    <lastmod>2019-07-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/06/client-go-example/</loc>
+    <lastmod>2019-06-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/06/config-grafana/</loc>
+    <lastmod>2019-06-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/06/config-k8s-dashboard-for-other-browser/</loc>
+    <lastmod>2019-06-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -28,12 +81,6 @@
   <url>
     <loc>https://googlebaba.io/post/2019/06/job-for-download/</loc>
     <lastmod>2019-06-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://googlebaba.io/</loc>
-    <lastmod>2019-06-28T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -55,12 +102,6 @@
   <url>
     <loc>https://googlebaba.io/post/2019/06/add-https-using-tencent/</loc>
     <lastmod>2019-06-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://googlebaba.io/tags/linux/</loc>
-    <lastmod>2019-06-11T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -126,21 +167,6 @@
   <url>
     <loc>https://googlebaba.io/page/about/</loc>
     <lastmod>2019-03-20T23:28:02+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://googlebaba.io/post/2019/06/client-go-example/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://googlebaba.io/post/2019/06/config-grafana/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://googlebaba.io/post/2019/06/config-k8s-dashboard-for-other-browser/</loc>
-    <priority>0</priority>
   </url>
   
   <url>

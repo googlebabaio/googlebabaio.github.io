@@ -7,10 +7,47 @@
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>xrzp@qq.com (suredandan)</managingEditor>
     <webMaster>xrzp@qq.com (suredandan)</webMaster>
-    <lastBuildDate>Fri, 28 Jun 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 01 Jul 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://googlebaba.io/tags/k8s/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>pod-hostalias</title>
+      <link>https://googlebaba.io/post/2019/07/pod-hostalias/</link>
+      <pubDate>Mon, 01 Jul 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/07/pod-hostalias/</guid>
+      <description>&lt;p&gt;利用k8s中提供的host-alias来为pod定制化域名&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>client-go 示例</title>
+      <link>https://googlebaba.io/post/2019/06/client-go-example/</link>
+      <pubDate>Sat, 29 Jun 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/06/client-go-example/</guid>
+      <description>package main import ( &amp;quot;fmt&amp;quot; &amp;quot;time&amp;quot; metav1 &amp;quot;k8s.io/apimachinery/pkg/apis/meta/v1&amp;quot; &amp;quot;k8s.io/client-go/kubernetes&amp;quot; &amp;quot;k8s.io/client-go/rest&amp;quot; ) func main() { // 通过集群内部配置创建 k8s 配置信息，通过 KUBERNETES_SERVICE_HOST 和 KUBERNETES_SERVICE_PORT 环境变量方式获取 // 若集群使用 TLS 认证方式，则默认读取集群内部 tokenFile 和 CAFile // tokenFile = &amp;quot;/var/run/secrets/kubernetes.io/serviceaccount/token&amp;quot; // rootCAFile = &amp;quot;/var/run/secrets/kubernetes.io/serviceaccount/ca.crt&amp;quot; config, err := rest.InClusterConfig() if err != nil { panic(err.Error()) } // 根据指定的 config 创建一个新的 clientset clientset, err := kubernetes.NewForConfig(config) if err != nil { panic(err.Error()) } for { // 通过实现 clientset 的 CoreV1Interface 接口列表中的 PodsGetter 接口方法 Pods(namespace string)返回 PodInterface // PodInterface 接口拥有操作 Pod 资源的方法，例如 Create、Update、Get、List 等方法 // 注意：Pods() 方法中 namespace 不指定则获取 Cluster 所有 Pod 列表 pods, err := clientset.</description>
+    </item>
+    
+    <item>
+      <title>grafana</title>
+      <link>https://googlebaba.io/post/2019/06/config-grafana/</link>
+      <pubDate>Sat, 29 Jun 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/06/config-grafana/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>给dashboard加入CA认证</title>
+      <link>https://googlebaba.io/post/2019/06/config-k8s-dashboard-for-other-browser/</link>
+      <pubDate>Sat, 29 Jun 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/06/config-k8s-dashboard-for-other-browser/</guid>
+      <description>&lt;p&gt;在部署完k8s集群后,往往会部署dashborad作为基础监控的一个手段.
+但有时候,部署好的dashboard在其他浏览器上无法正常访问,本文将提供解决的一个参考.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>kubeadm 命令说明</title>

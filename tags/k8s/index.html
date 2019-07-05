@@ -192,12 +192,111 @@
         <div class="posts-list">
           
             <article class="post-preview">
-              <a href="https://googlebaba.io/post/2019/06/kubeadm-cmd-option/">
-                <h2 class="post-title">kubeadm 命令说明</h2>
-
+              <a href="https://googlebaba.io/post/2019/07/pod-hostalias/">
+                <h2 class="post-title">pod-hostalias</h2>
                 
               </a>
+              <p class="post-meta">
+                发表于 2019年7月1日
+              </p>
+              <div class="post-entry">
+                
+                  <p>利用k8s中提供的host-alias来为pod定制化域名</p>
+                  <a href="https://googlebaba.io/post/2019/07/pod-hostalias/" class="post-read-more">[阅读全文]</a>
+                
+              </div>
 
+              
+                <span class="post-meta">
+                  
+                    #<a href="https://googlebaba.io/tags/k8s/">k8s</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://googlebaba.io/post/2019/06/client-go-example/">
+                <h2 class="post-title">client-go 示例</h2>
+                
+              </a>
+              <p class="post-meta">
+                发表于 2019年6月29日
+              </p>
+              <div class="post-entry">
+                
+                  package main import ( &quot;fmt&quot; &quot;time&quot; metav1 &quot;k8s.io/apimachinery/pkg/apis/meta/v1&quot; &quot;k8s.io/client-go/kubernetes&quot; &quot;k8s.io/client-go/rest&quot; ) func main() { // 通过集群内部配置创建 k8s 配置信息，通过 KUBERNETES_SERVICE_HOST 和 KUBERNETES_SERVICE_PORT 环境变量方式获取 // 若集群使用 TLS 认证方式，则默认读取集群内部 tokenFile 和 CAFile // tokenFile = &quot;/var/run/secrets/kubernetes.io/serviceaccount/token&quot; // rootCAFile = &quot;/var/run/secrets/kubernetes.io/serviceaccount/ca.crt&quot; config, err := rest.InClusterConfig() if err != nil { panic(err.Error()) } // 根据指定的 config 创建一个新的 clientset clientset, err := kubernetes.NewForConfig(config) if err != nil { panic(err.Error()) } for { // 通过实现 clientset 的 CoreV1Interface 接口列表中的 PodsGetter 接口方法 Pods(namespace string)返回 PodInterface // PodInterface 接口拥有操作 Pod 资源的方法，例如 Create、Update、Get、List 等方法 // 注意：Pods() 方法中 namespace 不指定则获取 Cluster 所有 Pod 列表 pods, err := clientset.
+                  <a href="https://googlebaba.io/post/2019/06/client-go-example/" class="post-read-more">[阅读全文]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                  
+                    #<a href="https://googlebaba.io/tags/k8s/">k8s</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://googlebaba.io/post/2019/06/config-grafana/">
+                <h2 class="post-title">grafana</h2>
+                
+              </a>
+              <p class="post-meta">
+                发表于 2019年6月29日
+              </p>
+              <div class="post-entry">
+                
+                  <p><img src="assets/markdown-img-paste-20190611101340646.png" alt="" /></p>
+
+                
+              </div>
+
+              
+                <span class="post-meta">
+                  
+                    #<a href="https://googlebaba.io/tags/k8s/">k8s</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://googlebaba.io/post/2019/06/config-k8s-dashboard-for-other-browser/">
+                <h2 class="post-title">给dashboard加入CA认证</h2>
+                
+              </a>
+              <p class="post-meta">
+                发表于 2019年6月29日
+              </p>
+              <div class="post-entry">
+                
+                  <p>在部署完k8s集群后,往往会部署dashborad作为基础监控的一个手段.
+但有时候,部署好的dashboard在其他浏览器上无法正常访问,本文将提供解决的一个参考.</p>
+                  <a href="https://googlebaba.io/post/2019/06/config-k8s-dashboard-for-other-browser/" class="post-read-more">[阅读全文]</a>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                  
+                    #<a href="https://googlebaba.io/tags/k8s/">k8s</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://googlebaba.io/post/2019/06/kubeadm-cmd-option/">
+                <h2 class="post-title">kubeadm 命令说明</h2>
+                
+              </a>
               <p class="post-meta">
                 发表于 2019年6月28日
               </p>
@@ -221,10 +320,8 @@
             <article class="post-preview">
               <a href="https://googlebaba.io/post/2019/06/job-for-download/">
                 <h2 class="post-title">利用job来完成download的示例</h2>
-
                 
               </a>
-
               <p class="post-meta">
                 发表于 2019年6月28日
               </p>
@@ -248,10 +345,8 @@
             <article class="post-preview">
               <a href="https://googlebaba.io/post/2019/06/pod-all-example/">
                 <h2 class="post-title">pod示例</h2>
-
                 
               </a>
-
               <p class="post-meta">
                 发表于 2019年6月19日
               </p>
@@ -275,10 +370,8 @@
             <article class="post-preview">
               <a href="https://googlebaba.io/post/2019/06/etcd-backup-recover/">
                 <h2 class="post-title">etcd的备份与恢复</h2>
-
                 
               </a>
-
               <p class="post-meta">
                 发表于 2019年6月10日
               </p>
@@ -304,10 +397,8 @@
             <article class="post-preview">
               <a href="https://googlebaba.io/post/2019/06/harbor-hard-delete-imgs/">
                 <h2 class="post-title">harbor中物理删除不要的镜像</h2>
-
                 
               </a>
-
               <p class="post-meta">
                 发表于 2019年6月10日
               </p>
@@ -333,10 +424,8 @@
             <article class="post-preview">
               <a href="https://googlebaba.io/post/2019/06/add-dns-in-pod/">
                 <h2 class="post-title">给pod里的集群添加自定义DNS解析</h2>
-
                 
               </a>
-
               <p class="post-meta">
                 发表于 2019年6月10日
               </p>
@@ -366,6 +455,10 @@ coredns 自带 hosts 插件， 允许像配置 hosts 一样配置自定义 DNS �
     <div align="center" class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         
 
+        
+        
+        
+        
         
         
         

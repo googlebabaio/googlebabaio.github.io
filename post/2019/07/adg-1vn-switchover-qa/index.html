@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title> adg-1拖N切换填坑记录 - </title>
+  <meta name="description" content="" />
+  <meta property="og:title" content="adg-1拖N切换填坑记录" />
+  <meta name="twitter:title" content="adg-1拖N切换填坑记录" />
+  <meta name="description" content="adg 1拖N切换填坑记录">
+  <meta property="og:description" content="adg 1拖N切换填坑记录">
+  <meta name="twitter:description" content="adg 1拖N切换填坑记录">
+  <meta name="author" content="suredandan"/>
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@suredandan" />
+  <meta name="twitter:creator" content="@suredandan" />
+  <meta property="og:url" content="https://googlebaba.io/post/2019/07/adg-1vn-switchover-qa/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="蛋蛋的小黑屋" />
+
+  <meta name="generator" content="Hugo 0.56.1" />
+  <link rel="canonical" href="https://googlebaba.io/post/2019/07/adg-1vn-switchover-qa/" />
+  <link rel="alternate" href="https://googlebaba.io/index.xml" type="application/rss+xml" title="蛋蛋的小黑屋">
+  <script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/jquery-1.12.4.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  
+  
+  <link rel="stylesheet" href="https://googlebaba.io/css/main.css" />
+  <link rel="stylesheet" href="https://googlebaba.io/css/search.css" />
+  
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" integrity="sha256-sCl5PUOGMLfFYctzDW3MtRib0ctyUvI9Qsmq2wXOeBY=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" integrity="sha256-BFeI1V+Vh1Rk37wswuOYn5lsTcaU96hGaI7OUVCLjPc=" crossorigin="anonymous" />
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">切换导航</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://googlebaba.io/">蛋蛋的小黑屋</a>
+    </div>
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="博客" href="/post">博客</a>
+              
+              
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">书籍</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://googlebaba.io/k8s">K8s-Cookbook</a>
+                
+                
+                  <a href="https://googlebaba.io/oraclecookbook">Oracle-Cookbook</a>
+                
+                
+                  <a href="https://googlebaba.io/mysqlcookbook">MySQL-Cookbook</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="关于我" href="/page/about/">关于我</a>
+              
+              
+            </li>
+          
+        
+          
+            <li>
+              <a title="分类" href="/tags">分类</a>
+              
+              
+            </li>
+          
+        
+
+        
+
+        
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="蛋蛋的小黑屋" href="https://googlebaba.io/">
+            <img class="avatar-img" src="https://googlebaba.io/img/avatar-icon.png" alt="蛋蛋的小黑屋" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-md-offset-0">
+            <div class="post-heading">
+                <h1 align="center">adg-1拖N切换填坑记录</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main" itemscope itemtype="http://schema.org/Article">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> 2019年7月30日</h4>
+    </section>
+	
+    <h5 id="tags">Tags: 
+        
+        <a href="https://googlebaba.io/tags/oracle/">Oracle</a> &nbsp;
+    </h5>
+</div>
+
+            
+            <article role="main" class="blog-post" itemprop="articleBody" id="content">
+                
+  
+  <aside class="toc">
+    
+  </aside>
+  
+
+
+                <p>adg 1拖N切换填坑记录</p>
+
+<p>填了如下几个坑：</p>
+
+<p>1.新的主库如果对其他的备库不能ping的话,需要将fal_Server 和 log_arhive_config中涉及到的备库的名字去掉</p>
+
+<p>2.新的主库的log_archive_dest_n去掉不能ping通的备库</p>
+
+<p>3.主库查看备库传输的状态</p>
+
+<pre><code>select error,dest_id frm v$archive_dest where rownum &lt; 6;
+</code></pre>
+
+<p>如果有错误提示,如ORA-16191,那说明是密码的问题
+可以将主库的密码刷新后,再全部重新传输一次到所有的主备库上
+刷新的方法应该采用<code>alter user sys identified by xxx</code>,而不是去orapwd,因为修改了密码会自动同步到密码文件也同时会更新数据库中的数据字典
+修改完成后,再去将相应的归档路径的state先改为defer,再改为enable,隔几十秒再去执行</p>
+
+<pre><code>select error,dest_id frm v$archive_dest where rownum &lt; 6;
+</code></pre>
+
+<p>查看error是否消除</p>
+
+<p>4.主库的switchover_status为<code>RESOLVABLE GAP</code>说明主库和备库之间存在数据没有同步,需要先解决了才能进去切换</p>
+
+<p>有几个状态:
+- <code>NOT ALLOWED</code> - On a primary database, this status indicates that there are no valid and enabled standby databases. On a standby database, this status indicates that a switchover request has not been received from the primary database.</p>
+
+<ul>
+<li><p><code>SESSIONS ACTIVE</code> - The database has active sessions. On a physical standby database, the WITH SESSION SHUTDOWN SQL clause must be specified to perform a role transition while in this state. On a logical standby database, a role transition can be performed while in this state, but the role transition will not complete until all current transactions have committed.</p></li>
+
+<li><p><code>SWITCHOVER PENDING</code> - On a physical standby database, this status indicates that a switchover request has been received from the primary database and is being processed. A physical standby database cannot switch to the primary role while in this transient state.</p></li>
+
+<li><p><code>SWITCHOVER LATENT</code> - On a physical standby database, this status indicates that a switchover request was pending, but the original primary database has been switched back to the primary role.</p></li>
+
+<li><p><code>TO PRIMARY</code> - The database is ready to switch to the primary role.</p></li>
+
+<li><p><code>TO STANDBY</code> - The database is ready to switch to either the physical or logical standby role.</p></li>
+
+<li><p><code>TO LOGICAL STANDBY</code> - The database has received a data dictionary from a logical standby database and is ready to switch to the logical standby role.</p></li>
+
+<li><p><code>RECOVERY NEEDED</code> - On a physical standby database, this status indicates that additional redo must be applied before the database can switch to the primary role.</p></li>
+
+<li><p><code>PREPARING SWITCHOVER</code> - On a primary database, this status indicates that a data dictionary is being received from a logical standby database in preparation for switching to the logical standby role. On a logical standby database, this status indicates that the data dictionary has been sent to the primary database and other standby databases.</p></li>
+
+<li><p><code>PREPARING DICTIONARY</code> - On a logical standby database, this status indicates that the data dictionary is being sent to the primary database and other standby databases in preparation for switching to the primary role.</p></li>
+
+<li><p><code>FAILED DESTINATION</code> - On a primary database, this status indicates that one or more standby destinations are in an error state.</p></li>
+
+<li><p><code>RESOLVABLE GAP</code> - On a primary database, this status indicates that one or more standby databases have a redo gap that can be automatically resolved by fetching the missing redo from the primary database or from another standby database.</p></li>
+
+<li><p><code>UNRESOLVABLE GAP</code> - On a primary database, this status indicates that one or more standby databases have a redo gap that cannot be automatically resolved by fetching the missing redo from the primary database or from another standby database.</p></li>
+
+<li><p><code>LOG SWITCH GAP</code> - On a primary database, this status indicates that one or more standby databases are missing redo due to a recent log switch.</p></li>
+</ul>
+
+<p>解决办法可以先参考第3条,如果没问题了,那么去查询主备库的最大日志号是否一样</p>
+
+<pre><code>select max(sequence#),inst_id from gv$archived_log group by inst_id;
+</code></pre>
+
+<p>如果不一致,可以看看主备库的alert日志报什么错
+如果一致了,去查备库的alert日志,是否有<code>media recovery</code>之类的提示,如果有,说明在实时恢复没如果没有说明没有实时应用日志进行恢复.
+这个时候去查</p>
+
+<pre><code>select open_mode from v$database;
+</code></pre>
+
+<p>查看是否开启了实时应用,以及查看mrp进程是否存在</p>
+
+<p>如果依然有正确,那就是看看lag有多少延迟</p>
+
+<pre><code>set linesize 200
+col ctime format a20
+col value format a20
+select to_char(SYSDATE,'yyyymmdd hh24:mi:ss') CTIME,NAME,VALUE,DATUM_TIME from V$DATAGUARD_STATS WHERE NAME LIKE '%lag';
+</code></pre>
+
+<p>正常的应该是0,不正常的就会显示有多少分多少秒的延迟.
+这个时候去查下备库的standby redo log的组数是不是不对,RAC环境有可能是因为thread两边的组数不一致.
+如果以上再没有问题,那么就只有采取终极大法,重启备库了!</p>
+            </article>
+
+            <ul class="pager blog-pager">
+                
+                <li class="previous">
+                    <a href="https://googlebaba.io/post/2019/07/k8s-used-list/" data-toggle="tooltip" data-placement="top" title="k8s文章链接">&larr; 前一篇</a>
+                </li>
+                 
+            </ul>
+            
+            <div>
+                 
+                <h2>See Also</h2>
+                <ul>
+                    
+                    <li><a href="/post/2019/07/dg-parameter/">11g Adg 参数说明</a></li>
+                    
+                    <li><a href="/post/2019/07/adg-qianyi-exp/">ADG迁移经验分享</a></li>
+                    
+                    <li><a href="/post/2019/07/adg-clbq-1/">ADG查漏补缺</a></li>
+                    
+                    <li><a href="/post/2019/07/config-oracle-auto-startup-reboot/">设置Oracle开机自动启动</a></li>
+                    
+                    <li><a href="/post/2019/07/mtls-jiehuo/">说说mTLS是什么</a></li>
+                    
+                </ul>
+                
+            </div>
+            
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> 2019年7月30日</h4>
+    </section>
+	
+    <h5 id="tags">Tags: 
+        
+        <a href="https://googlebaba.io/tags/oracle/">Oracle</a> &nbsp;
+    </h5>
+</div>
+
+            
+            </div>
+            
+            
+                
+                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+<aside id=comments>
+    
+	
+    
+</aside>
+
+</div>
+
+                
+            
+        </div>
+    </div>
+    </section>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:xrzp@qq.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.facebook.com/suredandan" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/googlebabaio" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/suredandan" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/suredandan" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://stackoverflow.com/suredandan" title="StackOverflow">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-stack-overflow fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://telegram.me/138888888888" title="Telegram">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-telegram fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="https://googlebaba.io/index.xml" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+        &copy;2017-2019
+          
+            
+              <a href="https://googlebaba.io">suredandan</a>
+            
+          
+          
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://googlebaba.io/">蛋蛋的小黑屋</a>
+          
+        </p>
+
+        
+        <p class="credits theme-by text-muted">
+          由 <a href="http://gohugo.io">Hugo v0.56.1</a> 强力驱动 &nbsp;&bull;&nbsp; 主题 <a href="https://github.com/rootsongjc/beautifulhugo">Beautiful Hugo</a> 移植自 <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/bootstrap.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe-ui-default.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/auto-render.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/main.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/prism.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/katex.min.js"></script>
+<script> renderMathInElement(document.body); </script>
+
+
+
+  </body>
+</html>
+

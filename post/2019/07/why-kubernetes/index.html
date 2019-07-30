@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title> 使用kubernetes的几大优势 - </title>
+  <meta name="description" content="" />
+  <meta property="og:title" content="使用kubernetes的几大优势" />
+  <meta name="twitter:title" content="使用kubernetes的几大优势" />
+  <meta name="description" content="整理了一些使用k8s的理由和优势!">
+  <meta property="og:description" content="整理了一些使用k8s的理由和优势!">
+  <meta name="twitter:description" content="整理了一些使用k8s的理由和优势!">
+  <meta name="author" content="suredandan"/>
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@suredandan" />
+  <meta name="twitter:creator" content="@suredandan" />
+  <meta property="og:url" content="https://googlebaba.io/post/2019/07/why-kubernetes/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="蛋蛋的小黑屋" />
+
+  <meta name="generator" content="Hugo 0.56.1" />
+  <link rel="canonical" href="https://googlebaba.io/post/2019/07/why-kubernetes/" />
+  <link rel="alternate" href="https://googlebaba.io/index.xml" type="application/rss+xml" title="蛋蛋的小黑屋">
+  <script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/jquery-1.12.4.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  
+  
+  <link rel="stylesheet" href="https://googlebaba.io/css/main.css" />
+  <link rel="stylesheet" href="https://googlebaba.io/css/search.css" />
+  
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" integrity="sha256-sCl5PUOGMLfFYctzDW3MtRib0ctyUvI9Qsmq2wXOeBY=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" integrity="sha256-BFeI1V+Vh1Rk37wswuOYn5lsTcaU96hGaI7OUVCLjPc=" crossorigin="anonymous" />
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">切换导航</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://googlebaba.io/">蛋蛋的小黑屋</a>
+    </div>
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="博客" href="/post">博客</a>
+              
+              
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">书籍</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://googlebaba.io/k8s">K8s-Cookbook</a>
+                
+                
+                  <a href="https://googlebaba.io/oraclecookbook">Oracle-Cookbook</a>
+                
+                
+                  <a href="https://googlebaba.io/mysqlcookbook">MySQL-Cookbook</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="关于我" href="/page/about/">关于我</a>
+              
+              
+            </li>
+          
+        
+          
+            <li>
+              <a title="分类" href="/tags">分类</a>
+              
+              
+            </li>
+          
+        
+
+        
+
+        
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="蛋蛋的小黑屋" href="https://googlebaba.io/">
+            <img class="avatar-img" src="https://googlebaba.io/img/avatar-icon.png" alt="蛋蛋的小黑屋" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-md-offset-0">
+            <div class="post-heading">
+                <h1 align="center">使用kubernetes的几大优势</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main" itemscope itemtype="http://schema.org/Article">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> 2019年7月8日</h4>
+    </section>
+	
+    <h5 id="tags">Tags: 
+        
+        <a href="https://googlebaba.io/tags/k8s/">k8s</a> &nbsp;
+    </h5>
+</div>
+
+            
+            <article role="main" class="blog-post" itemprop="articleBody" id="content">
+                
+  
+
+
+                <p>整理了一些使用k8s的理由和优势!</p>
+
+<h2 id="拥抱微服务">拥抱微服务</h2>
+
+<p>微服务架构将巨大单体式应用分解为多个服务，每个服务通过 RPC 或者API 进行通信，具备了各个自服务容易开发、维护的优点，另外子服务还具备独立部署、快速扩展等优点。Kubernetes 对微服务本身有很好的支持，应用本身通过Deployment 进行部署，各个服务运行在 Pod 中，Pod 之间服务通过 Service 具备的服务发现实现相互间的通信。同时微服务架构也恰好是云原生应用的一种体现。</p>
+
+<h2 id="容器编排">容器编排</h2>
+
+<p>Kubernetes 帮助使用者通过简单易用的 API 高效地管理成千上万个运行在容器中的微服务。Kubernetes 在 1.6 版本中已经支持 5000 个节点，这也说明 Kubernetes具备大规模集群的编排管理能力。同时，Kubernetes 还具备包括监控、日志、包管理等各种完善而专业的工具链，这将大大减轻运维和开发人员的负担。</p>
+
+<h2 id="服务注册发现">服务注册发现</h2>
+
+<p>微服务的实践过程中存在各种服务依赖关系，因此服务的注册发现十分重要。Kubernetes 对服务进行抽象，通过抽象的服务层动态地解析到对应的容器服务。Kubernetes 同时提供了 DNS 和环境变量两种方式，帮助实现服务的注册和发现，Kubernetes 早期版本中使用的环境变量方式实现，现在 Kubernetes 则默认使用 DNS，通过使用 DNS 将服务名称解析为服务的 IP 地址，然后 Proxy 转到对应的 Pod。</p>
+
+<h2 id="主机资源利用率">主机资源利用率</h2>
+
+<p>Kubernetes 对主机的资源利用率，也是一种提升，基本上物理机，ECS，EC2，主机的利用率通常都在30%左右，极大的浪费了资源。使用 Kubernetes 后，可以根据主机资源使用情况，自动的调度 Pod 运行到那台机器上。可以极大的提高主机的资源利用率。</p>
+
+<h2 id="弹性扩容">弹性扩容</h2>
+
+<p>例如我们新上线的应用，因不同的业务场景，初次上线的时候不太确定给多少资源，默认就给应用 4G 内存，在 Kubernetes 中我们可以根据内存的使用率，来定义是否启动一个新的 Pod，以及 Pod 最少多少个，最多多少个。</p>
+
+<h2 id="应用横向扩展">应用横向扩展</h2>
+
+<p>例如我们应用在在访问资源高峰期，应用需要进行添加机器，如果在 ECS、EC2 等机器，就需要再安装服务呀，配置负载之类的，在容器中就简单多了，直接修改ReplicaSet，修改节点数量，就会根据镜像自动启动新服务。</p>
+            </article>
+
+            <ul class="pager blog-pager">
+                
+                <li class="previous">
+                    <a href="https://googlebaba.io/post/2019/07/istio2-bookinfo-example-1/" data-toggle="tooltip" data-placement="top" title="istio-bookinfo 示例 ">&larr; 前一篇</a>
+                </li>
+                 
+                <li class="next">
+                    <a href="https://googlebaba.io/post/2019/07/oracle-audit/" data-toggle="tooltip" data-placement="top" title="Oracle的审计">后一篇 &rarr;</a>
+                </li>
+                
+            </ul>
+            
+            <div>
+                 
+                <h2>See Also</h2>
+                <ul>
+                    
+                    <li><a href="/post/2019/07/limitrange-resourcequota/">`limitrange`和`resourcequota`两者的区别</a></li>
+                    
+                    <li><a href="/post/2019/07/pod-hostalias/">pod-hostalias</a></li>
+                    
+                    <li><a href="/post/2019/06/client-go-example/">client-go 示例</a></li>
+                    
+                    <li><a href="/post/2019/06/config-grafana/">grafana</a></li>
+                    
+                    <li><a href="/post/2019/06/config-k8s-dashboard-for-other-browser/">给dashboard加入CA认证</a></li>
+                    
+                </ul>
+                
+            </div>
+            
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> 2019年7月8日</h4>
+    </section>
+	
+    <h5 id="tags">Tags: 
+        
+        <a href="https://googlebaba.io/tags/k8s/">k8s</a> &nbsp;
+    </h5>
+</div>
+
+            
+            </div>
+            
+            
+                
+                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+<aside id=comments>
+    
+	
+    
+</aside>
+
+</div>
+
+                
+            
+        </div>
+    </div>
+    </section>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:xrzp@qq.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.facebook.com/suredandan" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/googlebabaio" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/suredandan" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/suredandan" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://stackoverflow.com/suredandan" title="StackOverflow">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-stack-overflow fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://telegram.me/138888888888" title="Telegram">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-telegram fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="https://googlebaba.io/index.xml" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+        &copy;2017-2019
+          
+            
+              <a href="https://googlebaba.io">suredandan</a>
+            
+          
+          
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://googlebaba.io/">蛋蛋的小黑屋</a>
+          
+        </p>
+
+        
+        <p class="credits theme-by text-muted">
+          由 <a href="http://gohugo.io">Hugo v0.56.1</a> 强力驱动 &nbsp;&bull;&nbsp; 主题 <a href="https://github.com/rootsongjc/beautifulhugo">Beautiful Hugo</a> 移植自 <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/bootstrap.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe-ui-default.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/auto-render.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/main.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/prism.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/katex.min.js"></script>
+<script> renderMathInElement(document.body); </script>
+
+
+
+  </body>
+</html>
+

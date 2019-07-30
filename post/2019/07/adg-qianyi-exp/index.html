@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title> ADG迁移经验分享 - </title>
+  <meta name="description" content="" />
+  <meta property="og:title" content="ADG迁移经验分享" />
+  <meta name="twitter:title" content="ADG迁移经验分享" />
+  <meta name="description" content="最近做了几个地方的双活，遇到的情况几乎都是要将以前老版本的10g迁移到11g上，并搭建双活。
+方便今后参考，特总结一下">
+  <meta property="og:description" content="最近做了几个地方的双活，遇到的情况几乎都是要将以前老版本的10g迁移到11g上，并搭建双活。
+方便今后参考，特总结一下">
+  <meta name="twitter:description" content="最近做了几个地方的双活，遇到的情况几乎都是要将以前老版本的10g迁移到11g上，并搭建双活。
+方便今后参考，特总结一下">
+  <meta name="author" content="suredandan"/>
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@suredandan" />
+  <meta name="twitter:creator" content="@suredandan" />
+  <meta property="og:url" content="https://googlebaba.io/post/2019/07/adg-qianyi-exp/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="蛋蛋的小黑屋" />
+
+  <meta name="generator" content="Hugo 0.56.1" />
+  <link rel="canonical" href="https://googlebaba.io/post/2019/07/adg-qianyi-exp/" />
+  <link rel="alternate" href="https://googlebaba.io/index.xml" type="application/rss+xml" title="蛋蛋的小黑屋">
+  <script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/jquery-1.12.4.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  
+  
+  <link rel="stylesheet" href="https://googlebaba.io/css/main.css" />
+  <link rel="stylesheet" href="https://googlebaba.io/css/search.css" />
+  
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" integrity="sha256-sCl5PUOGMLfFYctzDW3MtRib0ctyUvI9Qsmq2wXOeBY=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" integrity="sha256-BFeI1V+Vh1Rk37wswuOYn5lsTcaU96hGaI7OUVCLjPc=" crossorigin="anonymous" />
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">切换导航</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://googlebaba.io/">蛋蛋的小黑屋</a>
+    </div>
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="博客" href="/post">博客</a>
+              
+              
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">书籍</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://googlebaba.io/k8s">K8s-Cookbook</a>
+                
+                
+                  <a href="https://googlebaba.io/oraclecookbook">Oracle-Cookbook</a>
+                
+                
+                  <a href="https://googlebaba.io/mysqlcookbook">MySQL-Cookbook</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="关于我" href="/page/about/">关于我</a>
+              
+              
+            </li>
+          
+        
+          
+            <li>
+              <a title="分类" href="/tags">分类</a>
+              
+              
+            </li>
+          
+        
+
+        
+
+        
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="蛋蛋的小黑屋" href="https://googlebaba.io/">
+            <img class="avatar-img" src="https://googlebaba.io/img/avatar-icon.png" alt="蛋蛋的小黑屋" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-md-offset-0">
+            <div class="post-heading">
+                <h1 align="center">ADG迁移经验分享</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main" itemscope itemtype="http://schema.org/Article">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> 2019年7月19日</h4>
+    </section>
+	
+    <h5 id="tags">Tags: 
+        
+        <a href="https://googlebaba.io/tags/oracle/">Oracle</a> &nbsp;
+    </h5>
+</div>
+
+            
+            <article role="main" class="blog-post" itemprop="articleBody" id="content">
+                
+  
+
+
+                <p>最近做了几个地方的双活，遇到的情况几乎都是要将以前老版本的10g迁移到11g上，并搭建双活。
+方便今后参考，特总结一下</p>
+
+<h2 id="在时间窗口比较大的情况下-建议步骤">在时间窗口比较大的情况下，建议步骤：</h2>
+
+<ol>
+<li>可以提前安装主备的RAC环境</li>
+<li>在两套RAC上搭建双活</li>
+<li>在10g的环境做expdp</li>
+<li>在11g的主库RAC上做impdp</li>
+<li>在11g的主库上做utlrp编译，以及收集统计信息</li>
+<li>验证</li>
+</ol>
+
+<h2 id="经验分享">经验分享</h2>
+
+<h3 id="1-巧妙的利用dbca来做备库的配置">1.巧妙的利用dbca来做备库的配置</h3>
+
+<p>做RAC到RAC的双活的时候，为了简化后期的操作步骤，已经在备库创建好了同主库数据库名一致的实例。创建实例时指定db_name、db_unique_name、service_name。在配置过程中只是删除物理文件，其他资源保留。</p>
+
+<h3 id="2-数据泵在10g的导出脚本参考">2.数据泵在10g的导出脚本参考</h3>
+
+<pre><code>[oracle@tmp]$ cat exp_orcl0823.sh
+export ORACLE_SID=orcl
+nohup expdp \'/ as sysdba\' parallel=4 DIRECTORY=dump_dir DUMPFILE=orcl0823_%U.dmp LOGFILE=orcl0823.log full=y job_name=orcl0823_expdp exclude=statistics &amp;
+</code></pre>
+
+<h3 id="3-导出之前的操作">3.导出之前的操作</h3>
+
+<p>为了防止新的连接进来，造成数据的不一致。所以可以先把监听停了，然后<code>kill sesion</code></p>
+
+<p>10g需要在两个节点分别做</p>
+
+<pre><code>alter system kill session 'sid,serial#';
+</code></pre>
+
+<p>11g只需要在一个节点做</p>
+
+<pre><code>alter system kill session 'sid,serial#,@inst_id';
+</code></pre>
+
+<h3 id="4-在导入之前需要做的准备工作">4.在导入之前需要做的准备工作</h3>
+
+<ol>
+<li>创建相应的表空间和临时表空间</li>
+<li>相关的用户不需要创建，在imdp的时候用户/密码/权限都会被相应的创建出来</li>
+<li>查询一下用户/用户表/表空间的所属，看是否存在权限的问题。遇到过一个用户在某些表空间没权限，但它的表却有存放在这个表空间。用 <code>alter user user_name quota tablespace_name</code> 来搞定</li>
+</ol>
+
+<h3 id="5-数据泵在11g的导入脚本参考">5.数据泵在11g的导入脚本参考</h3>
+
+<pre><code>[oracle@temp]$ more impdp_orcl0823.sh
+export ORACLE_SID=orcl
+nohup impdp  \'/ as sysdba\' DIRECTORY=dump_dir parallel=4 dumpfile=orcl0823_%U.dmp logfile=impdp_orcl0823.log SCHEMAS=scott,hr,sh cluster=no job_name=impdp_orcl0823 &amp;
+</code></pre>
+
+<h3 id="6-补充导入数据-如同义词">6.补充导入数据，如同义词</h3>
+
+<p>在双活的部署过程中，发现连接备库的app启动时报表不存在，经排查发现是备库对应的用户使用了同义词去访问同一个库的其他用户的表，但是expdp的时候选用full=y的不会单独备份同义词的。后来经过手工创建同义词搞定</p>
+
+<pre><code>SELECT 'create public synonym ' || synonym_name || ' for ' || table_owner || '.' || table_name || ';'
+  FROM dba_synonyms s WHERE s.owner = 'PUBLIC' AND s.table_owner = UPPER ('&amp;input_owner');
+</code></pre>
+
+<p>当然我们也可以在expdp的时候把同义词也导出来：</p>
+
+<pre><code>expdp sys/Oracle directory=dump_dir dumpfile=syns.dmp logfile=exp_syns.log full=y include=PUBLIC_SYNONYM/SYNONYM:\&quot;IN \(SELECT synonym_name FROM dba_synonyms WHERE table_owner=\'USER_NAME\'\)\&quot;
+</code></pre>
+
+<p>再导入进去：</p>
+
+<pre><code>impdp sys/Oracle directory=dump_dir dumpfile=syns.dmp logfile=imp_syns.log full=y include=synonym
+</code></pre>
+
+<p>include具体怎么写，可以查询数据字典：
+<code>select * from database_export_objects t</code> 的<code>path</code>那一列</p>
+
+<h3 id="7-特别注意dg对于临时文件的同步有点问题">7.特别注意dg对于临时文件的同步有点问题</h3>
+
+<p>在主库上创建的临时表空间，在备库有定义，但是查询gv$tempfile查不到文件。这个也是日了狗了。
+可以采用两种办法解决：</p>
+
+<ul>
+<li><p>方法1：在主库上给相应的临时表空间添加数据文件</p>
+
+<pre><code>alter tablespace xxxx add tempfile '+DATADG' size  10g autoextend on;
+</code></pre></li>
+
+<li><p>方法2：将用户的默认临时表空间指向temp</p>
+
+<pre><code>alter user xxx default temporary tablespace temp;
+</code></pre></li>
+</ul>
+            </article>
+
+            <ul class="pager blog-pager">
+                
+                <li class="previous">
+                    <a href="https://googlebaba.io/post/2019/07/adg-clbq-1/" data-toggle="tooltip" data-placement="top" title="ADG查漏补缺">&larr; 前一篇</a>
+                </li>
+                 
+                <li class="next">
+                    <a href="https://googlebaba.io/post/2019/07/dg-parameter/" data-toggle="tooltip" data-placement="top" title="11g Adg 参数说明">后一篇 &rarr;</a>
+                </li>
+                
+            </ul>
+            
+            <div>
+                 
+                <h2>See Also</h2>
+                <ul>
+                    
+                    <li><a href="/post/2019/07/dg-parameter/">11g Adg 参数说明</a></li>
+                    
+                    <li><a href="/post/2019/07/adg-clbq-1/">ADG查漏补缺</a></li>
+                    
+                    <li><a href="/post/2019/07/config-oracle-auto-startup-reboot/">设置Oracle开机自动启动</a></li>
+                    
+                    <li><a href="/post/2019/07/mtls-jiehuo/">说说mTLS是什么</a></li>
+                    
+                    <li><a href="/post/2019/07/after-delete-redo/">删除redo后的恢复</a></li>
+                    
+                </ul>
+                
+            </div>
+            
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> 2019年7月19日</h4>
+    </section>
+	
+    <h5 id="tags">Tags: 
+        
+        <a href="https://googlebaba.io/tags/oracle/">Oracle</a> &nbsp;
+    </h5>
+</div>
+
+            
+            </div>
+            
+            
+                
+                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+<aside id=comments>
+    
+	
+    
+</aside>
+
+</div>
+
+                
+            
+        </div>
+    </div>
+    </section>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:xrzp@qq.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.facebook.com/suredandan" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/googlebabaio" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/suredandan" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/suredandan" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://stackoverflow.com/suredandan" title="StackOverflow">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-stack-overflow fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://telegram.me/138888888888" title="Telegram">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-telegram fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="https://googlebaba.io/index.xml" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+        &copy;2017-2019
+          
+            
+              <a href="https://googlebaba.io">suredandan</a>
+            
+          
+          
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://googlebaba.io/">蛋蛋的小黑屋</a>
+          
+        </p>
+
+        
+        <p class="credits theme-by text-muted">
+          由 <a href="http://gohugo.io">Hugo v0.56.1</a> 强力驱动 &nbsp;&bull;&nbsp; 主题 <a href="https://github.com/rootsongjc/beautifulhugo">Beautiful Hugo</a> 移植自 <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/bootstrap.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe-ui-default.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/auto-render.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/main.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/prism.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/katex.min.js"></script>
+<script> renderMathInElement(document.body); </script>
+
+
+
+  </body>
+</html>
+

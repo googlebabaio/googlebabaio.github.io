@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>helm on 蛋蛋的小黑屋</title>
+    <link>https://googlebaba.io/tags/helm/</link>
+    <description>Recent content in helm on 蛋蛋的小黑屋</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>xrzp@qq.com (suredandan)</managingEditor>
+    <webMaster>xrzp@qq.com (suredandan)</webMaster>
+    <lastBuildDate>Tue, 09 Jul 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://googlebaba.io/tags/helm/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>helmV2在k8s上的安装步骤</title>
+      <link>https://googlebaba.io/post/2019/07/helm-k8s-install/</link>
+      <pubDate>Tue, 09 Jul 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/07/helm-k8s-install/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Oracle on 蛋蛋的小黑屋</title>
+    <link>https://googlebaba.io/tags/oracle/</link>
+    <description>Recent content in Oracle on 蛋蛋的小黑屋</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>xrzp@qq.com (suredandan)</managingEditor>
+    <webMaster>xrzp@qq.com (suredandan)</webMaster>
+    <lastBuildDate>Tue, 30 Jul 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://googlebaba.io/tags/oracle/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>adg-1拖N切换填坑记录</title>
+      <link>https://googlebaba.io/post/2019/07/adg-1vn-switchover-qa/</link>
+      <pubDate>Tue, 30 Jul 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/07/adg-1vn-switchover-qa/</guid>
+      <description>&lt;p&gt;adg 1拖N切换填坑记录&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>11g Adg 参数说明</title>
+      <link>https://googlebaba.io/post/2019/07/dg-parameter/</link>
+      <pubDate>Fri, 19 Jul 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/07/dg-parameter/</guid>
+      <description>&lt;p&gt;以表格的形式展示 adg 的参数说明&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ADG迁移经验分享</title>
+      <link>https://googlebaba.io/post/2019/07/adg-qianyi-exp/</link>
+      <pubDate>Fri, 19 Jul 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/07/adg-qianyi-exp/</guid>
+      <description>&lt;p&gt;最近做了几个地方的双活，遇到的情况几乎都是要将以前老版本的10g迁移到11g上，并搭建双活。
+方便今后参考，特总结一下&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ADG查漏补缺</title>
+      <link>https://googlebaba.io/post/2019/07/adg-clbq-1/</link>
+      <pubDate>Thu, 18 Jul 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/07/adg-clbq-1/</guid>
+      <description>&lt;p&gt;11g ADG的一些查漏补缺&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>设置Oracle开机自动启动</title>
+      <link>https://googlebaba.io/post/2019/07/config-oracle-auto-startup-reboot/</link>
+      <pubDate>Thu, 18 Jul 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/07/config-oracle-auto-startup-reboot/</guid>
+      <description>&lt;p&gt;记录一下Oracle开机自动启动步骤&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>说说mTLS是什么</title>
+      <link>https://googlebaba.io/post/2019/07/mtls-jiehuo/</link>
+      <pubDate>Thu, 18 Jul 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/07/mtls-jiehuo/</guid>
+      <description>&lt;p&gt;简单说说tls的工作原理及配置方式&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>删除redo后的恢复</title>
+      <link>https://googlebaba.io/post/2019/07/after-delete-redo/</link>
+      <pubDate>Mon, 15 Jul 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/07/after-delete-redo/</guid>
+      <description>&lt;p&gt;记录一下删除&lt;code&gt;redo log&lt;/code&gt;后的恢复步骤&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Oracle的审计</title>
+      <link>https://googlebaba.io/post/2019/07/oracle-audit/</link>
+      <pubDate>Mon, 08 Jul 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/07/oracle-audit/</guid>
+      <description>&lt;p&gt;本文简明扼要的说了下&lt;code&gt;标准审计&lt;/code&gt;和&lt;code&gt;细粒度审计&lt;/code&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

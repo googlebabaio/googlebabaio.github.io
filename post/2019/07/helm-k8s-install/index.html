@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title> helmV2在k8s上的安装步骤 - </title>
+  <meta name="description" content="" />
+  <meta property="og:title" content="helmV2在k8s上的安装步骤" />
+  <meta name="twitter:title" content="helmV2在k8s上的安装步骤" />
+  <meta name="author" content="suredandan"/>
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@suredandan" />
+  <meta name="twitter:creator" content="@suredandan" />
+  <meta property="og:url" content="https://googlebaba.io/post/2019/07/helm-k8s-install/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="蛋蛋的小黑屋" />
+
+  <meta name="generator" content="Hugo 0.56.1" />
+  <link rel="canonical" href="https://googlebaba.io/post/2019/07/helm-k8s-install/" />
+  <link rel="alternate" href="https://googlebaba.io/index.xml" type="application/rss+xml" title="蛋蛋的小黑屋">
+  <script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/jquery-1.12.4.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  
+  
+  <link rel="stylesheet" href="https://googlebaba.io/css/main.css" />
+  <link rel="stylesheet" href="https://googlebaba.io/css/search.css" />
+  
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" integrity="sha256-sCl5PUOGMLfFYctzDW3MtRib0ctyUvI9Qsmq2wXOeBY=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" integrity="sha256-BFeI1V+Vh1Rk37wswuOYn5lsTcaU96hGaI7OUVCLjPc=" crossorigin="anonymous" />
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">切换导航</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://googlebaba.io/">蛋蛋的小黑屋</a>
+    </div>
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="博客" href="/post">博客</a>
+              
+              
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">书籍</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://googlebaba.io/k8s">K8s-Cookbook</a>
+                
+                
+                  <a href="https://googlebaba.io/oraclecookbook">Oracle-Cookbook</a>
+                
+                
+                  <a href="https://googlebaba.io/mysqlcookbook">MySQL-Cookbook</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="关于我" href="/page/about/">关于我</a>
+              
+              
+            </li>
+          
+        
+          
+            <li>
+              <a title="分类" href="/tags">分类</a>
+              
+              
+            </li>
+          
+        
+
+        
+
+        
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="蛋蛋的小黑屋" href="https://googlebaba.io/">
+            <img class="avatar-img" src="https://googlebaba.io/img/avatar-icon.png" alt="蛋蛋的小黑屋" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-md-offset-0">
+            <div class="post-heading">
+                <h1 align="center">helmV2在k8s上的安装步骤</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main" itemscope itemtype="http://schema.org/Article">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> 2019年7月9日</h4>
+    </section>
+	
+    <h5 id="tags">Tags: 
+        
+        <a href="https://googlebaba.io/tags/k8s/">k8s</a> &nbsp;
+        
+        <a href="https://googlebaba.io/tags/helm/">helm</a> &nbsp;
+    </h5>
+</div>
+
+            
+            <article role="main" class="blog-post" itemprop="articleBody" id="content">
+                
+  
+  <aside class="toc">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#安装client端">安装client端</a></li>
+<li><a href="#安装tiller">安装tiller</a></li>
+<li><a href="#查看版本">查看版本</a></li>
+<li><a href="#添加权限">添加权限</a></li>
+<li><a href="#常用操作">常用操作</a>
+<ul>
+<li><a href="#仓库的添加与删除">仓库的添加与删除</a></li>
+<li><a href="#安装应用">安装应用</a></li>
+<li><a href="#查看应用">查看应用</a></li>
+<li><a href="#获取应用">获取应用</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </aside>
+  
+
+
+                <h2 id="安装client端">安装client端</h2>
+
+<pre><code>wget https://get.helm.sh/helm-v2.14.1-linux-arm64.tar.gz
+</code></pre>
+
+<p>然后就是解压，将二进制文件放在<code>/usr/local/bin</code></p>
+
+<p>如果没有安装server(tiller)端的话,那么查看版本就只能看到client的版本号</p>
+
+<pre><code>[root@host-192-168-3-15 linux-amd64]# helm version
+Client: &amp;version.Version{SemVer:&quot;v2.14.1&quot;, GitCommit:&quot;5270352a09c7e8b6e8c9593002a73535276507c0&quot;, GitTreeState:&quot;clean&quot;}
+Error: could not find tiller
+</code></pre>
+
+<h2 id="安装tiller">安装tiller</h2>
+
+<p>利用<code>helm init --dry-run --debug</code> 查看相应初始化所需要的镜像文件</p>
+
+<pre><code># helm init --dry-run --debug
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: helm
+    name: tiller
+  name: tiller-deploy
+  namespace: kube-system
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: helm
+        name: tiller
+    spec:
+      automountServiceAccountToken: true
+      containers:
+      - env:
+        - name: TILLER_NAMESPACE
+          value: kube-system
+        - name: TILLER_HISTORY_MAX
+          value: &quot;0&quot;
+        image: gcr.io/kubernetes-helm/tiller:v2.14.1
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          httpGet:
+            path: /liveness
+            port: 44135
+          initialDelaySeconds: 1
+          timeoutSeconds: 1
+        name: tiller
+        ports:
+        - containerPort: 44134
+          name: tiller
+        - containerPort: 44135
+          name: http
+        readinessProbe:
+          httpGet:
+            path: /readiness
+            port: 44135
+          initialDelaySeconds: 1
+          timeoutSeconds: 1
+        resources: {}
+status: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: helm
+    name: tiller
+  name: tiller-deploy
+  namespace: kube-system
+spec:
+  ports:
+  - name: tiller
+    port: 44134
+    targetPort: tiller
+  selector:
+    app: helm
+    name: tiller
+  type: ClusterIP
+status:
+  loadBalancer: {}
+</code></pre>
+
+<p>看到tiller需要的镜像是<code>gcr.io/kubernetes-helm/tiller:v2.14.1</code>
+因为墙的原因,可以先把这个镜像下载下来然后推送到私有仓库中去
+再通过<code>helm init</code>命令指定镜像名字, 安装server端 tiller</p>
+
+<pre><code># helm init --upgrade --tiller-image hub.aosccs.com.cn:8888/library/tiller:v2.14.1
+Creating /root/.helm/repository/repositories.yaml
+Adding stable repo with URL: https://kubernetes-charts.storage.googleapis.com
+Adding local repo with URL: http://127.0.0.1:8879/charts
+$HELM_HOME has been configured at /root/.helm.
+
+Tiller (the Helm server-side component) has been installed into your Kubernetes Cluster.
+
+Please note: by default, Tiller is deployed with an insecure 'allow unauthenticated users' policy.
+To prevent this, run `helm init` with the --tiller-tls-verify flag.
+For more information on securing your installation see: https://docs.helm.sh/using_helm/#securing-your-helm-installation
+</code></pre>
+
+<h2 id="查看版本">查看版本</h2>
+
+<pre><code># helm version
+Client: &amp;version.Version{SemVer:&quot;v2.14.1&quot;, GitCommit:&quot;5270352a09c7e8b6e8c9593002a73535276507c0&quot;, GitTreeState:&quot;clean&quot;}
+Server: &amp;version.Version{SemVer:&quot;v2.14.1&quot;, GitCommit:&quot;5270352a09c7e8b6e8c9593002a73535276507c0&quot;, GitTreeState:&quot;clean&quot;}
+</code></pre>
+
+<pre><code>#  kubectl get pod -n kube-system -l app=helm
+NAME                             READY   STATUS    RESTARTS   AGE
+tiller-deploy-6dbc889b57-m59jg   1/1     Running   0          18m
+</code></pre>
+
+<h2 id="添加权限">添加权限</h2>
+
+<p>添加权限的原因是tiller默认安装在<code>kube-system</code>namespace下的,而在V2版本中,所有应用的app都是放在<code>kube-system</code>下的configmap中,所以需要一个操作其他namespace下资源的权限,在这里直接给的就是权限最大的<code>cluster-admin</code></p>
+
+<pre><code># cat rbac.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: tiller
+  namespace: kube-system
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: tiller
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+  - kind: ServiceAccount
+    name: tiller
+    namespace: kube-system
+# kubectl create -f rbac.yaml
+serviceaccount/tiller created
+clusterrolebinding.rbac.authorization.k8s.io/tiller created
+</code></pre>
+
+<p>添加完权限,再把serviceaccount注入到tiller的deployment中去</p>
+
+<pre><code># kubectl patch deploy --namespace kube-system tiller-deploy -p '{&quot;spec&quot;:{&quot;template&quot;:{&quot;spec&quot;:{&quot;serviceAccount&quot;:&quot;tiller&quot;}}}}'
+deployment.extensions/tiller-deploy patched
+</code></pre>
+
+<p>可以把命令提示补全加上</p>
+
+<pre><code># source &lt;(helm completion bash)
+</code></pre>
+
+<p>另外，需要在每个node节点需要安装socat</p>
+
+<pre><code>yum install -y socat
+否则，会报类似的错误：
+unable to do port forwarding: socat not found.
+Error: cannot connect to Tiller
+</code></pre>
+
+<h2 id="常用操作">常用操作</h2>
+
+<h3 id="仓库的添加与删除">仓库的添加与删除</h3>
+
+<p>查看仓库</p>
+
+<pre><code># helm repo list
+NAME    URL
+stable  https://kubernetes-charts.storage.googleapis.com
+local   http://127.0.0.1:8879/charts
+</code></pre>
+
+<p>删除仓库</p>
+
+<pre><code>helm repo remove stable
+</code></pre>
+
+<p>添加仓库</p>
+
+<pre><code>helm repo add ali-apphub https://apphub.aliyuncs.com
+</code></pre>
+
+<h3 id="安装应用">安装应用</h3>
+
+<pre><code># helm search mysql
+NAME                                    CHART VERSION   APP VERSION     DESCRIPTION
+ali-apphub/mysql                        5.0.6           8.0.16          Chart to create a Highly available MySQL cluster
+ali-apphub/mysqldump                    2.4.2           2.4.1           A Helm chart to help backup MySQL databases using mysqldump
+ali-apphub/mysqlha                      0.5.1           5.7.13          MySQL cluster with a single master and zero or more slave...
+ali-apphub/prometheus-mysql-exporter    0.3.4           v0.11.0         A Helm chart for prometheus mysql exporter with cloudsqlp...
+microsoft/mysql                         1.3.0           5.7.14          Fast, reliable, scalable, and easy to use open-source rel...
+microsoft/mysqldump                     2.4.2           2.4.1           A Helm chart to help backup MySQL databases using mysqldump
+microsoft/prometheus-mysql-exporter     0.5.0           v0.11.0         A Helm chart for prometheus mysql exporter with cloudsqlp...
+ali-apphub/percona                      1.1.0           5.7.17          free, fully compatible, enhanced, open source drop-in rep...
+ali-apphub/percona-xtradb-cluster       1.0.0           5.7.19          free, fully compatible, enhanced, open source drop-in rep...
+microsoft/percona                       1.1.0           5.7.17          free, fully compatible, enhanced, open source drop-in rep...
+microsoft/percona-xtradb-cluster        1.0.0           5.7.19          free, fully compatible, enhanced, open source drop-in rep...
+microsoft/phpmyadmin                    2.2.5           4.9.0-1         phpMyAdmin is an mysql administration frontend
+ali-apphub/mariadb                      6.5.2           10.3.16         Fast, reliable, scalable, and easy to use open-source rel...
+microsoft/gcloud-sqlproxy               0.6.1           1.11            DEPRECATED Google Cloud SQL Proxy
+microsoft/mariadb                       6.5.5           10.3.16         Fast, reliable, scalable, and easy to use open-source rel...
+# helm install -n mydb microsoft/mysql
+
+</code></pre>
+
+<h3 id="查看应用">查看应用</h3>
+
+<pre><code>helm inspect microsoft/mysql
+helm inspect values microsoft/mysql
+</code></pre>
+
+<h3 id="获取应用">获取应用</h3>
+
+<pre><code>helm fetch microsoft/mysql
+</code></pre>
+            </article>
+
+            <ul class="pager blog-pager">
+                
+                <li class="previous">
+                    <a href="https://googlebaba.io/post/2019/07/oracle-audit/" data-toggle="tooltip" data-placement="top" title="Oracle的审计">&larr; 前一篇</a>
+                </li>
+                 
+                <li class="next">
+                    <a href="https://googlebaba.io/post/2019/07/after-delete-redo/" data-toggle="tooltip" data-placement="top" title="删除redo后的恢复">后一篇 &rarr;</a>
+                </li>
+                
+            </ul>
+            
+            <div>
+                 
+                <h2>See Also</h2>
+                <ul>
+                    
+                    <li><a href="/post/2019/07/why-kubernetes/">使用kubernetes的几大优势</a></li>
+                    
+                    <li><a href="/post/2019/07/limitrange-resourcequota/">`limitrange`和`resourcequota`两者的区别</a></li>
+                    
+                    <li><a href="/post/2019/07/pod-hostalias/">pod-hostalias</a></li>
+                    
+                    <li><a href="/post/2019/06/client-go-example/">client-go 示例</a></li>
+                    
+                    <li><a href="/post/2019/06/config-grafana/">grafana</a></li>
+                    
+                </ul>
+                
+            </div>
+            
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> 2019年7月9日</h4>
+    </section>
+	
+    <h5 id="tags">Tags: 
+        
+        <a href="https://googlebaba.io/tags/k8s/">k8s</a> &nbsp;
+        
+        <a href="https://googlebaba.io/tags/helm/">helm</a> &nbsp;
+    </h5>
+</div>
+
+            
+            </div>
+            
+            
+                
+                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+<aside id=comments>
+    
+	
+    
+</aside>
+
+</div>
+
+                
+            
+        </div>
+    </div>
+    </section>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:xrzp@qq.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.facebook.com/suredandan" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/googlebabaio" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/suredandan" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/suredandan" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://stackoverflow.com/suredandan" title="StackOverflow">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-stack-overflow fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://telegram.me/138888888888" title="Telegram">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-telegram fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="https://googlebaba.io/index.xml" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+        &copy;2017-2019
+          
+            
+              <a href="https://googlebaba.io">suredandan</a>
+            
+          
+          
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://googlebaba.io/">蛋蛋的小黑屋</a>
+          
+        </p>
+
+        
+        <p class="credits theme-by text-muted">
+          由 <a href="http://gohugo.io">Hugo v0.56.1</a> 强力驱动 &nbsp;&bull;&nbsp; 主题 <a href="https://github.com/rootsongjc/beautifulhugo">Beautiful Hugo</a> 移植自 <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/bootstrap.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe-ui-default.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/auto-render.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/main.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/prism.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/katex.min.js"></script>
+<script> renderMathInElement(document.body); </script>
+
+
+
+  </body>
+</html>
+

@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title> 删除redo后的恢复 - </title>
+  <meta name="description" content="" />
+  <meta property="og:title" content="删除redo后的恢复" />
+  <meta name="twitter:title" content="删除redo后的恢复" />
+  <meta name="description" content="记录一下删除redo log后的恢复步骤">
+  <meta property="og:description" content="记录一下删除redo log后的恢复步骤">
+  <meta name="twitter:description" content="记录一下删除redo log后的恢复步骤">
+  <meta name="author" content="suredandan"/>
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@suredandan" />
+  <meta name="twitter:creator" content="@suredandan" />
+  <meta property="og:url" content="https://googlebaba.io/post/2019/07/after-delete-redo/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="蛋蛋的小黑屋" />
+
+  <meta name="generator" content="Hugo 0.56.1" />
+  <link rel="canonical" href="https://googlebaba.io/post/2019/07/after-delete-redo/" />
+  <link rel="alternate" href="https://googlebaba.io/index.xml" type="application/rss+xml" title="蛋蛋的小黑屋">
+  <script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/jquery-1.12.4.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  
+  
+  <link rel="stylesheet" href="https://googlebaba.io/css/main.css" />
+  <link rel="stylesheet" href="https://googlebaba.io/css/search.css" />
+  
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" integrity="sha256-sCl5PUOGMLfFYctzDW3MtRib0ctyUvI9Qsmq2wXOeBY=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" integrity="sha256-BFeI1V+Vh1Rk37wswuOYn5lsTcaU96hGaI7OUVCLjPc=" crossorigin="anonymous" />
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">切换导航</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://googlebaba.io/">蛋蛋的小黑屋</a>
+    </div>
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="博客" href="/post">博客</a>
+              
+              
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">书籍</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://googlebaba.io/k8s">K8s-Cookbook</a>
+                
+                
+                  <a href="https://googlebaba.io/oraclecookbook">Oracle-Cookbook</a>
+                
+                
+                  <a href="https://googlebaba.io/mysqlcookbook">MySQL-Cookbook</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="关于我" href="/page/about/">关于我</a>
+              
+              
+            </li>
+          
+        
+          
+            <li>
+              <a title="分类" href="/tags">分类</a>
+              
+              
+            </li>
+          
+        
+
+        
+
+        
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="蛋蛋的小黑屋" href="https://googlebaba.io/">
+            <img class="avatar-img" src="https://googlebaba.io/img/avatar-icon.png" alt="蛋蛋的小黑屋" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-md-offset-0">
+            <div class="post-heading">
+                <h1 align="center">删除redo后的恢复</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main" itemscope itemtype="http://schema.org/Article">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> 2019年7月15日</h4>
+    </section>
+	
+    <h5 id="tags">Tags: 
+        
+        <a href="https://googlebaba.io/tags/oracle/">Oracle</a> &nbsp;
+    </h5>
+</div>
+
+            
+            <article role="main" class="blog-post" itemprop="articleBody" id="content">
+                
+  
+
+
+                <p>记录一下删除<code>redo log</code>后的恢复步骤</p>
+
+<h1 id="恢复分为两种">恢复分为两种：</h1>
+
+<ul>
+<li>损坏的redo log是<code>INACTIVE</code></li>
+<li>损坏的redo log是<code>ACTIVE</code>或<code>CURRENT</code></li>
+</ul>
+
+<h2 id="损坏的redo-log是-inactive">损坏的redo log是<code>INACTIVE</code></h2>
+
+<p>如果损坏的redo log是<code>INACTIVE</code>状态的，也就是实例崩溃恢复用不到的redo log，那处理起来比较容易，直接</p>
+
+<pre><code>alter database clear logfile group xx;
+或者
+alter database clear unarchived logfile group xx;
+</code></pre>
+
+<pre><code>SQL&gt; select * from v$log;----可以再次确定redo文件不是当前日志，且已经归档
+
+SQL&gt;alter database clear logfile group xx;
+SQL&gt;alter database open;
+
+但如果redo0x还没归档的话，那就需要加unarchived了，
+SQL&gt;alter database clear unarchived logfile group xx;
+</code></pre>
+
+<p>重建日志组就行了。
+建议重建日志文件级后对数据库做一个全库备份，特别是强制clear后，会造成归档日志文件的断层。</p>
+
+<h2 id="损坏的redo-log是-active-或-current">损坏的redo log是<code>ACTIVE</code>或<code>CURRENT</code></h2>
+
+<p>如果损坏的redo log是<code>ACTIVE</code>或<code>CURRENT</code>状态的，也就是实例崩溃恢复需要用到的redo log，那处理起来就比较麻烦了，损坏这种redo log就意味着丢失数据。</p>
+
+<p>redo log的三种状态：</p>
+
+<ul>
+<li>INACTIVE：日志对应的修改已经被写入硬盘</li>
+<li>ACTIVE：日志对应的修改还没有被写入硬盘</li>
+<li>CURRENT：实例正在使用的日志文件</li>
+</ul>
+
+<p>当然，如果有备份，那么动作基本上就是  <code>restore，recover until cancel</code>的。</p>
+
+<p>下面主要说说强制拉起来的步骤：</p>
+
+<h3 id="尝试启动数据库">尝试启动数据库</h3>
+
+<pre><code>SQL &gt;startup
+ORACLE instance started.
+
+Total System Global Area 1603411968 bytes
+Fixed Size        2253664 bytes
+Variable Size      1476398240 bytes
+Database Buffers    117440512 bytes
+Redo Buffers          7319552 bytes
+Database mounted.
+ORA-00313: open failed for members of log group 2 of thread 1
+ORA-00312: online log 2 thread 1: '/u01/app/oracle/oradata/orcl/redo02.log'
+ORA-27037: unable to obtain file status
+Linux-x86_64 Error: 2: No such file or directory
+Additional information: 3
+</code></pre>
+
+<h3 id="尝试使用clear方式重建日志组出现报错">尝试使用clear方式重建日志组出现报错</h3>
+
+<pre><code>idle&gt;alter database clear logfile group 2;
+alter database clear logfile group 2
+*
+ERROR at line 1:
+ORA-01624: log 2 needed for crash recovery of instance orcl (thread 1)
+ORA-00312: online log 2 thread 1: '/u02/app/oracle/oradata/orcl/redo02.log'
+
+
+idle&gt;alter database clear unarchived logfile group 2;
+alter database clear unarchived logfile group 2
+*
+ERROR at line 1:
+ORA-01624: log 2 needed for crash recovery of instance orcl (thread 1)
+ORA-00312: online log 2 thread 1: '/u02/app/oracle/oradata/orcl/redo02.log'
+</code></pre>
+
+<p>从报错信息中可以看出log 2是实例崩溃恢复所需要的日志文件，不能直接重建。</p>
+
+<h3 id="修改隐藏文件并尝试强制打开数据库">修改隐藏文件并尝试强制打开数据库</h3>
+
+<p>这种情况下使用隐含参数<code>_allow_resetlogs_corruption</code>，创建pfile，把<code>*._allow_resetlogs_corruption=TRUE</code>加入到pfile中。然后mount数据库，强制不完全恢复，再<code>open resetlogs</code></p>
+
+<pre><code>idle&gt;create pfile='/home/oracle/initorcl.ora' from spfile;
+
+File created.
+$ vi /home/oracle/initorcl.ora
+SQL&gt; shutdown immediate;
+ORA-01109: database not open
+
+
+Database dismounted.
+ORACLE instance shut down.
+SQL&gt; startup pfile='/home/oracle/initorcl.ora' mount;
+ORACLE instance started.
+
+Total System Global Area 1603411968 bytes
+Fixed Size        2253664 bytes
+Variable Size      1476398240 bytes
+Database Buffers    117440512 bytes
+Redo Buffers          7319552 bytes
+Database mounted.
+SQL&gt; show parameter _allow_
+
+NAME                    TYPE                VALUE
+------------------------------------ --------------------------------- ------------------------------
+_allow_resetlogs_corruption      boolean                  TRUE
+
+SQL&gt; alter database open resetlogs;
+--这里一定要用resetlogs呀，因为要是不用的话，就是代表要用redo进行实例恢复了，那肯定会和刚才一样报错了。
+
+alter database open resetlogs
+*
+ERROR at line 1:
+ORA-01139: RESETLOGS option only valid after an incomplete database recovery
+</code></pre>
+
+<h3 id="recover-database-until-cancel">recover database until cancel</h3>
+
+<p>这里弄一个假的恢复骗过oracle，因为<code>resetlogs</code>要求一定是恢复完才可以使用。</p>
+
+<pre><code>SQL&gt; recover database until cancel;
+ORA-00279: change 1023441 generated at 03/12/2018 13:33:52 needed for thread 1
+ORA-00289: suggestion : /u02/app/oracle/product/11.2.4/db1/dbs/arch1_2_636817648.dbf
+ORA-00280: change 1023441 for thread 1 is in sequence #2
+
+
+Specify log: {&lt;RET&gt;=suggested | filename | AUTO | CANCEL}
+cancel
+ORA-01547: warning: RECOVER succeeded but OPEN RESETLOGS would get error below
+ORA-01194: file 1 needs more recovery to be consistent
+ORA-01110: data file 1: '/u02/app/oracle/oradata/orcl/system01.dbf'
+
+
+ORA-01112: media recovery not started
+</code></pre>
+
+<h3 id="再次使用-resetlogs-选项打开数据库">再次使用<code>resetlogs</code>选项打开数据库</h3>
+
+<pre><code>idle&gt;alter database open resetlogs;
+
+Database altered.
+
+idle&gt;select open_mode from v$database;
+
+OPEN_MODE
+------------------------------------------------------------
+READ WRITE
+</code></pre>
+
+<p>可以看到现在数据库已经被open了。</p>
+
+<blockquote>
+<p>ps:打开后，一定要full db backup。此时db是不一致的状态，所以需要将数据导出再导入。</p>
+</blockquote>
+            </article>
+
+            <ul class="pager blog-pager">
+                
+                <li class="previous">
+                    <a href="https://googlebaba.io/post/2019/07/helm-k8s-install/" data-toggle="tooltip" data-placement="top" title="helmV2在k8s上的安装步骤">&larr; 前一篇</a>
+                </li>
+                 
+                <li class="next">
+                    <a href="https://googlebaba.io/post/2019/07/mtls-jiehuo/" data-toggle="tooltip" data-placement="top" title="说说mTLS是什么">后一篇 &rarr;</a>
+                </li>
+                
+            </ul>
+            
+            <div>
+                 
+                <h2>See Also</h2>
+                <ul>
+                    
+                    <li><a href="/post/2019/07/oracle-audit/">Oracle的审计</a></li>
+                    
+                </ul>
+                
+            </div>
+            
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> 2019年7月15日</h4>
+    </section>
+	
+    <h5 id="tags">Tags: 
+        
+        <a href="https://googlebaba.io/tags/oracle/">Oracle</a> &nbsp;
+    </h5>
+</div>
+
+            
+            </div>
+            
+            
+                
+                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+<aside id=comments>
+    
+	
+    
+</aside>
+
+</div>
+
+                
+            
+        </div>
+    </div>
+    </section>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:xrzp@qq.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.facebook.com/suredandan" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/googlebabaio" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/suredandan" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/suredandan" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://stackoverflow.com/suredandan" title="StackOverflow">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-stack-overflow fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://telegram.me/138888888888" title="Telegram">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-telegram fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="https://googlebaba.io/index.xml" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+        &copy;2017-2019
+          
+            
+              <a href="https://googlebaba.io">suredandan</a>
+            
+          
+          
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://googlebaba.io/">蛋蛋的小黑屋</a>
+          
+        </p>
+
+        
+        <p class="credits theme-by text-muted">
+          由 <a href="http://gohugo.io">Hugo v0.56.1</a> 强力驱动 &nbsp;&bull;&nbsp; 主题 <a href="https://github.com/rootsongjc/beautifulhugo">Beautiful Hugo</a> 移植自 <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/bootstrap.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe-ui-default.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/auto-render.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/main.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/prism.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/katex.min.js"></script>
+<script> renderMathInElement(document.body); </script>
+
+
+
+  </body>
+</html>
+

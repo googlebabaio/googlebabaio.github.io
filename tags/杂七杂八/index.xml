@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>xrzp@qq.com (suredandan)</managingEditor>
     <webMaster>xrzp@qq.com (suredandan)</webMaster>
-    <lastBuildDate>Thu, 06 Jun 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 27 Jul 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://googlebaba.io/tags/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>给 IDE 配置 markdown 的选项</title>
+      <link>https://googlebaba.io/post/2019/07/config-markdown-in-ideas/</link>
+      <pubDate>Sat, 27 Jul 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/07/config-markdown-in-ideas/</guid>
+      <description>&lt;p&gt;记录一下给 ide(atom/vscode) 配置 markdown 的配置选项&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>hugo&#43;github搭建自己的博客</title>

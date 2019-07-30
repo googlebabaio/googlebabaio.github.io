@@ -17,7 +17,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="蛋蛋的小黑屋" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
+  <meta name="generator" content="Hugo 0.56.1" />
   <link rel="canonical" href="https://googlebaba.io/post/" />
   <link rel="alternate" href="https://googlebaba.io/index.xml" type="application/rss+xml" title="蛋蛋的小黑屋">
   <script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/jquery-1.12.4.min.js"></script>
@@ -192,24 +192,24 @@
         <div class="posts-list">
           
             <article class="post-preview">
-              <a href="https://googlebaba.io/post/2019/07/istio1-hello-istio-arch/">
-                <h2 class="post-title">Hello, Istio !</h2>
+              <a href="https://googlebaba.io/post/2019/07/adg-1vn-switchover-qa/">
+                <h2 class="post-title">adg-1拖N切换填坑记录</h2>
                 
               </a>
               <p class="post-meta">
-                发表于 2019年7月5日
+                发表于 2019年7月30日
               </p>
               <div class="post-entry">
                 
-                  <p>本文简要的介绍了什么是<code>istio</code>、架构、组件，以及在k8s的安装部署步骤。</p>
-                  <a href="https://googlebaba.io/post/2019/07/istio1-hello-istio-arch/" class="post-read-more">[阅读全文]</a>
+                  <p>adg 1拖N切换填坑记录</p>
+                  <a href="https://googlebaba.io/post/2019/07/adg-1vn-switchover-qa/" class="post-read-more">[阅读全文]</a>
                 
               </div>
 
               
                 <span class="post-meta">
                   
-                    #<a href="https://googlebaba.io/tags/istio/">istio</a>&nbsp;
+                    #<a href="https://googlebaba.io/tags/oracle/">Oracle</a>&nbsp;
                   
                 </span>
               
@@ -217,67 +217,16 @@
             </article>
           
             <article class="post-preview">
-              <a href="https://googlebaba.io/post/2019/07/istio2-bookinfo-example-1/">
-                <h2 class="post-title">istio-bookinfo 示例 </h2>
+              <a href="https://googlebaba.io/post/2019/07/k8s-used-list/">
+                <h2 class="post-title">k8s文章链接</h2>
                 
               </a>
               <p class="post-meta">
-                发表于 2019年7月5日
+                发表于 2019年7月28日
               </p>
               <div class="post-entry">
                 
-                  <p>本文以<code>bookinfo</code>为demo，测试istio的<code>配置请求路由</code>功能。</p>
-                  <a href="https://googlebaba.io/post/2019/07/istio2-bookinfo-example-1/" class="post-read-more">[阅读全文]</a>
-                
-              </div>
-
-              
-                <span class="post-meta">
-                  
-                    #<a href="https://googlebaba.io/tags/istio/">istio</a>&nbsp;
-                  
-                </span>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://googlebaba.io/post/2019/07/second-half-plan/">
-                <h2 class="post-title">2019年下半年目标计划</h2>
-                
-              </a>
-              <p class="post-meta">
-                发表于 2019年7月1日
-              </p>
-              <div class="post-entry">
-                
-                  <p>给自己列了几个下半年需要达成的目标</p>
-                  <a href="https://googlebaba.io/post/2019/07/second-half-plan/" class="post-read-more">[阅读全文]</a>
-                
-              </div>
-
-              
-                <span class="post-meta">
-                  
-                    #<a href="https://googlebaba.io/tags/linux/">linux</a>&nbsp;
-                  
-                </span>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://googlebaba.io/post/2019/07/pod-hostalias/">
-                <h2 class="post-title">pod-hostalias</h2>
-                
-              </a>
-              <p class="post-meta">
-                发表于 2019年7月1日
-              </p>
-              <div class="post-entry">
-                
-                  <p>利用k8s中提供的host-alias来为pod定制化域名</p>
-                  <a href="https://googlebaba.io/post/2019/07/pod-hostalias/" class="post-read-more">[阅读全文]</a>
+                  <p>用于记录k8s使用的文章链接</p>
                 
               </div>
 
@@ -292,17 +241,16 @@
             </article>
           
             <article class="post-preview">
-              <a href="https://googlebaba.io/post/2019/06/client-go-example/">
-                <h2 class="post-title">client-go 示例</h2>
+              <a href="https://googlebaba.io/post/2019/07/docker-used-list/">
+                <h2 class="post-title">docker使用文章链接</h2>
                 
               </a>
               <p class="post-meta">
-                发表于 2019年6月29日
+                发表于 2019年7月27日
               </p>
               <div class="post-entry">
                 
-                  package main import ( &quot;fmt&quot; &quot;time&quot; metav1 &quot;k8s.io/apimachinery/pkg/apis/meta/v1&quot; &quot;k8s.io/client-go/kubernetes&quot; &quot;k8s.io/client-go/rest&quot; ) func main() { // 通过集群内部配置创建 k8s 配置信息，通过 KUBERNETES_SERVICE_HOST 和 KUBERNETES_SERVICE_PORT 环境变量方式获取 // 若集群使用 TLS 认证方式，则默认读取集群内部 tokenFile 和 CAFile // tokenFile = &quot;/var/run/secrets/kubernetes.io/serviceaccount/token&quot; // rootCAFile = &quot;/var/run/secrets/kubernetes.io/serviceaccount/ca.crt&quot; config, err := rest.InClusterConfig() if err != nil { panic(err.Error()) } // 根据指定的 config 创建一个新的 clientset clientset, err := kubernetes.NewForConfig(config) if err != nil { panic(err.Error()) } for { // 通过实现 clientset 的 CoreV1Interface 接口列表中的 PodsGetter 接口方法 Pods(namespace string)返回 PodInterface // PodInterface 接口拥有操作 Pod 资源的方法，例如 Create、Update、Get、List 等方法 // 注意：Pods() 方法中 namespace 不指定则获取 Cluster 所有 Pod 列表 pods, err := clientset.
-                  <a href="https://googlebaba.io/post/2019/06/client-go-example/" class="post-read-more">[阅读全文]</a>
+                  <p>主要用于用于记录docker使用的相关文章的链接</p>
                 
               </div>
 
@@ -317,17 +265,41 @@
             </article>
           
             <article class="post-preview">
-              <a href="https://googlebaba.io/post/2019/06/config-grafana/">
-                <h2 class="post-title">grafana</h2>
+              <a href="https://googlebaba.io/post/2019/07/config-markdown-in-ideas/">
+                <h2 class="post-title">给 IDE 配置 markdown 的选项</h2>
                 
               </a>
               <p class="post-meta">
-                发表于 2019年6月29日
+                发表于 2019年7月27日
               </p>
               <div class="post-entry">
                 
-                  <p><img src="assets/markdown-img-paste-20190611101340646.png" alt="" /></p>
+                  <p>记录一下给 ide(atom/vscode) 配置 markdown 的配置选项</p>
+                  <a href="https://googlebaba.io/post/2019/07/config-markdown-in-ideas/" class="post-read-more">[阅读全文]</a>
+                
+              </div>
 
+              
+                <span class="post-meta">
+                  
+                    #<a href="https://googlebaba.io/tags/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB/"> 杂七杂八</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://googlebaba.io/post/2019/07/kata-container-intro/">
+                <h2 class="post-title">介绍katacontainer</h2>
+                
+              </a>
+              <p class="post-meta">
+                发表于 2019年7月24日
+              </p>
+              <div class="post-entry">
+                
+                  <p>介绍使用katacontainer</p>
                 
               </div>
 
@@ -342,25 +314,24 @@
             </article>
           
             <article class="post-preview">
-              <a href="https://googlebaba.io/post/2019/06/config-k8s-dashboard-for-other-browser/">
-                <h2 class="post-title">给dashboard加入CA认证</h2>
+              <a href="https://googlebaba.io/post/2019/07/dg-parameter/">
+                <h2 class="post-title">11g Adg 参数说明</h2>
                 
               </a>
               <p class="post-meta">
-                发表于 2019年6月29日
+                发表于 2019年7月19日
               </p>
               <div class="post-entry">
                 
-                  <p>在部署完k8s集群后,往往会部署dashborad作为基础监控的一个手段.
-但有时候,部署好的dashboard在其他浏览器上无法正常访问,本文将提供解决的一个参考.</p>
-                  <a href="https://googlebaba.io/post/2019/06/config-k8s-dashboard-for-other-browser/" class="post-read-more">[阅读全文]</a>
+                  <p>以表格的形式展示 adg 的参数说明</p>
+                  <a href="https://googlebaba.io/post/2019/07/dg-parameter/" class="post-read-more">[阅读全文]</a>
                 
               </div>
 
               
                 <span class="post-meta">
                   
-                    #<a href="https://googlebaba.io/tags/k8s/">k8s</a>&nbsp;
+                    #<a href="https://googlebaba.io/tags/oracle/">Oracle</a>&nbsp;
                   
                 </span>
               
@@ -368,24 +339,25 @@
             </article>
           
             <article class="post-preview">
-              <a href="https://googlebaba.io/post/2019/06/kubeadm-cmd-option/">
-                <h2 class="post-title">kubeadm 命令说明</h2>
+              <a href="https://googlebaba.io/post/2019/07/adg-qianyi-exp/">
+                <h2 class="post-title">ADG迁移经验分享</h2>
                 
               </a>
               <p class="post-meta">
-                发表于 2019年6月28日
+                发表于 2019年7月19日
               </p>
               <div class="post-entry">
                 
-                  <p>在k8s1.14之后,kubeadm安装已经快要成为事实的标准,在之前参加的CKA考试中,发现部署的环境以及是使用kubeadm部署的了，所以对kubeadm的使用也必需要有所了解了！</p>
-                  <a href="https://googlebaba.io/post/2019/06/kubeadm-cmd-option/" class="post-read-more">[阅读全文]</a>
+                  <p>最近做了几个地方的双活，遇到的情况几乎都是要将以前老版本的10g迁移到11g上，并搭建双活。
+方便今后参考，特总结一下</p>
+                  <a href="https://googlebaba.io/post/2019/07/adg-qianyi-exp/" class="post-read-more">[阅读全文]</a>
                 
               </div>
 
               
                 <span class="post-meta">
                   
-                    #<a href="https://googlebaba.io/tags/k8s/">k8s</a>&nbsp;
+                    #<a href="https://googlebaba.io/tags/oracle/">Oracle</a>&nbsp;
                   
                 </span>
               
@@ -393,24 +365,24 @@
             </article>
           
             <article class="post-preview">
-              <a href="https://googlebaba.io/post/2019/06/job-for-download/">
-                <h2 class="post-title">利用job来完成download的示例</h2>
+              <a href="https://googlebaba.io/post/2019/07/adg-clbq-1/">
+                <h2 class="post-title">ADG查漏补缺</h2>
                 
               </a>
               <p class="post-meta">
-                发表于 2019年6月28日
+                发表于 2019年7月18日
               </p>
               <div class="post-entry">
                 
-                  <p>给出一个利用job来完成download的示例</p>
-                  <a href="https://googlebaba.io/post/2019/06/job-for-download/" class="post-read-more">[阅读全文]</a>
+                  <p>11g ADG的一些查漏补缺</p>
+                  <a href="https://googlebaba.io/post/2019/07/adg-clbq-1/" class="post-read-more">[阅读全文]</a>
                 
               </div>
 
               
                 <span class="post-meta">
                   
-                    #<a href="https://googlebaba.io/tags/k8s/">k8s</a>&nbsp;
+                    #<a href="https://googlebaba.io/tags/oracle/">Oracle</a>&nbsp;
                   
                 </span>
               
@@ -418,24 +390,48 @@
             </article>
           
             <article class="post-preview">
-              <a href="https://googlebaba.io/post/2019/06/golang-env-config/">
-                <h2 class="post-title">golang环境配置</h2>
+              <a href="https://googlebaba.io/post/2019/07/config-oracle-auto-startup-reboot/">
+                <h2 class="post-title">设置Oracle开机自动启动</h2>
                 
               </a>
               <p class="post-meta">
-                发表于 2019年6月19日
+                发表于 2019年7月18日
               </p>
               <div class="post-entry">
                 
-                  <p>给出一个常用的golang环境配置的步骤</p>
-                  <a href="https://googlebaba.io/post/2019/06/golang-env-config/" class="post-read-more">[阅读全文]</a>
+                  <p>记录一下Oracle开机自动启动步骤</p>
+                  <a href="https://googlebaba.io/post/2019/07/config-oracle-auto-startup-reboot/" class="post-read-more">[阅读全文]</a>
                 
               </div>
 
               
                 <span class="post-meta">
                   
-                    #<a href="https://googlebaba.io/tags/golang/">golang</a>&nbsp;
+                    #<a href="https://googlebaba.io/tags/oracle/">Oracle</a>&nbsp;
+                  
+                </span>
+              
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://googlebaba.io/post/2019/07/mtls-jiehuo/">
+                <h2 class="post-title">说说mTLS是什么</h2>
+                
+              </a>
+              <p class="post-meta">
+                发表于 2019年7月18日
+              </p>
+              <div class="post-entry">
+                
+                  <p>简单说说tls的工作原理及配置方式</p>
+                
+              </div>
+
+              
+                <span class="post-meta">
+                  
+                    #<a href="https://googlebaba.io/tags/oracle/">Oracle</a>&nbsp;
                   
                 </span>
               
@@ -464,7 +460,7 @@
     </li>
     
     <li class="page-item disabled">
-    <a href="" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+    <a  class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
     </li>
     
     
@@ -491,12 +487,34 @@
     <li class="page-item"><a class="page-link" href="/post/page/2/">2</a></li>
     
     
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/post/page/3/">3</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/post/page/4/">4</a></li>
+    
+    
     <li class="page-item">
     <a href="/post/page/2/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
     </li>
     
     <li class="page-item">
-        <a href="/post/page/2/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/post/page/4/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>
@@ -605,7 +623,7 @@
 
         
         <p class="credits theme-by text-muted">
-          由 <a href="http://gohugo.io">Hugo v0.55.6</a> 强力驱动 &nbsp;&bull;&nbsp; 主题 <a href="https://github.com/rootsongjc/beautifulhugo">Beautiful Hugo</a> 移植自 <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+          由 <a href="http://gohugo.io">Hugo v0.56.1</a> 强力驱动 &nbsp;&bull;&nbsp; 主题 <a href="https://github.com/rootsongjc/beautifulhugo">Beautiful Hugo</a> 移植自 <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
           
         </p>
       </div>

@@ -7,10 +7,64 @@
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>xrzp@qq.com (suredandan)</managingEditor>
     <webMaster>xrzp@qq.com (suredandan)</webMaster>
-    <lastBuildDate>Mon, 01 Jul 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 28 Jul 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://googlebaba.io/tags/k8s/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>k8s文章链接</title>
+      <link>https://googlebaba.io/post/2019/07/k8s-used-list/</link>
+      <pubDate>Sun, 28 Jul 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/07/k8s-used-list/</guid>
+      <description>&lt;p&gt;用于记录k8s使用的文章链接&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>docker使用文章链接</title>
+      <link>https://googlebaba.io/post/2019/07/docker-used-list/</link>
+      <pubDate>Sat, 27 Jul 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/07/docker-used-list/</guid>
+      <description>&lt;p&gt;主要用于用于记录docker使用的相关文章的链接&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>介绍katacontainer</title>
+      <link>https://googlebaba.io/post/2019/07/kata-container-intro/</link>
+      <pubDate>Wed, 24 Jul 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/07/kata-container-intro/</guid>
+      <description>&lt;p&gt;介绍使用katacontainer&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>helmV2在k8s上的安装步骤</title>
+      <link>https://googlebaba.io/post/2019/07/helm-k8s-install/</link>
+      <pubDate>Tue, 09 Jul 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/07/helm-k8s-install/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>使用kubernetes的几大优势</title>
+      <link>https://googlebaba.io/post/2019/07/why-kubernetes/</link>
+      <pubDate>Mon, 08 Jul 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/07/why-kubernetes/</guid>
+      <description>&lt;p&gt;整理了一些使用k8s的理由和优势!&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>`limitrange`和`resourcequota`两者的区别</title>
+      <link>https://googlebaba.io/post/2019/07/limitrange-resourcequota/</link>
+      <pubDate>Thu, 04 Jul 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/07/limitrange-resourcequota/</guid>
+      <description>&lt;p&gt;本文将介绍下&lt;code&gt;limitrange&lt;/code&gt;和&lt;code&gt;resourcequota&lt;/code&gt;两者的区别&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>pod-hostalias</title>
@@ -27,7 +81,7 @@
       <pubDate>Sat, 29 Jun 2019 00:00:00 +0000</pubDate>
       <author>xrzp@qq.com (suredandan)</author>
       <guid>https://googlebaba.io/post/2019/06/client-go-example/</guid>
-      <description>package main import ( &amp;quot;fmt&amp;quot; &amp;quot;time&amp;quot; metav1 &amp;quot;k8s.io/apimachinery/pkg/apis/meta/v1&amp;quot; &amp;quot;k8s.io/client-go/kubernetes&amp;quot; &amp;quot;k8s.io/client-go/rest&amp;quot; ) func main() { // 通过集群内部配置创建 k8s 配置信息，通过 KUBERNETES_SERVICE_HOST 和 KUBERNETES_SERVICE_PORT 环境变量方式获取 // 若集群使用 TLS 认证方式，则默认读取集群内部 tokenFile 和 CAFile // tokenFile = &amp;quot;/var/run/secrets/kubernetes.io/serviceaccount/token&amp;quot; // rootCAFile = &amp;quot;/var/run/secrets/kubernetes.io/serviceaccount/ca.crt&amp;quot; config, err := rest.InClusterConfig() if err != nil { panic(err.Error()) } // 根据指定的 config 创建一个新的 clientset clientset, err := kubernetes.NewForConfig(config) if err != nil { panic(err.Error()) } for { // 通过实现 clientset 的 CoreV1Interface 接口列表中的 PodsGetter 接口方法 Pods(namespace string)返回 PodInterface // PodInterface 接口拥有操作 Pod 资源的方法，例如 Create、Update、Get、List 等方法 // 注意：Pods() 方法中 namespace 不指定则获取 Cluster 所有 Pod 列表 pods, err := clientset.</description>
+      <description>&lt;p&gt;给出一个简单的client-go示例&lt;/p&gt;</description>
     </item>
     
     <item>

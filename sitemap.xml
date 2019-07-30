@@ -3,20 +3,115 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://googlebaba.io/post/2019/07/istio1-hello-istio-arch/</loc>
-    <lastmod>2019-07-05T00:00:00+00:00</lastmod>
+    <loc>https://googlebaba.io/tags/oracle/</loc>
+    <lastmod>2019-07-30T00:00:00+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://googlebaba.io/post/</loc>
-    <lastmod>2019-07-05T00:00:00+00:00</lastmod>
+    <lastmod>2019-07-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://googlebaba.io/tags/</loc>
-    <lastmod>2019-07-05T00:00:00+00:00</lastmod>
+    <lastmod>2019-07-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/07/adg-1vn-switchover-qa/</loc>
+    <lastmod>2019-07-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/</loc>
+    <lastmod>2019-07-30T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/tags/k8s/</loc>
+    <lastmod>2019-07-28T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/07/k8s-used-list/</loc>
+    <lastmod>2019-07-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/07/docker-used-list/</loc>
+    <lastmod>2019-07-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/tags/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB/</loc>
+    <lastmod>2019-07-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/07/config-markdown-in-ideas/</loc>
+    <lastmod>2019-07-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/07/kata-container-intro/</loc>
+    <lastmod>2019-07-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/07/dg-parameter/</loc>
+    <lastmod>2019-07-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/07/adg-qianyi-exp/</loc>
+    <lastmod>2019-07-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/07/adg-clbq-1/</loc>
+    <lastmod>2019-07-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/07/config-oracle-auto-startup-reboot/</loc>
+    <lastmod>2019-07-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/07/mtls-jiehuo/</loc>
+    <lastmod>2019-07-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/07/after-delete-redo/</loc>
+    <lastmod>2019-07-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/tags/helm/</loc>
+    <lastmod>2019-07-09T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/07/helm-k8s-install/</loc>
+    <lastmod>2019-07-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/07/oracle-audit/</loc>
+    <lastmod>2019-07-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/07/why-kubernetes/</loc>
+    <lastmod>2019-07-08T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -31,20 +126,18 @@
   </url>
   
   <url>
-    <loc>https://googlebaba.io/</loc>
-    <lastmod>2019-07-05T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+    <loc>https://googlebaba.io/post/2019/07/istio1-hello-istio-arch/</loc>
+    <lastmod>2019-07-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/07/limitrange-resourcequota/</loc>
+    <lastmod>2019-07-04T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://googlebaba.io/post/2019/07/second-half-plan/</loc>
     <lastmod>2019-07-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://googlebaba.io/tags/k8s/</loc>
-    <lastmod>2019-07-01T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -153,12 +246,6 @@
   </url>
   
   <url>
-    <loc>https://googlebaba.io/tags/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB/</loc>
-    <lastmod>2019-06-06T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://googlebaba.io/page/</loc>
     <lastmod>2019-03-20T23:28:02+08:00</lastmod>
     <priority>0</priority>
@@ -167,6 +254,26 @@
   <url>
     <loc>https://googlebaba.io/page/about/</loc>
     <lastmod>2019-03-20T23:28:02+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/07/adg-check-list/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/07/oracle-second-half-plan/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/08/k8s-hardway/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/todo/</loc>
+    <priority>0</priority>
   </url>
   
   <url>

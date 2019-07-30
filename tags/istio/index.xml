@@ -13,21 +13,21 @@
     
     
     <item>
-      <title>Hello, Istio !</title>
-      <link>https://googlebaba.io/post/2019/07/istio1-hello-istio-arch/</link>
-      <pubDate>Fri, 05 Jul 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
-      <guid>https://googlebaba.io/post/2019/07/istio1-hello-istio-arch/</guid>
-      <description>&lt;p&gt;本文简要的介绍了什么是&lt;code&gt;istio&lt;/code&gt;、架构、组件，以及在k8s的安装部署步骤。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
       <title>istio-bookinfo 示例 </title>
       <link>https://googlebaba.io/post/2019/07/istio2-bookinfo-example-1/</link>
       <pubDate>Fri, 05 Jul 2019 00:00:00 +0000</pubDate>
       <author>xrzp@qq.com (suredandan)</author>
       <guid>https://googlebaba.io/post/2019/07/istio2-bookinfo-example-1/</guid>
       <description>&lt;p&gt;本文以&lt;code&gt;bookinfo&lt;/code&gt;为demo，测试istio的&lt;code&gt;配置请求路由&lt;/code&gt;功能。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Hello, Istio !</title>
+      <link>https://googlebaba.io/post/2019/07/istio1-hello-istio-arch/</link>
+      <pubDate>Thu, 04 Jul 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/07/istio1-hello-istio-arch/</guid>
+      <description>&lt;p&gt;本文简要的介绍了什么是&lt;code&gt;istio&lt;/code&gt;、架构、组件，以及在k8s的安装部署步骤。&lt;/p&gt;</description>
     </item>
     
   </channel>

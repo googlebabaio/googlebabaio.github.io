@@ -7,18 +7,136 @@
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>xrzp@qq.com (suredandan)</managingEditor>
     <webMaster>xrzp@qq.com (suredandan)</webMaster>
-    <lastBuildDate>Fri, 05 Jul 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 30 Jul 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://googlebaba.io/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Hello, Istio !</title>
-      <link>https://googlebaba.io/post/2019/07/istio1-hello-istio-arch/</link>
-      <pubDate>Fri, 05 Jul 2019 00:00:00 +0000</pubDate>
+      <title>adg-1拖N切换填坑记录</title>
+      <link>https://googlebaba.io/post/2019/07/adg-1vn-switchover-qa/</link>
+      <pubDate>Tue, 30 Jul 2019 00:00:00 +0000</pubDate>
       <author>xrzp@qq.com (suredandan)</author>
-      <guid>https://googlebaba.io/post/2019/07/istio1-hello-istio-arch/</guid>
-      <description>&lt;p&gt;本文简要的介绍了什么是&lt;code&gt;istio&lt;/code&gt;、架构、组件，以及在k8s的安装部署步骤。&lt;/p&gt;</description>
+      <guid>https://googlebaba.io/post/2019/07/adg-1vn-switchover-qa/</guid>
+      <description>&lt;p&gt;adg 1拖N切换填坑记录&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>k8s文章链接</title>
+      <link>https://googlebaba.io/post/2019/07/k8s-used-list/</link>
+      <pubDate>Sun, 28 Jul 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/07/k8s-used-list/</guid>
+      <description>&lt;p&gt;用于记录k8s使用的文章链接&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>docker使用文章链接</title>
+      <link>https://googlebaba.io/post/2019/07/docker-used-list/</link>
+      <pubDate>Sat, 27 Jul 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/07/docker-used-list/</guid>
+      <description>&lt;p&gt;主要用于用于记录docker使用的相关文章的链接&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>给 IDE 配置 markdown 的选项</title>
+      <link>https://googlebaba.io/post/2019/07/config-markdown-in-ideas/</link>
+      <pubDate>Sat, 27 Jul 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/07/config-markdown-in-ideas/</guid>
+      <description>&lt;p&gt;记录一下给 ide(atom/vscode) 配置 markdown 的配置选项&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>介绍katacontainer</title>
+      <link>https://googlebaba.io/post/2019/07/kata-container-intro/</link>
+      <pubDate>Wed, 24 Jul 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/07/kata-container-intro/</guid>
+      <description>&lt;p&gt;介绍使用katacontainer&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>11g Adg 参数说明</title>
+      <link>https://googlebaba.io/post/2019/07/dg-parameter/</link>
+      <pubDate>Fri, 19 Jul 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/07/dg-parameter/</guid>
+      <description>&lt;p&gt;以表格的形式展示 adg 的参数说明&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ADG迁移经验分享</title>
+      <link>https://googlebaba.io/post/2019/07/adg-qianyi-exp/</link>
+      <pubDate>Fri, 19 Jul 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/07/adg-qianyi-exp/</guid>
+      <description>&lt;p&gt;最近做了几个地方的双活，遇到的情况几乎都是要将以前老版本的10g迁移到11g上，并搭建双活。
+方便今后参考，特总结一下&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ADG查漏补缺</title>
+      <link>https://googlebaba.io/post/2019/07/adg-clbq-1/</link>
+      <pubDate>Thu, 18 Jul 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/07/adg-clbq-1/</guid>
+      <description>&lt;p&gt;11g ADG的一些查漏补缺&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>设置Oracle开机自动启动</title>
+      <link>https://googlebaba.io/post/2019/07/config-oracle-auto-startup-reboot/</link>
+      <pubDate>Thu, 18 Jul 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/07/config-oracle-auto-startup-reboot/</guid>
+      <description>&lt;p&gt;记录一下Oracle开机自动启动步骤&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>说说mTLS是什么</title>
+      <link>https://googlebaba.io/post/2019/07/mtls-jiehuo/</link>
+      <pubDate>Thu, 18 Jul 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/07/mtls-jiehuo/</guid>
+      <description>&lt;p&gt;简单说说tls的工作原理及配置方式&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>删除redo后的恢复</title>
+      <link>https://googlebaba.io/post/2019/07/after-delete-redo/</link>
+      <pubDate>Mon, 15 Jul 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/07/after-delete-redo/</guid>
+      <description>&lt;p&gt;记录一下删除&lt;code&gt;redo log&lt;/code&gt;后的恢复步骤&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>helmV2在k8s上的安装步骤</title>
+      <link>https://googlebaba.io/post/2019/07/helm-k8s-install/</link>
+      <pubDate>Tue, 09 Jul 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/07/helm-k8s-install/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Oracle的审计</title>
+      <link>https://googlebaba.io/post/2019/07/oracle-audit/</link>
+      <pubDate>Mon, 08 Jul 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/07/oracle-audit/</guid>
+      <description>&lt;p&gt;本文简明扼要的说了下&lt;code&gt;标准审计&lt;/code&gt;和&lt;code&gt;细粒度审计&lt;/code&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用kubernetes的几大优势</title>
+      <link>https://googlebaba.io/post/2019/07/why-kubernetes/</link>
+      <pubDate>Mon, 08 Jul 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/07/why-kubernetes/</guid>
+      <description>&lt;p&gt;整理了一些使用k8s的理由和优势!&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -28,6 +146,24 @@
       <author>xrzp@qq.com (suredandan)</author>
       <guid>https://googlebaba.io/post/2019/07/istio2-bookinfo-example-1/</guid>
       <description>&lt;p&gt;本文以&lt;code&gt;bookinfo&lt;/code&gt;为demo，测试istio的&lt;code&gt;配置请求路由&lt;/code&gt;功能。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Hello, Istio !</title>
+      <link>https://googlebaba.io/post/2019/07/istio1-hello-istio-arch/</link>
+      <pubDate>Thu, 04 Jul 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/07/istio1-hello-istio-arch/</guid>
+      <description>&lt;p&gt;本文简要的介绍了什么是&lt;code&gt;istio&lt;/code&gt;、架构、组件，以及在k8s的安装部署步骤。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>`limitrange`和`resourcequota`两者的区别</title>
+      <link>https://googlebaba.io/post/2019/07/limitrange-resourcequota/</link>
+      <pubDate>Thu, 04 Jul 2019 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/07/limitrange-resourcequota/</guid>
+      <description>&lt;p&gt;本文将介绍下&lt;code&gt;limitrange&lt;/code&gt;和&lt;code&gt;resourcequota&lt;/code&gt;两者的区别&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -54,7 +190,7 @@
       <pubDate>Sat, 29 Jun 2019 00:00:00 +0000</pubDate>
       <author>xrzp@qq.com (suredandan)</author>
       <guid>https://googlebaba.io/post/2019/06/client-go-example/</guid>
-      <description>package main import ( &amp;quot;fmt&amp;quot; &amp;quot;time&amp;quot; metav1 &amp;quot;k8s.io/apimachinery/pkg/apis/meta/v1&amp;quot; &amp;quot;k8s.io/client-go/kubernetes&amp;quot; &amp;quot;k8s.io/client-go/rest&amp;quot; ) func main() { // 通过集群内部配置创建 k8s 配置信息，通过 KUBERNETES_SERVICE_HOST 和 KUBERNETES_SERVICE_PORT 环境变量方式获取 // 若集群使用 TLS 认证方式，则默认读取集群内部 tokenFile 和 CAFile // tokenFile = &amp;quot;/var/run/secrets/kubernetes.io/serviceaccount/token&amp;quot; // rootCAFile = &amp;quot;/var/run/secrets/kubernetes.io/serviceaccount/ca.crt&amp;quot; config, err := rest.InClusterConfig() if err != nil { panic(err.Error()) } // 根据指定的 config 创建一个新的 clientset clientset, err := kubernetes.NewForConfig(config) if err != nil { panic(err.Error()) } for { // 通过实现 clientset 的 CoreV1Interface 接口列表中的 PodsGetter 接口方法 Pods(namespace string)返回 PodInterface // PodInterface 接口拥有操作 Pod 资源的方法，例如 Create、Update、Get、List 等方法 // 注意：Pods() 方法中 namespace 不指定则获取 Cluster 所有 Pod 列表 pods, err := clientset.</description>
+      <description>&lt;p&gt;给出一个简单的client-go示例&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -174,6 +310,48 @@ coredns 自带 hosts 插件， 允许像配置 hosts 一样配置自定义 DNS �
       <author>xrzp@qq.com (suredandan)</author>
       <guid>https://googlebaba.io/post/2019/06/buildblogfromgithub/</guid>
       <description>&lt;p&gt;记录一下用hugo+github搭建自己的博客的一些关键点&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://googlebaba.io/post/2019/07/adg-check-list/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/07/adg-check-list/</guid>
+      <description>adg检查列表</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://googlebaba.io/post/2019/07/oracle-second-half-plan/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/07/oracle-second-half-plan/</guid>
+      <description>oracle下半年计划</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://googlebaba.io/post/2019/08/k8s-hardway/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/08/k8s-hardway/</guid>
+      <description>hardwway
+https://github.com/kelseyhightower/kubernetes-the-hard-way</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://googlebaba.io/post/2019/todo/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>xrzp@qq.com (suredandan)</author>
+      <guid>https://googlebaba.io/post/2019/todo/</guid>
+      <description>https://www.cnblogs.com/cocowool/p/kubernetes_resource_quota.html
+ambassador https://www.cnblogs.com/rongfengliang/category/1248215.html https://www.getambassador.io/
+k8s使用helm打包chart并上传到腾讯云TencentHub https://www.cnblogs.com/fanshaoO/p/10401212.html
+consul https://www.cnblogs.com/cuishuai/p/8194345.html#4277186
+helm之chartmuseum https://www.cnblogs.com/cuishuai/p/9836600.html https://blog.csdn.net/weixin_34226182/article/details/86278522
+harbor helm 仓库使用 https://www.cnblogs.com/rongfengliang/p/9649337.html https://blog.csdn.net/lsysafe/article/details/94754991</description>
     </item>
     
   </channel>

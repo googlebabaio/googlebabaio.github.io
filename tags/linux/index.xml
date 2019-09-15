@@ -5,8 +5,7 @@
     <link>https://googlebaba.io/tags/linux/</link>
     <description>Recent content in linux on 蛋蛋的小黑屋</description>
     <generator>Hugo -- gohugo.io</generator>
-    <managingEditor>xrzp@qq.com (suredandan)</managingEditor>
-    <webMaster>xrzp@qq.com (suredandan)</webMaster>
+    <language>en-us</language>
     <lastBuildDate>Mon, 01 Jul 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://googlebaba.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
@@ -16,7 +15,7 @@
       <title>2019年下半年目标计划</title>
       <link>https://googlebaba.io/post/2019/07/second-half-plan/</link>
       <pubDate>Mon, 01 Jul 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/07/second-half-plan/</guid>
       <description>&lt;p&gt;给自己列了几个下半年需要达成的目标&lt;/p&gt;</description>
     </item>
@@ -25,7 +24,7 @@
       <title>centos7.4上给apache加上https的步骤</title>
       <link>https://googlebaba.io/post/2019/06/add-https-using-tencent/</link>
       <pubDate>Tue, 11 Jun 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/06/add-https-using-tencent/</guid>
       <description>&lt;p&gt;现在一般网站都要加上https访问,才让人有安全,所以本文记录一下怎么给自己的网站加上https安全证书的&lt;/p&gt;</description>
     </item>
@@ -34,7 +33,7 @@
       <title>记录一下用lvm的步骤</title>
       <link>https://googlebaba.io/post/2019/06/cncf-total/</link>
       <pubDate>Mon, 10 Jun 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/06/cncf-total/</guid>
       <description>&lt;p&gt;经常使用lvm进行目录的扩展,记录一下相关命令.&lt;/p&gt;</description>
     </item>
@@ -43,7 +42,7 @@
       <title>记录一下用lvm的步骤</title>
       <link>https://googlebaba.io/post/2019/06/lvm-manage/</link>
       <pubDate>Mon, 10 Jun 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/06/lvm-manage/</guid>
       <description>&lt;p&gt;经常使用lvm进行目录的扩展,记录一下相关命令.&lt;/p&gt;</description>
     </item>

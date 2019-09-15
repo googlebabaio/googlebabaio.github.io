@@ -3,21 +3,78 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://googlebaba.io/tags/oracle/</loc>
-    <lastmod>2019-07-30T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+    <loc>https://googlebaba.io/tags/k8s/</loc>
+    <lastmod>2019-09-10T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://googlebaba.io/post/</loc>
-    <lastmod>2019-07-30T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+    <lastmod>2019-09-10T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://googlebaba.io/tags/</loc>
-    <lastmod>2019-07-30T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+    <lastmod>2019-09-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/09/10-what-is-virtual-kubelet/</loc>
+    <lastmod>2019-09-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/09/11-renew-ca-by-kubeadm/</loc>
+    <lastmod>2019-09-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/09/12-renew-ca-other-method/</loc>
+    <lastmod>2019-09-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/</loc>
+    <lastmod>2019-09-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/08/15-what-about-rollback-upgrade/</loc>
+    <lastmod>2019-08-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/08/14-k8s-controller-model/</loc>
+    <lastmod>2019-08-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/08/13-pod-preset/</loc>
+    <lastmod>2019-08-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/08/11-four-type-projected/</loc>
+    <lastmod>2019-08-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/08/12-pod-healty/</loc>
+    <lastmod>2019-08-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/08/10-pod-intro/</loc>
+    <lastmod>2019-08-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/08/9-docker-new-find/</loc>
+    <lastmod>2019-08-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/08/8-k8s-intro-1/</loc>
+    <lastmod>2019-08-10T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -26,15 +83,8 @@
   </url>
   
   <url>
-    <loc>https://googlebaba.io/</loc>
+    <loc>https://googlebaba.io/tags/oracle/</loc>
     <lastmod>2019-07-30T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://googlebaba.io/tags/k8s/</loc>
-    <lastmod>2019-07-28T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -50,7 +100,6 @@
   <url>
     <loc>https://googlebaba.io/tags/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB/</loc>
     <lastmod>2019-07-27T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -96,7 +145,6 @@
   <url>
     <loc>https://googlebaba.io/tags/helm/</loc>
     <lastmod>2019-07-09T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -117,7 +165,6 @@
   <url>
     <loc>https://googlebaba.io/tags/istio/</loc>
     <lastmod>2019-07-05T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -126,12 +173,12 @@
   </url>
   
   <url>
-    <loc>https://googlebaba.io/post/2019/07/istio1-hello-istio-arch/</loc>
+    <loc>https://googlebaba.io/post/2019/07/limitrange-resourcequota/</loc>
     <lastmod>2019-07-04T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://googlebaba.io/post/2019/07/limitrange-resourcequota/</loc>
+    <loc>https://googlebaba.io/post/2019/07/istio1-hello-istio-arch/</loc>
     <lastmod>2019-07-04T00:00:00+00:00</lastmod>
   </url>
   
@@ -143,7 +190,6 @@
   <url>
     <loc>https://googlebaba.io/tags/linux/</loc>
     <lastmod>2019-07-01T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -177,9 +223,18 @@
   </url>
   
   <url>
+    <loc>https://googlebaba.io/post/2019/09/8-11g-rac-delete-node/</loc>
+    <lastmod>2019-06-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/09/5-11g-rac-add-node/</loc>
+    <lastmod>2019-06-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://googlebaba.io/tags/golang/</loc>
     <lastmod>2019-06-19T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -200,13 +255,11 @@
   <url>
     <loc>https://googlebaba.io/tags/coredns/</loc>
     <lastmod>2019-06-10T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://googlebaba.io/tags/etcd/</loc>
     <lastmod>2019-06-10T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -217,7 +270,6 @@
   <url>
     <loc>https://googlebaba.io/tags/harbor/</loc>
     <lastmod>2019-06-10T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -248,7 +300,6 @@
   <url>
     <loc>https://googlebaba.io/page/</loc>
     <lastmod>2019-03-20T23:28:02+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -267,7 +318,117 @@
   </url>
   
   <url>
+    <loc>https://googlebaba.io/post/2019/08/16-talk-about-stateful/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/08/17-pvc-pv-example/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/08/18-what-about-daemonset/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/08/19-what-is-service-mesh/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/08/20-helm-some-useful/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/08/21-oracle-sql-tools/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/08/3-ora-opidcl-aborting-with-ora-28/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/08/5-docker-intro-2/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/08/7-k8s-runtime-intro/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://googlebaba.io/post/2019/08/k8s-hardway/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/08/k8s-troubleshooting/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/08/kubelet-intro/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/09/1-promethues-intro/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/09/13-insecure-kubeconfig-create/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/09/14-how-to-do-when-redo-lost/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/09/15-mind-make-pod-ip-unchange-after-reboot/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/09/2-pg-intro/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/09/20190907/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/09/3-sql-gaixie/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/09/4-how-to-use-k8s-fast/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/09/6-db-passwd-limit-check/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/09/7-oracle-recover-truncate/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/09/9-oracle-luanma/</loc>
     <priority>0</priority>
   </url>
   
@@ -278,7 +439,18 @@
   
   <url>
     <loc>https://googlebaba.io/categories/</loc>
-    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/09/filco-connect/</loc>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/08/6-k8s-in-my-eyes/</loc>
+  </url>
+  
+  <url>
+    <loc>https://googlebaba.io/post/2019/08/4-docker-intro-1/</loc>
   </url>
   
 </urlset>

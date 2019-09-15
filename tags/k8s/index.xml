@@ -5,18 +5,116 @@
     <link>https://googlebaba.io/tags/k8s/</link>
     <description>Recent content in k8s on 蛋蛋的小黑屋</description>
     <generator>Hugo -- gohugo.io</generator>
-    <managingEditor>xrzp@qq.com (suredandan)</managingEditor>
-    <webMaster>xrzp@qq.com (suredandan)</webMaster>
-    <lastBuildDate>Sun, 28 Jul 2019 00:00:00 +0000</lastBuildDate>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 10 Sep 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://googlebaba.io/tags/k8s/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>什么是virtual kubelet</title>
+      <link>https://googlebaba.io/post/2019/09/10-what-is-virtual-kubelet/</link>
+      <pubDate>Tue, 10 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/09/10-what-is-virtual-kubelet/</guid>
+      <description>&lt;p&gt;简单的介绍什么是&lt;code&gt;virtual kubelet&lt;/code&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>更换证书有效期--对于kubeadm安装的集群</title>
+      <link>https://googlebaba.io/post/2019/09/11-renew-ca-by-kubeadm/</link>
+      <pubDate>Tue, 10 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/09/11-renew-ca-by-kubeadm/</guid>
+      <description>&lt;p&gt;记录一下更换证书有效期的过程&amp;ndash;对于kubeadm安装的集群&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>更换证书有效期的其他办法--对于kubeadm安装的集群</title>
+      <link>https://googlebaba.io/post/2019/09/12-renew-ca-other-method/</link>
+      <pubDate>Tue, 10 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/09/12-renew-ca-other-method/</guid>
+      <description>&lt;p&gt;更新证书除了使用kubeadm这种正常途径外,还有一些&amp;rdquo;其他方法&amp;rdquo;也可以达到目的&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>k8s中的滚动更新</title>
+      <link>https://googlebaba.io/post/2019/08/15-what-about-rollback-upgrade/</link>
+      <pubDate>Sat, 17 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/08/15-what-about-rollback-upgrade/</guid>
+      <description>滚动更新是什么意思，是如何实现的呢？ 以这个 Deployment 为例，来为你讲解“滚动更新”的过程。 kubectl create -f nginx-deployment.yaml --record 在这里，我额外加了一个–record 参数。它的作用</description>
+    </item>
+    
+    <item>
+      <title>k8s中的控制器设计模式</title>
+      <link>https://googlebaba.io/post/2019/08/14-k8s-controller-model/</link>
+      <pubDate>Fri, 16 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/08/14-k8s-controller-model/</guid>
+      <description>Pod 这个看似复杂的 API 对象，实际上就是对容器的进一步抽象和封装而已。 “容器”镜像虽然好用，但是容器这样一个“沙盒”的概念，对于描述应用来说，还是</description>
+    </item>
+    
+    <item>
+      <title>pod的预设功能介绍</title>
+      <link>https://googlebaba.io/post/2019/08/13-pod-preset/</link>
+      <pubDate>Thu, 15 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/08/13-pod-preset/</guid>
+      <description>pod预设功能 你有没有产生这样一个想法：Pod 的字段这么多，我又不可能全记住，Kubernetes 能不能自动给 Pod 填充某些字段呢？ 这个需求实际</description>
+    </item>
+    
+    <item>
+      <title>k8s中volumn的四种类型介绍</title>
+      <link>https://googlebaba.io/post/2019/08/11-four-type-projected/</link>
+      <pubDate>Tue, 13 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/08/11-four-type-projected/</guid>
+      <description>四种projected 在 Kubernetes 中，有几种特殊的 Volume，它们存在的意义不是为了存放容器里的数据，也不是用来进行容器和宿主机之间的数据交换。这</description>
+    </item>
+    
+    <item>
+      <title>pod的健康检查</title>
+      <link>https://googlebaba.io/post/2019/08/12-pod-healty/</link>
+      <pubDate>Tue, 13 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/08/12-pod-healty/</guid>
+      <description>在 Kubernetes 中，你可以为 Pod 里的容器定义一个健康检查“探针”（Probe）。这样，kubelet 就会根据这个 Probe 的返回值决定这个容器的状态，而不是直接以</description>
+    </item>
+    
+    <item>
+      <title>认识pod的本质！</title>
+      <link>https://googlebaba.io/post/2019/08/10-pod-intro/</link>
+      <pubDate>Mon, 12 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/08/10-pod-intro/</guid>
+      <description>容器的本质到底是什么？ 容器的本质是进程。 容器，就是未来云计算系统中的进程；容器镜像就是这个系统里的“.exe”安装包。Kubernetes 就</description>
+    </item>
+    
+    <item>
+      <title>对docker的新的一些认识</title>
+      <link>https://googlebaba.io/post/2019/08/9-docker-new-find/</link>
+      <pubDate>Sun, 11 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/08/9-docker-new-find/</guid>
+      <description>在我以往的理解中，容器和镜像的关系就是： - 容器是运行的，活着的镜像，就像 instance - 镜像是静止的，就像 class - 当把镜像 run 起来变成容器，就像是吧 class new 了一个</description>
+    </item>
+    
+    <item>
+      <title>kubernetes介绍</title>
+      <link>https://googlebaba.io/post/2019/08/8-k8s-intro-1/</link>
+      <pubDate>Sat, 10 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/08/8-k8s-intro-1/</guid>
+      <description>跟很多基础设施领域先有工程实践、后有方法论的发展路线不同，Kubernetes 项目的理论基础则要比工程实践走得靠前得多，这当然要归功于 Google 公司</description>
+    </item>
+    
+    <item>
       <title>k8s文章链接</title>
       <link>https://googlebaba.io/post/2019/07/k8s-used-list/</link>
       <pubDate>Sun, 28 Jul 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/07/k8s-used-list/</guid>
       <description>&lt;p&gt;用于记录k8s使用的文章链接&lt;/p&gt;</description>
     </item>
@@ -25,7 +123,7 @@
       <title>docker使用文章链接</title>
       <link>https://googlebaba.io/post/2019/07/docker-used-list/</link>
       <pubDate>Sat, 27 Jul 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/07/docker-used-list/</guid>
       <description>&lt;p&gt;主要用于用于记录docker使用的相关文章的链接&lt;/p&gt;</description>
     </item>
@@ -34,7 +132,7 @@
       <title>介绍katacontainer</title>
       <link>https://googlebaba.io/post/2019/07/kata-container-intro/</link>
       <pubDate>Wed, 24 Jul 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/07/kata-container-intro/</guid>
       <description>&lt;p&gt;介绍使用katacontainer&lt;/p&gt;</description>
     </item>
@@ -43,7 +141,7 @@
       <title>helmV2在k8s上的安装步骤</title>
       <link>https://googlebaba.io/post/2019/07/helm-k8s-install/</link>
       <pubDate>Tue, 09 Jul 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/07/helm-k8s-install/</guid>
       <description></description>
     </item>
@@ -52,7 +150,7 @@
       <title>使用kubernetes的几大优势</title>
       <link>https://googlebaba.io/post/2019/07/why-kubernetes/</link>
       <pubDate>Mon, 08 Jul 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/07/why-kubernetes/</guid>
       <description>&lt;p&gt;整理了一些使用k8s的理由和优势!&lt;/p&gt;</description>
     </item>
@@ -61,7 +159,7 @@
       <title>`limitrange`和`resourcequota`两者的区别</title>
       <link>https://googlebaba.io/post/2019/07/limitrange-resourcequota/</link>
       <pubDate>Thu, 04 Jul 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/07/limitrange-resourcequota/</guid>
       <description>&lt;p&gt;本文将介绍下&lt;code&gt;limitrange&lt;/code&gt;和&lt;code&gt;resourcequota&lt;/code&gt;两者的区别&lt;/p&gt;</description>
     </item>
@@ -70,7 +168,7 @@
       <title>pod-hostalias</title>
       <link>https://googlebaba.io/post/2019/07/pod-hostalias/</link>
       <pubDate>Mon, 01 Jul 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/07/pod-hostalias/</guid>
       <description>&lt;p&gt;利用k8s中提供的host-alias来为pod定制化域名&lt;/p&gt;</description>
     </item>
@@ -79,7 +177,7 @@
       <title>client-go 示例</title>
       <link>https://googlebaba.io/post/2019/06/client-go-example/</link>
       <pubDate>Sat, 29 Jun 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/06/client-go-example/</guid>
       <description>&lt;p&gt;给出一个简单的client-go示例&lt;/p&gt;</description>
     </item>
@@ -88,7 +186,7 @@
       <title>grafana</title>
       <link>https://googlebaba.io/post/2019/06/config-grafana/</link>
       <pubDate>Sat, 29 Jun 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/06/config-grafana/</guid>
       <description></description>
     </item>
@@ -97,7 +195,7 @@
       <title>给dashboard加入CA认证</title>
       <link>https://googlebaba.io/post/2019/06/config-k8s-dashboard-for-other-browser/</link>
       <pubDate>Sat, 29 Jun 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/06/config-k8s-dashboard-for-other-browser/</guid>
       <description>&lt;p&gt;在部署完k8s集群后,往往会部署dashborad作为基础监控的一个手段.
 但有时候,部署好的dashboard在其他浏览器上无法正常访问,本文将提供解决的一个参考.&lt;/p&gt;</description>
@@ -107,7 +205,7 @@
       <title>kubeadm 命令说明</title>
       <link>https://googlebaba.io/post/2019/06/kubeadm-cmd-option/</link>
       <pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/06/kubeadm-cmd-option/</guid>
       <description>&lt;p&gt;在k8s1.14之后,kubeadm安装已经快要成为事实的标准,在之前参加的CKA考试中,发现部署的环境以及是使用kubeadm部署的了，所以对kubeadm的使用也必需要有所了解了！&lt;/p&gt;</description>
     </item>
@@ -116,16 +214,34 @@
       <title>利用job来完成download的示例</title>
       <link>https://googlebaba.io/post/2019/06/job-for-download/</link>
       <pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/06/job-for-download/</guid>
       <description>&lt;p&gt;给出一个利用job来完成download的示例&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>11gRAC删除节点步骤</title>
+      <link>https://googlebaba.io/post/2019/09/8-11g-rac-delete-node/</link>
+      <pubDate>Wed, 19 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/09/8-11g-rac-delete-node/</guid>
+      <description>&lt;p&gt;给出11gRAC删除节点步骤，以供参考&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>11gRAC添加节点步骤</title>
+      <link>https://googlebaba.io/post/2019/09/5-11g-rac-add-node/</link>
+      <pubDate>Wed, 19 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/09/5-11g-rac-add-node/</guid>
+      <description>&lt;p&gt;给出11gRAC添加节点步骤，以供参考&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>pod示例</title>
       <link>https://googlebaba.io/post/2019/06/pod-all-example/</link>
       <pubDate>Wed, 19 Jun 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/06/pod-all-example/</guid>
       <description>&lt;p&gt;给出一个pod的使用示例,包括: &lt;code&gt;volume&lt;/code&gt;,&lt;code&gt;initContainer&lt;/code&gt;,&lt;code&gt;hook&lt;/code&gt;&lt;/p&gt;</description>
     </item>
@@ -134,7 +250,7 @@
       <title>etcd的备份与恢复</title>
       <link>https://googlebaba.io/post/2019/06/etcd-backup-recover/</link>
       <pubDate>Mon, 10 Jun 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/06/etcd-backup-recover/</guid>
       <description>&lt;p&gt;记录一下etcd的备份与恢复命令&lt;/p&gt;</description>
     </item>
@@ -143,7 +259,7 @@
       <title>harbor中物理删除不要的镜像</title>
       <link>https://googlebaba.io/post/2019/06/harbor-hard-delete-imgs/</link>
       <pubDate>Mon, 10 Jun 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/06/harbor-hard-delete-imgs/</guid>
       <description>&lt;p&gt;记录下在harbor中物理删除不要的镜像&lt;/p&gt;</description>
     </item>
@@ -152,10 +268,28 @@
       <title>给pod里的集群添加自定义DNS解析</title>
       <link>https://googlebaba.io/post/2019/06/add-dns-in-pod/</link>
       <pubDate>Mon, 10 Jun 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/06/add-dns-in-pod/</guid>
       <description>&lt;p&gt;有时候的需求是需要集群中的pod能访问自定义的一些域名,但又不能都一一写在container里面的/etc/hosts中，这样就需要用自定义dns来实现。
 coredns 自带 hosts 插件， 允许像配置 hosts 一样配置自定义 DNS 解析，修改 kube-system 中 configMap 的 coredns 添加&lt;code&gt;hosts&lt;/code&gt;那一段设置即可。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>我眼中的kubernetes</title>
+      <link>https://googlebaba.io/post/2019/08/6-k8s-in-my-eyes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/08/6-k8s-in-my-eyes/</guid>
+      <description>我眼中的kubernetes 架构 容器运行时 编排 和大商场类比 每一层楼 对应 namespace 每一个店 对应 pod 每一个店店大小 对应 使用磁盘的大小 每一个店的关注度 对应 使</description>
+    </item>
+    
+    <item>
+      <title>深入解析下docker的 `隔离`与`限制`</title>
+      <link>https://googlebaba.io/post/2019/08/4-docker-intro-1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/08/4-docker-intro-1/</guid>
+      <description>&lt;p&gt;深入解析下docker的 &lt;code&gt;隔离&lt;/code&gt;与&lt;code&gt;限制&lt;/code&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>

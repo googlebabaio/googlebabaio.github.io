@@ -5,8 +5,7 @@
     <link>https://googlebaba.io/page/</link>
     <description>Recent content in Pages on 蛋蛋的小黑屋</description>
     <generator>Hugo -- gohugo.io</generator>
-    <managingEditor>xrzp@qq.com (suredandan)</managingEditor>
-    <webMaster>xrzp@qq.com (suredandan)</webMaster>
+    <language>en-us</language>
     <lastBuildDate>Wed, 20 Mar 2019 23:28:02 +0800</lastBuildDate>
     
 	<atom:link href="https://googlebaba.io/page/index.xml" rel="self" type="application/rss+xml" />
@@ -16,10 +15,9 @@
       <title>关于我</title>
       <link>https://googlebaba.io/page/about/</link>
       <pubDate>Wed, 20 Mar 2019 23:28:02 +0800</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/page/about/</guid>
-      <description> 自我介绍 我叫蛋蛋，是一名女儿奴，热爱技术。
-会如下的技能栈:  Java Python Oracle MySQL Cloud Native  Docker Kuernetes Istio Prometheus   有如下一些认证:  Oracle 10gOCM Oracle 11gOCM CNCF CKA  </description>
+      <description>自我介绍 我叫蛋蛋，是一名女儿奴，热爱技术。 会如下的技能栈: Java Python Oracle MySQL Cloud Native Docker Kuernetes Istio Prometheus 有如下一些认证: Oracle 10gOCM Oracle 11gOCM CNCF CKA</description>
     </item>
     
   </channel>

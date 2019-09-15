@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="蛋蛋的小黑屋">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://googlebaba.io//img/nezha.jpg">
+    <meta property="twitter:image" content="https://googlebaba.io//img/nezha.jpg" />
+    
+
+    
+    <meta name="title" content="更换证书有效期--对于kubeadm安装的集群" />
+    <meta property="og:title" content="更换证书有效期--对于kubeadm安装的集群" />
+    <meta property="twitter:title" content="更换证书有效期--对于kubeadm安装的集群" />
+    
+
+    
+    <meta name="description" content="这里是 蛋蛋 的博客，与你一起发现更大的世界。">
+    <meta property="og:description" content="这里是 蛋蛋 的博客，与你一起发现更大的世界。" />
+    <meta property="twitter:description" content="这里是 蛋蛋 的博客，与你一起发现更大的世界。" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="蛋蛋, googlebaba.io , 博客, 个人网站, 数据库, 架构, 云原生, PaaS, Istio, Kubernetes, 微服务, Microservice">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>更换证书有效期--对于kubeadm安装的集群-蛋蛋的小黑屋</title>
+
+    <link rel="canonical" href="/post/2019/09/11-renew-ca-by-kubeadm/">
+
+    <link rel="stylesheet" href="/css/iDisqus.min.css"/>
+	
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    
+    <link rel="stylesheet" href="/css/syntax.css">
+    
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+    
+    
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    
+    
+
+    
+    
+    <script src="/js/jquery.min.js"></script>
+    
+    
+    <script src="/js/bootstrap.min.js"></script>
+    
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/docco.min.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    
+    
+
+</head>
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">蛋蛋的小黑屋</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                    
+		    
+                        <li><a href="/">mybooks</a></li>
+                    
+                        <li><a href="/page/about/">ABOUT</a></li>
+                    
+
+                    
+		    <li>
+                        <a href="/search">SEARCH <img src="/img/search.png" height="15" style="cursor: pointer;" alt="Search"></a>
+		    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/nezha.jpg')
+    }
+</style>
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/k8s" title="k8s">
+                            k8s
+                        </a>
+                        
+                    </div>
+                    <h1>更换证书有效期--对于kubeadm安装的集群</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by 
+                        
+                                蛋蛋的小黑屋
+                         
+                        on 
+                        Tuesday, September 10, 2019
+                        
+                        
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <header>
+                    <h2>TOC</h2>
+                </header>
+				
+                <nav id="TableOfContents">
+<ul>
+<li><a href="#证书说明">证书说明</a>
+<ul>
+<li><a href="#kubernetes-集群根证书">Kubernetes 集群根证书</a></li>
+<li><a href="#汇聚层-aggregator-证书">汇聚层(aggregator)证书</a></li>
+<li><a href="#etcd-集群根证书">etcd 集群根证书</a></li>
+<li><a href="#serveice-account秘钥">Serveice Account秘钥</a></li>
+</ul></li>
+<li><a href="#更换证书过程如下">更换证书过程如下:</a>
+<ul>
+<li><a href="#查看证书过期时间">查看证书过期时间</a></li>
+<li><a href="#生成集群的配置文件">生成集群的配置文件</a></li>
+<li><a href="#备份证书">备份证书</a></li>
+<li><a href="#更新证书-适用于1-14版本及以上">更新证书(适用于1.14版本及以上)</a></li>
+<li><a href="#更新证书-适用于1-13版本及以下">更新证书(适用于1.13版本及以下)</a>
+<ul>
+<li><a href="#移动老的证书">移动老的证书</a></li>
+<li><a href="#生成新的证书">生成新的证书</a></li>
+<li><a href="#更新kubeconfig文件">更新kubeconfig文件</a></li>
+</ul></li>
+<li><a href="#查看证书更新后的使用周期">查看证书更新后的使用周期</a></li>
+</ul></li>
+<li><a href="#参考">参考</a></li>
+</ul>
+</nav>
+                
+                <p>记录一下更换证书有效期的过程&ndash;对于kubeadm安装的集群</p>
+
+<p>kubeadm 1.14.x安装后个别证书已修改为10年有效期,但有部分证书还是一年有效期</p>
+
+<pre><code>/etc/kubernetes/pki/apiserver.crt
+/etc/kubernetes/pki/front-proxy-ca.crt         #10年有效期
+/etc/kubernetes/pki/ca.crt                     #10年有效期
+/etc/kubernetes/pki/apiserver-etcd-client.crt
+/etc/kubernetes/pki/front-proxy-client.crt     #10年有效期
+/etc/kubernetes/pki/etcd/server.crt
+/etc/kubernetes/pki/etcd/ca.crt                #10年有效期
+/etc/kubernetes/pki/etcd/peer.crt              #10年有效期
+/etc/kubernetes/pki/etcd/healthcheck-client.crt
+/etc/kubernetes/pki/apiserver-kubelet-client.crt
+</code></pre>
+
+<p>一年过期后，会导致api service不可用，使用过程中会出现：<code>x509: certificate has expired or is not yet valid.</code> , 所以证书过期是个需要注意的事情.</p>
+
+<h1 id="证书说明">证书说明</h1>
+
+<p>首先介绍下证书的使用</p>
+
+<pre><code>[root@host-192-168-3-15 pki]# tree
+.
+|-- apiserver-etcd-client.crt
+|-- apiserver-etcd-client.key
+|-- apiserver-kubelet-client.crt
+|-- apiserver-kubelet-client.key
+|-- apiserver.crt
+|-- apiserver.key
+|-- basic-auth.csv
+|-- ca.crt
+|-- ca.key
+|-- etcd
+|   |-- ca.crt
+|   |-- ca.key
+|   |-- healthcheck-client.crt
+|   |-- healthcheck-client.key
+|   |-- peer.crt
+|   |-- peer.key
+|   |-- server.crt
+|   `-- server.key
+|-- front-proxy-ca.crt
+|-- front-proxy-ca.key
+|-- front-proxy-client.crt
+|-- front-proxy-client.key
+|-- sa.key
+`-- sa.pub
+</code></pre>
+
+<h2 id="kubernetes-集群根证书">Kubernetes 集群根证书</h2>
+
+<ul>
+<li>/etc/kubernetes/pki/ca.crt</li>
+<li>/etc/kubernetes/pki/ca.key</li>
+</ul>
+
+<p>由此根证书签发的证书有:</p>
+
+<ul>
+<li><ol>
+<li>kube-apiserver 组件持有的服务端证书</li>
+</ol>
+
+<ul>
+<li>/etc/kubernetes/pki/apiserver.crt</li>
+<li>/etc/kubernetes/pki/apiserver.key</li>
+</ul></li>
+
+<li><ol>
+<li>kubelet 组件持有的客户端证书</li>
+</ol>
+
+<ul>
+<li>/etc/kubernetes/pki/apiserver-kubelet-client.crt</li>
+<li>/etc/kubernetes/pki/apiserver-kubelet-client.key</li>
+</ul></li>
+</ul>
+
+<blockquote>
+<p>kubelet 上一般不会明确指定服务端证书, 而是只指定 ca 根证书, 让 kubelet 根据本地主机信息自动生成服务端证书并保存到配置的cert-dir文件夹中。</p>
+</blockquote>
+
+<h2 id="汇聚层-aggregator-证书">汇聚层(aggregator)证书</h2>
+
+<ul>
+<li>/etc/kubernetes/pki/front-proxy-ca.crt</li>
+<li>/etc/kubernetes/pki/front-proxy-ca.key</li>
+</ul>
+
+<p>由此根证书签发的证书只有一组:</p>
+
+<ul>
+<li>1. 代理端使用的客户端证书, 用作代用户与 kube-apiserver 认证
+
+<ul>
+<li>/etc/kubernetes/pki/front-proxy-client.crt</li>
+<li>/etc/kubernetes/pki/front-proxy-client.key</li>
+</ul></li>
+</ul>
+
+<h2 id="etcd-集群根证书">etcd 集群根证书</h2>
+
+<ul>
+<li>/etc/kubernetes/pki/etcd/ca.crt</li>
+<li>/etc/kubernetes/pki/etcd/ca.key</li>
+</ul>
+
+<p>由此根证书签发机构签发的证书有:</p>
+
+<ul>
+<li><ol>
+<li>etcd server 持有的服务端证书</li>
+</ol>
+
+<ul>
+<li>/etc/kubernetes/pki/etcd/server.crt</li>
+<li>/etc/kubernetes/pki/etcd/server.key</li>
+</ul></li>
+
+<li><ol>
+<li>peer 集群中节点互相通信使用的客户端证书</li>
+</ol>
+
+<ul>
+<li>/etc/kubernetes/pki/etcd/peer.crt</li>
+<li>/etc/kubernetes/pki/etcd/peer.key</li>
+</ul></li>
+
+<li><ol>
+<li>pod 中定义 Liveness 探针使用的客户端证书</li>
+</ol>
+
+<ul>
+<li>/etc/kubernetes/pki/etcd/healthcheck-client.crt</li>
+<li>/etc/kubernetes/pki/etcd/healthcheck-client.key</li>
+</ul></li>
+
+<li><ol>
+<li>配置在 kube-apiserver 中用来与 etcd server 做双向认证的客户端证书</li>
+</ol>
+
+<ul>
+<li>/etc/kubernetes/pki/apiserver-etcd-client.crt</li>
+<li>/etc/kubernetes/pki/apiserver-etcd-client.key</li>
+</ul></li>
+</ul>
+
+<h2 id="serveice-account秘钥">Serveice Account秘钥</h2>
+
+<ul>
+<li>/etc/kubernetes/pki/sa.key</li>
+<li>/etc/kubernetes/pki/sa.pub</li>
+</ul>
+
+<p>这组的密钥对儿仅提供给 <code>kube-controller-manager</code> 使用. kube-controller-manager 通过 <code>sa.key</code> 对 <code>token</code> 进行签名, master 节点通过公钥 <code>sa.pub</code> 进行签名的验证.</p>
+
+<p>API Server的authenticating环节支持多种身份校验方式：
+- client cert
+- bearer token
+- static password auth</p>
+
+<p>认证流程:
+1. 这些方式中有一种方式通过<code>authenticating</code>（<code>Kubernetes API Server</code>会逐个方式尝试），那么身份校验就会通过。
+2. 一旦API Server发现client发起的request使用的是service account token的方式，API Server就会自动采用signed bearer token方式进行身份校验。
+3. 而request就会使用携带的service account token参与验证。该token是API Server在创建service account时用API server启动参数：<code>–service-account-key-file</code>的值签署(sign)生成的。
+4. 如果–service-account-key-file未传入任何值，那么将默认使用<code>–tls-private-key-file</code>的值，即API Server的私钥（server.key）。
+5. 通过<code>authenticating</code>后，API Server将根据Pod username所在的group：system:serviceaccounts和system:serviceaccounts:(NAMESPACE)的权限对其进行authority 和admission control两个环节的处理。在这两个环节中，cluster管理员可以对service account的权限进行细化设置。</p>
+
+<blockquote>
+<p>注意:
+kubeadm 创建的集群, kube-proxy ,flannel,coreDNS是以 pod 形式运行的, 在 pod 中, 直接使用 service account 与 kube-apiserver 进行认证, 此时就不需要再单独为 kube-proxy 创建证书</p>
+</blockquote>
+
+<h1 id="更换证书过程如下">更换证书过程如下:</h1>
+
+<h2 id="查看证书过期时间">查看证书过期时间</h2>
+
+<pre><code># openssl x509 -in /etc/kubernetes/pki/apiserver.crt -noout -text |grep ' Not '
+            Not Before: May 24 03:31:50 2019 GMT
+            Not After : May 23 03:31:50 2020 GMT
+</code></pre>
+
+<h2 id="生成集群的配置文件">生成集群的配置文件</h2>
+
+<pre><code># kubeadm config view &gt; /tmp/cluster.yaml
+</code></pre>
+
+<h2 id="备份证书">备份证书</h2>
+
+<pre><code># cp -r /etc/kubernetes/pki /etc/kubernetes/pki.bak
+</code></pre>
+
+<h2 id="更新证书-适用于1-14版本及以上">更新证书(适用于1.14版本及以上)</h2>
+
+<p>在1.14版本中,kubeadm做了改进,直接使用renew命令即可更新证书</p>
+
+<pre><code># kubeadm alpha certs renew all --config=/tmp/cluster.yaml
+</code></pre>
+
+<p>更新操作会更新下面的证书</p>
+
+<pre><code>#-- /etc/kubernetes/pki/apiserver.key
+#-- /etc/kubernetes/pki/apiserver.crt
+
+#-- /etc/kubernetes/pki/apiserver-etcd-client.key
+#-- /etc/kubernetes/pki/apiserver-etcd-client.crt
+
+#-- /etc/kubernetes/pki/apiserver-kubelet-client.key
+#-- /etc/kubernetes/pki/apiserver-kubelet-client.crt
+
+#-- /etc/kubernetes/pki/front-proxy-client.key
+#-- /etc/kubernetes/pki/front-proxy-client.crt
+
+#-- /etc/kubernetes/pki/etcd/healthcheck-client.key
+#-- /etc/kubernetes/pki/etcd/healthcheck-client.crt
+
+#-- /etc/kubernetes/pki/etcd/peer.key
+#-- /etc/kubernetes/pki/etcd/peer.crt
+
+#-- /etc/kubernetes/pki/etcd/server.key
+#-- /etc/kubernetes/pki/etcd/server.crt
+</code></pre>
+
+<h2 id="更新证书-适用于1-13版本及以下">更新证书(适用于1.13版本及以下)</h2>
+
+<p>在1.13版本及之前,需要使用<code>kubeadm alpha phase certs</code>来<strong>生成新的证书</strong></p>
+
+<h3 id="移动老的证书">移动老的证书</h3>
+
+<p>注意是: 必须移动，不然会使用现有的证书，不会重新生成!</p>
+
+<pre><code>cd /etc/kubernetes
+mkdir -p pki.bak/etcd
+mkdir conf.bak
+mv pki/apiserver* ./pki.bak/
+mv pki/front-proxy-client.* ./pki.bak/
+mv pki/etcd/healthcheck-client.* ./pki.bak/etcd/
+mv pki/etcd/peer.* ./pki.bak/etcd/
+mv pki/etcd/server.* ./pki.bak/etcd/
+mv ./admin.conf ./conf.bak/
+mv ./kubelet.conf ./conf.bak/
+mv ./controller-manager.conf ./conf.bak/
+mv ./scheduler.conf ./conf.bak/
+</code></pre>
+
+<blockquote>
+<p>注意ca的不动!</p>
+</blockquote>
+
+<h3 id="生成新的证书">生成新的证书</h3>
+
+<p>建议不要重新生成ca证书，因为更新了ca证书，集群节点就需要手工操作，才能让集群正常(会涉及重新join)</p>
+
+<pre><code>kubeadm alpha phase certs etcd-healthcheck-client --config /tmp/cluster.yaml
+
+kubeadm alpha phase certs etcd-peer --config /tmp/cluster.yaml
+
+kubeadm alpha phase certs etcd-server --config /tmp/cluster.yaml
+
+kubeadm alpha phase certs front-proxy-client--config /tmp/cluster.yaml
+
+kubeadm alpha phase certs apiserver-etcd-client --config /tmp/cluster.yaml
+
+kubeadm alpha phase certs apiserver-kubelet-client --config /tmp/cluster.yaml
+
+kubeadm alpha phase certs apiserver --config /tmp/cluster.yaml
+
+kubeadm alpha phase certs sa --config /tmp/cluster.yaml
+</code></pre>
+
+<h3 id="更新kubeconfig文件">更新kubeconfig文件</h3>
+
+<p>生成新的配置文件</p>
+
+<pre><code>kubeadm alpha phase kubeconfig all --apiserver-advertise-address=${MASTER_API_SERVER_IP}
+</code></pre>
+
+<p>将新生成的admin配置文件覆盖掉原本的admin文件</p>
+
+<pre><code>mv $HOME/.kube/config $HOME/.kube/config.old
+cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+chown $(id -u):$(id -g) $HOME/.kube/config
+sudo chmod 777 $HOME/.kube/config
+</code></pre>
+
+<p>完成后重启<code>kube-apiserver</code>,<code>kube-controller</code>,<code>kube-scheduler</code>,<code>etcd</code>这4个容器</p>
+
+<blockquote>
+<p>如果有多台master，则将第一台生成的相关证书拷贝到其余master即可。</p>
+</blockquote>
+
+<h2 id="查看证书更新后的使用周期">查看证书更新后的使用周期</h2>
+
+<pre><code># openssl x509 -in /etc/kubernetes/pki/apiserver.crt -noout -text |grep ' Not '
+            Not Before: May 24 03:31:50 2019 GMT
+            Not After : Sep  9 02:36:46 2020 GMT
+</code></pre>
+
+<h1 id="参考">参考</h1>
+
+<p><a href="https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-alpha/">https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-alpha/</a></p>
+
+                
+
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/post/2019/09/12-renew-ca-other-method/" data-toggle="tooltip" data-placement="top" title="更换证书有效期的其他办法--对于kubeadm安装的集群">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/post/2019/09/10-what-is-virtual-kubelet/" data-toggle="tooltip" data-placement="top" title="什么是virtual kubelet">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+<div id="disqus-comment"></div>
+
+
+
+            </div>
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+				
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/istio" title="istio">
+                            istio
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/k8s" title="k8s">
+                            k8s
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/linux" title="linux">
+                            linux
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/oracle" title="oracle">
+                            oracle
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB" title="杂七杂八">
+                            杂七杂八
+                        </a>
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                   
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="蛋蛋的小黑屋" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fa fa-circle fa-stack-2x"></i>
+                               <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+                   
+                    
+                    <li>
+                        <a href="mailto:xrzp@qq.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+                    
+                    
+                    <li>
+                        <a href="suredandan">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+
+                    
+                    <li>
+                        <a target="_blank" href="suredandan">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+
+		    
+                    
+                    <li>
+                        <a target="_blank" href="/your%20wechat%20qr%20code%20image">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-wechat fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/googlebabaio">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+                    
+                    
+                    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://stackoverflow.com/users/suredandan">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-stack-overflow fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+            
+                    
+                    
+                    
+                </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; 蛋蛋的小黑屋 2019
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        async("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    async("https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+</body>
+</html>

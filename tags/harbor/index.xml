@@ -5,8 +5,7 @@
     <link>https://googlebaba.io/tags/harbor/</link>
     <description>Recent content in harbor on 蛋蛋的小黑屋</description>
     <generator>Hugo -- gohugo.io</generator>
-    <managingEditor>xrzp@qq.com (suredandan)</managingEditor>
-    <webMaster>xrzp@qq.com (suredandan)</webMaster>
+    <language>en-us</language>
     <lastBuildDate>Mon, 10 Jun 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://googlebaba.io/tags/harbor/index.xml" rel="self" type="application/rss+xml" />
@@ -16,7 +15,7 @@
       <title>harbor中物理删除不要的镜像</title>
       <link>https://googlebaba.io/post/2019/06/harbor-hard-delete-imgs/</link>
       <pubDate>Mon, 10 Jun 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/06/harbor-hard-delete-imgs/</guid>
       <description>&lt;p&gt;记录下在harbor中物理删除不要的镜像&lt;/p&gt;</description>
     </item>

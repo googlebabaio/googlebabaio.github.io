@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="蛋蛋的小黑屋">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://googlebaba.io//img/nezha.jpg">
+    <meta property="twitter:image" content="https://googlebaba.io//img/nezha.jpg" />
+    
+
+    
+    <meta name="title" content="11gRAC删除节点步骤" />
+    <meta property="og:title" content="11gRAC删除节点步骤" />
+    <meta property="twitter:title" content="11gRAC删除节点步骤" />
+    
+
+    
+    <meta name="description" content="这里是 蛋蛋 的博客，与你一起发现更大的世界。">
+    <meta property="og:description" content="这里是 蛋蛋 的博客，与你一起发现更大的世界。" />
+    <meta property="twitter:description" content="这里是 蛋蛋 的博客，与你一起发现更大的世界。" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="蛋蛋, googlebaba.io , 博客, 个人网站, 数据库, 架构, 云原生, PaaS, Istio, Kubernetes, 微服务, Microservice">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>11gRAC删除节点步骤-蛋蛋的小黑屋</title>
+
+    <link rel="canonical" href="/post/2019/09/8-11g-rac-delete-node/">
+
+    <link rel="stylesheet" href="/css/iDisqus.min.css"/>
+	
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    
+    <link rel="stylesheet" href="/css/syntax.css">
+    
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+    
+    
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    
+    
+
+    
+    
+    <script src="/js/jquery.min.js"></script>
+    
+    
+    <script src="/js/bootstrap.min.js"></script>
+    
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/docco.min.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    
+    
+
+</head>
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">蛋蛋的小黑屋</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                    
+		    
+                        <li><a href="/">mybooks</a></li>
+                    
+                        <li><a href="/page/about/">ABOUT</a></li>
+                    
+
+                    
+		    <li>
+                        <a href="/search">SEARCH <img src="/img/search.png" height="15" style="cursor: pointer;" alt="Search"></a>
+		    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/nezha.jpg')
+    }
+</style>
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/k8s" title="k8s">
+                            k8s
+                        </a>
+                        
+                    </div>
+                    <h1>11gRAC删除节点步骤</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by 
+                        
+                                蛋蛋的小黑屋
+                         
+                        on 
+                        Wednesday, June 19, 2019
+                        
+                        
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <header>
+                    <h2>TOC</h2>
+                </header>
+				
+                
+                
+                <p>给出11gRAC删除节点步骤，以供参考</p>
+
+<blockquote>
+<p>参考
+<a href="http://docs.oracle.com/cd/E11882_01/rac.112/e41959/adddelclusterware.htm#CWADD90989">http://docs.oracle.com/cd/E11882_01/rac.112/e41959/adddelclusterware.htm#CWADD90989</a></p>
+</blockquote>
+
+<p>1、使用root用户检查节点是否被占用（pinned），ORACLE_HOME=/u01/app/11.2.0/grid</p>
+
+<pre><code>[root@host01 ~]# olsnodes -s -t
+host01	Active	Unpinned
+host02	Active	Unpinned
+host03	Active	Unpinned
+</code></pre>
+
+<p>2、在需要删除的节点host03目录ORACLE_HOME/crs/install下使用root执行 ORACLE_HOME=/u01/app/11.2.0/grid</p>
+
+<pre><code>[root@host03 ~]# $ORACLE_HOME/crs/install/rootcrs.pl -deconfig -force
+Using configuration parameter file: /u01/app/11.2.0/grid/crs/install/crsconfig_params
+PRCR-1119 : Failed to look up CRS resources of ora.cluster_vip_net1.type type
+PRCR-1068 : Failed to query resources
+Cannot communicate with crsd
+PRCR-1070 : Failed to check if resource ora.gsd is registered
+Cannot communicate with crsd
+PRCR-1070 : Failed to check if resource ora.ons is registered
+Cannot communicate with crsd
+
+CRS-4544: Unable to connect to OHAS
+CRS-4000: Command Stop failed, or completed with errors.
+Removing Trace File Analyzer
+Successfully deconfigured Oracle clusterware stack on this node
+</code></pre>
+
+<blockquote>
+<p>删除时一定要看清楚是哪一台!</p>
+</blockquote>
+
+<p>3、在任意一台未删除的节点使用root执行如下命令</p>
+
+<pre><code>[root@host02 ~]# crsctl delete node -n host03
+CRS-4661: Node host03 successfully deleted.
+</code></pre>
+
+<p>4.检查集群是否已经删除，这里可以看到host03已经全部删除了</p>
+
+<pre><code>[root@host02 ~]# crs_stat -t
+Name           Type           Target    State     Host
+------------------------------------------------------------
+ora.DATA.dg    ora....up.type ONLINE    ONLINE    host02
+ora.FRA.dg     ora....up.type ONLINE    ONLINE    host02
+ora....ER.lsnr ora....er.type ONLINE    ONLINE    host02
+ora....N1.lsnr ora....er.type ONLINE    ONLINE    host02
+ora....N2.lsnr ora....er.type ONLINE    ONLINE    host01
+ora....N3.lsnr ora....er.type ONLINE    ONLINE    host02
+ora.asm        ora.asm.type   ONLINE    ONLINE    host02
+ora.cvu        ora.cvu.type   ONLINE    ONLINE    host02
+ora.gsd        ora.gsd.type   OFFLINE   OFFLINE
+ora....SM2.asm application    ONLINE    ONLINE    host02
+ora....02.lsnr application    ONLINE    ONLINE    host02
+ora.host02.gsd application    OFFLINE   OFFLINE
+ora.host02.ons application    ONLINE    ONLINE    host02
+ora.host02.vip ora....t1.type ONLINE    ONLINE    host02
+ora....SM3.asm application    ONLINE    ONLINE    host01
+ora....01.lsnr application    ONLINE    ONLINE    host01
+ora.host01.gsd application    OFFLINE   OFFLINE
+ora.host01.ons application    ONLINE    ONLINE    host01
+ora.host01.vip ora....t1.type ONLINE    ONLINE    host01
+ora....network ora....rk.type ONLINE    ONLINE    host02
+ora.oc4j       ora.oc4j.type  ONLINE    ONLINE    host01
+ora.ons        ora.ons.type   ONLINE    ONLINE    host02
+ora.racdb.db   ora....se.type OFFLINE   OFFLINE
+ora.scan1.vip  ora....ip.type ONLINE    ONLINE    host02
+ora.scan2.vip  ora....ip.type ONLINE    ONLINE    host01
+ora.scan3.vip  ora....ip.type ONLINE    ONLINE    host02
+</code></pre>
+
+<p>5、在任意台未被删除节点host01和host02上均使用grid和oracle分别执行</p>
+
+<pre><code>[grid@host02 ~]$ $ORACLE_HOME/oui/bin/runInstaller -updateNodeList ORACLE_HOME=$ORACLE_HOME &quot;CLUSTER_NODES={host03}&quot; CRS=TRUE -silent -local
+Starting Oracle Universal Installer...
+
+Checking swap space: must be greater than 500 MB.   Actual 3957 MB    Passed
+The inventory pointer is located at /etc/oraInst.loc
+The inventory is located at /u01/app/oraInventory
+'UpdateNodeList' failed.
+[grid@host02 ~]$ $ORACLE_HOME/oui/bin/runInstaller -updateNodeList ORACLE_HOME=$ORACLE_HOME &quot;CLUSTER_NODES={host02,host01}&quot; CRS=TRUE -silent -local
+Starting Oracle Universal Installer...
+
+Checking swap space: must be greater than 500 MB.   Actual 3957 MB    Passed
+The inventory pointer is located at /etc/oraInst.loc
+The inventory is located at /u01/app/oraInventory
+'UpdateNodeList' was successful.
+[oracle@host02 ~]$ $ORACLE_HOME/oui/bin/runInstaller -updateNodeList ORACLE_HOME=$ORACLE_HOME &quot;CLUSTER_NODES={host02,host01}&quot;
+Starting Oracle Universal Installer...
+
+Checking swap space: must be greater than 500 MB.   Actual 3957 MB    Passed
+The inventory pointer is located at /etc/oraInst.loc
+The inventory is located at /u01/app/oraInventory
+'UpdateNodeList' was successful.
+</code></pre>
+
+<p>6、检查是否完全从集群移除，分别用grid和oracle检查</p>
+
+<pre><code>[grid@host02 ~]$ cluvfy stage -post nodedel -n host03 -verbose
+
+Performing post-checks for node removal
+
+Checking CRS integrity...
+
+Clusterware version consistency passed
+The Oracle Clusterware is healthy on node &quot;host02&quot;
+
+CRS integrity check passed
+Result:
+Node removal check passed
+
+Post-check for node removal was successful.
+[oracle@host02 ~]$ cluvfy stage -post nodedel -n host03 -verbose
+
+Performing post-checks for node removal
+
+Checking CRS integrity...
+
+Clusterware version consistency passed
+The Oracle Clusterware is healthy on node &quot;host01&quot;
+The Oracle Clusterware is healthy on node &quot;host02&quot;
+
+CRS integrity check passed
+Result:
+Node removal check passed
+
+Post-check for node removal was successful.
+</code></pre>
+
+<p>7.剩余主机上应用的删除工作$ORACLE_HOME/deinstall/deinstall –local 使用各自的oracle和grid用户进行删除即可。</p>
+
+                
+
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/post/2019/09/5-11g-rac-add-node/" data-toggle="tooltip" data-placement="top" title="11gRAC添加节点步骤">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/post/2019/06/job-for-download/" data-toggle="tooltip" data-placement="top" title="利用job来完成download的示例">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+<div id="disqus-comment"></div>
+
+
+
+            </div>
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+				
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/istio" title="istio">
+                            istio
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/k8s" title="k8s">
+                            k8s
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/linux" title="linux">
+                            linux
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/oracle" title="oracle">
+                            oracle
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB" title="杂七杂八">
+                            杂七杂八
+                        </a>
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                   
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="蛋蛋的小黑屋" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fa fa-circle fa-stack-2x"></i>
+                               <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+                   
+                    
+                    <li>
+                        <a href="mailto:xrzp@qq.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+                    
+                    
+                    <li>
+                        <a href="suredandan">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+
+                    
+                    <li>
+                        <a target="_blank" href="suredandan">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+
+		    
+                    
+                    <li>
+                        <a target="_blank" href="/your%20wechat%20qr%20code%20image">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-wechat fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/googlebabaio">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+                    
+                    
+                    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://stackoverflow.com/users/suredandan">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-stack-overflow fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+            
+                    
+                    
+                    
+                </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; 蛋蛋的小黑屋 2019
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        async("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    async("https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+</body>
+</html>

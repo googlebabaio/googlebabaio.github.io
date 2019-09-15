@@ -5,28 +5,27 @@
     <link>https://googlebaba.io/tags/</link>
     <description>Recent content in Tags on 蛋蛋的小黑屋</description>
     <generator>Hugo -- gohugo.io</generator>
-    <managingEditor>xrzp@qq.com (suredandan)</managingEditor>
-    <webMaster>xrzp@qq.com (suredandan)</webMaster>
-    <lastBuildDate>Tue, 30 Jul 2019 00:00:00 +0000</lastBuildDate>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 10 Sep 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://googlebaba.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Oracle</title>
-      <link>https://googlebaba.io/tags/oracle/</link>
-      <pubDate>Tue, 30 Jul 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
-      <guid>https://googlebaba.io/tags/oracle/</guid>
+      <title>k8s</title>
+      <link>https://googlebaba.io/tags/k8s/</link>
+      <pubDate>Tue, 10 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/tags/k8s/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>k8s</title>
-      <link>https://googlebaba.io/tags/k8s/</link>
-      <pubDate>Sun, 28 Jul 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
-      <guid>https://googlebaba.io/tags/k8s/</guid>
+      <title>Oracle</title>
+      <link>https://googlebaba.io/tags/oracle/</link>
+      <pubDate>Tue, 30 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/tags/oracle/</guid>
       <description></description>
     </item>
     
@@ -34,7 +33,7 @@
       <title>杂七杂八</title>
       <link>https://googlebaba.io/tags/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB/</link>
       <pubDate>Sat, 27 Jul 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/tags/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB/</guid>
       <description></description>
     </item>
@@ -43,7 +42,7 @@
       <title>helm</title>
       <link>https://googlebaba.io/tags/helm/</link>
       <pubDate>Tue, 09 Jul 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/tags/helm/</guid>
       <description></description>
     </item>
@@ -52,7 +51,7 @@
       <title>istio</title>
       <link>https://googlebaba.io/tags/istio/</link>
       <pubDate>Fri, 05 Jul 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/tags/istio/</guid>
       <description></description>
     </item>
@@ -61,7 +60,7 @@
       <title>linux</title>
       <link>https://googlebaba.io/tags/linux/</link>
       <pubDate>Mon, 01 Jul 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/tags/linux/</guid>
       <description></description>
     </item>
@@ -70,7 +69,7 @@
       <title>golang</title>
       <link>https://googlebaba.io/tags/golang/</link>
       <pubDate>Wed, 19 Jun 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/tags/golang/</guid>
       <description></description>
     </item>
@@ -79,7 +78,7 @@
       <title>coredns</title>
       <link>https://googlebaba.io/tags/coredns/</link>
       <pubDate>Mon, 10 Jun 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/tags/coredns/</guid>
       <description></description>
     </item>
@@ -88,7 +87,7 @@
       <title>etcd</title>
       <link>https://googlebaba.io/tags/etcd/</link>
       <pubDate>Mon, 10 Jun 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/tags/etcd/</guid>
       <description></description>
     </item>
@@ -97,7 +96,7 @@
       <title>harbor</title>
       <link>https://googlebaba.io/tags/harbor/</link>
       <pubDate>Mon, 10 Jun 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/tags/harbor/</guid>
       <description></description>
     </item>

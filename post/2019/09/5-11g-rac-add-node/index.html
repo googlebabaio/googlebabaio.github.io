@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="蛋蛋的小黑屋">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://googlebaba.io//img/nezha.jpg">
+    <meta property="twitter:image" content="https://googlebaba.io//img/nezha.jpg" />
+    
+
+    
+    <meta name="title" content="11gRAC添加节点步骤" />
+    <meta property="og:title" content="11gRAC添加节点步骤" />
+    <meta property="twitter:title" content="11gRAC添加节点步骤" />
+    
+
+    
+    <meta name="description" content="这里是 蛋蛋 的博客，与你一起发现更大的世界。">
+    <meta property="og:description" content="这里是 蛋蛋 的博客，与你一起发现更大的世界。" />
+    <meta property="twitter:description" content="这里是 蛋蛋 的博客，与你一起发现更大的世界。" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="蛋蛋, googlebaba.io , 博客, 个人网站, 数据库, 架构, 云原生, PaaS, Istio, Kubernetes, 微服务, Microservice">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>11gRAC添加节点步骤-蛋蛋的小黑屋</title>
+
+    <link rel="canonical" href="/post/2019/09/5-11g-rac-add-node/">
+
+    <link rel="stylesheet" href="/css/iDisqus.min.css"/>
+	
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    
+    <link rel="stylesheet" href="/css/syntax.css">
+    
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+    
+    
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    
+    
+
+    
+    
+    <script src="/js/jquery.min.js"></script>
+    
+    
+    <script src="/js/bootstrap.min.js"></script>
+    
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/docco.min.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    
+    
+
+</head>
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">蛋蛋的小黑屋</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                    
+		    
+                        <li><a href="/">mybooks</a></li>
+                    
+                        <li><a href="/page/about/">ABOUT</a></li>
+                    
+
+                    
+		    <li>
+                        <a href="/search">SEARCH <img src="/img/search.png" height="15" style="cursor: pointer;" alt="Search"></a>
+		    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/nezha.jpg')
+    }
+</style>
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/k8s" title="k8s">
+                            k8s
+                        </a>
+                        
+                    </div>
+                    <h1>11gRAC添加节点步骤</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by 
+                        
+                                蛋蛋的小黑屋
+                         
+                        on 
+                        Wednesday, June 19, 2019
+                        
+                        
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <header>
+                    <h2>TOC</h2>
+                </header>
+				
+                <nav id="TableOfContents">
+<ul>
+<li><a href="#概述">概述</a>
+<ul>
+<li><a href="#操作系统与软件版本">操作系统与软件版本</a></li>
+<li><a href="#添加节点步骤如下">添加节点步骤如下：</a></li>
+<li><a href="#1-主机环境准备">1. 主机环境准备</a>
+<ul>
+<li><a href="#1-1-配置hosts">1.1 配置hosts</a></li>
+<li><a href="#1-2-关闭防火墙等">1.2 关闭防火墙等</a></li>
+<li><a href="#1-3-配置ssh等效性">1.3 配置ssh等效性</a></li>
+<li><a href="#1-4-修改内核参数">1.4 修改内核参数</a></li>
+<li><a href="#1-5-创建相应的用户和组">1.5 创建相应的用户和组</a></li>
+<li><a href="#1-6-安装之前的检查">1.6 安装之前的检查</a></li>
+</ul></li>
+<li><a href="#2-添加集群软件">2. 添加集群软件</a>
+<ul>
+<li><a href="#2-1-在host01执行-addnode-操作">2.1 在host01执行<code>addnode</code>操作</a></li>
+<li><a href="#2-2-在host03上执行-orainstroot-sh-脚本">2.2 在host03上执行<code>orainstRoot.sh</code>脚本</a></li>
+<li><a href="#2-3-检查集群的状态">2.3 检查集群的状态</a></li>
+</ul></li>
+<li><a href="#3-安装数据库软件">3.安装数据库软件</a>
+<ul>
+<li><a href="#3-1-给oracle用户配置ssh信任">3.1 给oracle用户配置ssh信任</a></li>
+<li><a href="#3-2-在-host01-下执行-addnode-脚本">3.2 在 host01 下执行<code>addNode</code>脚本</a></li>
+<li><a href="#3-3-在host03上执行-root-sh-脚本">3.3 在host03上执行<code>root.sh</code>脚本</a></li>
+</ul></li>
+<li><a href="#4-安装数据库实例">4. 安装数据库实例</a>
+<ul>
+<li><a href="#4-1-在节点1上执行dbca">4.1 在节点1上执行dbca</a></li>
+<li><a href="#4-2-检查">4.2 检查</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+                
+                <p>给出11gRAC添加节点步骤，以供参考</p>
+
+<blockquote>
+<p>参考
+<a href="https://docs.oracle.com/cd/E11882_01/rac.112/e41959/adddelclusterware.htm#CWADD90992">https://docs.oracle.com/cd/E11882_01/rac.112/e41959/adddelclusterware.htm#CWADD90992</a></p>
+</blockquote>
+
+<h1 id="概述">概述</h1>
+
+<h2 id="操作系统与软件版本">操作系统与软件版本</h2>
+
+<ul>
+<li>数据库版本11.2.0.4</li>
+<li>操作系统版本：oracle linux Enterprise-R6-U8-Server-x86_64</li>
+</ul>
+
+<h2 id="添加节点步骤如下">添加节点步骤如下：</h2>
+
+<ol>
+<li>主机环境准备</li>
+<li>添加集群软件</li>
+<li>添加数据库软件</li>
+<li>添加数据库实例</li>
+<li>检查</li>
+</ol>
+
+<h2 id="1-主机环境准备">1. 主机环境准备</h2>
+
+<h3 id="1-1-配置hosts">1.1 配置hosts</h3>
+
+<p>以下是每一台主机的/etc/hosts，保证新增的主机/etc/hosts文件和其他两台一致，开始的时候ORACLE_HOME=/u01/app/11.2.0/grid</p>
+
+<pre><code># cat /etc/hosts
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+
+10.0.1.101	host01.qmx.com	host01
+10.0.1.102	host02.qmx.com	host02
+10.0.1.103	host03.qmx.com	host03
+
+192.168.56.101	host01-priv
+192.168.56.102	host02-priv
+192.168.56.103	host03-priv
+
+10.0.1.105	host01-vip
+10.0.1.106	host02-vip
+10.0.1.107	host03-vip
+
+10.0.1.201	cluster01-scan.qmx.com	cluster01-scan
+#10.0.1.202 	cluster01-scan.qmx.com	cluster01-scan
+#10.0.1.203 	cluster01-scan.qmx.com	cluster01-scan
+</code></pre>
+
+<p>没有用到DNS服务器，均在/etc/hosts 文件中写死了配置，所以cluster01-scan只有一组，建议实际配置为三组</p>
+
+<h3 id="1-2-关闭防火墙等">1.2 关闭防火墙等</h3>
+
+<p>关闭防火墙</p>
+
+<pre><code># service iptables stop
+# chkconfig iptables off
+</code></pre>
+
+<p>关闭selinux</p>
+
+<pre><code>Selinux=disable
+</code></pre>
+
+<p>关闭NetWorkerManager</p>
+
+<pre><code>service NetworkerManager stop
+chkconfig NetworkerManager off
+</code></pre>
+
+<blockquote>
+<p>如果不关闭可能在安装的时候报PRVF-7617的错误</p>
+</blockquote>
+
+<h3 id="1-3-配置ssh等效性">1.3 配置ssh等效性</h3>
+
+<p>在host03  作如下操作，host01和host02由于已经有ssh的等效性，所以记得最后把authorized_keys文件拷贝到host01和host02，记得用grid用户</p>
+
+<pre><code>[grid@host03 ~]$mkdir /home/oracle/.ssh
+[grid@host03 ~]$cd /home/oracle/.ssh
+[grid@host03 ~]$ssh-keygen -t rsa
+[grid@host03 ~]$scp grid@host01:/home/oracle/.ssh/authorized_keys /home/oracle/.ssh/
+[grid@host03 ~]$cat id_rsa.pub &gt;&gt; authorized_keys
+[grid@host03 ~]$scp authorized_keys grid@host01:/home/oracle/.ssh/authorized_keys
+[grid@host03 ~]$scp authorized_keys grid@host02:/home/oracle/.ssh/authorized_keys
+[grid@host03 ~]$ ssh host01 date
+</code></pre>
+
+<blockquote>
+<p>以上步骤在oracle用户也需要做一遍，后面要创建实例也是需要的。SSH校验时偶尔会出现以下错误</p>
+</blockquote>
+
+<h3 id="1-4-修改内核参数">1.4 修改内核参数</h3>
+
+<h3 id="1-5-创建相应的用户和组">1.5 创建相应的用户和组</h3>
+
+<pre><code>groupadd -g 501 oinstall
+groupadd -g 502 dba
+groupadd -g 503 oper
+groupadd -g 504 asmadmin
+groupadd -g 505 asmoper
+groupadd -g 506 asmdba
+
+useradd -g oinstall -G dba,asmdba,oper,asmadmin,asmoper oracle
+passwd oracle
+
+useradd -g oinstall -G asmadmin,asmdba,asmoper,oper,dba grid
+passwd oracle
+</code></pre>
+
+<h3 id="1-6-安装之前的检查">1.6 安装之前的检查</h3>
+
+<p>在host01执行并生成校验准备命令</p>
+
+<pre><code>[grid@host01 bin]$ cluvfy stage -pre nodeadd -n host03 -fixup
+Performing pre-checks for node addition
+Checking node reachability...
+Node reachability check passed from node &quot;host01&quot;
+Checking user equivalence...
+User equivalence check passed for user &quot;grid&quot;
+Checking CRS integrity...
+Clusterware version consistency passed
+CRS integrity check passed
+Checking shared resources...
+Checking CRS home location...
+&quot;/u01/app/11.2.0/grid&quot; is shared
+Shared resources check for node addition passed
+Checking node connectivity...
+Checking hosts config file...
+Verification of the hosts config file successful
+Check: Node connectivity for interface &quot;eth0&quot;
+Node connectivity passed for interface &quot;eth0&quot;
+TCP connectivity check passed for subnet &quot;10.0.1.0&quot;
+Check: Node connectivity for interface &quot;eth1&quot;
+Node connectivity passed for interface &quot;eth1&quot;
+TCP connectivity check passed for subnet &quot;192.168.56.0&quot;
+Checking subnet mask consistency...
+Subnet mask consistency check passed for subnet &quot;10.0.1.0&quot;.
+Subnet mask consistency check passed for subnet &quot;192.168.56.0&quot;.
+Subnet mask consistency check passed.
+Node connectivity check passed
+Checking multicast communication...
+Checking subnet &quot;10.0.1.0&quot; for multicast communication with multicast group &quot;230.0.1.0&quot;...
+Check of subnet &quot;10.0.1.0&quot; for multicast communication with multicast group &quot;230.0.1.0&quot; passed.
+Checking subnet &quot;192.168.56.0&quot; for multicast communication with multicast group &quot;230.0.1.0&quot;...
+Check of subnet &quot;192.168.56.0&quot; for multicast communication with multicast group &quot;230.0.1.0&quot; passed.
+Check of multicast communication passed.
+Total memory check passed
+Available memory check passed
+Swap space check passed
+Free disk space check passed for &quot;host03:/u01/app/11.2.0/grid,host03:/tmp&quot;
+Free disk space check passed for &quot;host01:/u01/app/11.2.0/grid,host01:/tmp&quot;
+Check for multiple users with UID value 501 passed
+User existence check passed for &quot;grid&quot;
+Run level check passed
+Hard limits check passed for &quot;maximum open file descriptors&quot;
+Soft limits check passed for &quot;maximum open file descriptors&quot;
+Hard limits check passed for &quot;maximum user processes&quot;
+Soft limits check passed for &quot;maximum user processes&quot;
+System architecture check passed
+WARNING:
+PRVF-7524 : Kernel version is not consistent across all the nodes.
+Kernel version = &quot;4.1.12-94.2.1.el6uek.x86_64&quot; found on nodes: host01.
+Kernel version = &quot;4.1.12-94.3.4.el6uek.x86_64&quot; found on nodes: host03.
+Kernel version check passed
+Kernel parameter check passed for &quot;semmsl&quot;
+Kernel parameter check passed for &quot;semmns&quot;
+Kernel parameter check passed for &quot;semopm&quot;
+Kernel parameter check passed for &quot;semmni&quot;
+Kernel parameter check passed for &quot;shmmax&quot;
+Kernel parameter check passed for &quot;shmmni&quot;
+Kernel parameter check passed for &quot;shmall&quot;
+Kernel parameter check passed for &quot;file-max&quot;
+Kernel parameter check passed for &quot;ip_local_port_range&quot;
+Kernel parameter check passed for &quot;rmem_default&quot;
+Kernel parameter check passed for &quot;rmem_max&quot;
+Kernel parameter check passed for &quot;wmem_default&quot;
+Kernel parameter check passed for &quot;wmem_max&quot;
+Kernel parameter check passed for &quot;aio-max-nr&quot;
+Package existence check passed for &quot;binutils&quot;
+Package existence check passed for &quot;compat-libcap1&quot;
+Package existence check passed for &quot;compat-libstdc++-33(x86_64)&quot;
+Package existence check passed for &quot;libgcc(x86_64)&quot;
+Package existence check passed for &quot;libstdc++(x86_64)&quot;
+Package existence check passed for &quot;libstdc++-devel(x86_64)&quot;
+Package existence check passed for &quot;sysstat&quot;
+Package existence check passed for &quot;gcc&quot;
+Package existence check passed for &quot;gcc-c++&quot;
+Package existence check passed for &quot;ksh&quot;
+Package existence check passed for &quot;make&quot;
+Package existence check passed for &quot;glibc(x86_64)&quot;
+Package existence check passed for &quot;glibc-devel(x86_64)&quot;
+Package existence check passed for &quot;libaio(x86_64)&quot;
+Package existence check passed for &quot;libaio-devel(x86_64)&quot;
+Check for multiple users with UID value 0 passed
+Current group ID check passed
+Starting check for consistency of primary group of root user
+Check for consistency of root user's primary group passed
+Checking OCR integrity...
+OCR integrity check passed
+Checking Oracle Cluster Voting Disk configuration...
+Oracle Cluster Voting Disk configuration check passed
+Time zone consistency check passed
+Starting Clock synchronization checks using Network Time Protocol(NTP)...
+NTP Configuration file check started...
+No NTP Daemons or Services were found to be running
+Clock synchronization check using Network Time Protocol(NTP) passed
+User &quot;grid&quot; is not part of &quot;root&quot; group. Check passed
+Checking consistency of file &quot;/etc/resolv.conf&quot; across nodes
+File &quot;/etc/resolv.conf&quot; does not have both domain and search entries defined
+domain entry in file &quot;/etc/resolv.conf&quot; is consistent across nodes
+search entry in file &quot;/etc/resolv.conf&quot; is consistent across nodes
+All nodes have one search entry defined in file &quot;/etc/resolv.conf&quot;
+PRVF-5636 : The DNS response time for an unreachable node exceeded &quot;15000&quot; ms on following nodes: host01,host03
+File &quot;/etc/resolv.conf&quot; is not consistent across nodes
+Checking integrity of name service switch configuration file &quot;/etc/nsswitch.conf&quot; ...
+Check for integrity of name service switch configuration file &quot;/etc/nsswitch.conf&quot; passed
+Fixup information has been generated for following node(s):
+host03
+Please run the following script on each node as &quot;root&quot; user to execute the fixups:
+'/tmp/CVU_11.2.0.4.0_grid/runfixup.sh'
+Pre-check for node addition was unsuccessful on all the nodes.
+</code></pre>
+
+<h2 id="2-添加集群软件">2. 添加集群软件</h2>
+
+<h3 id="2-1-在host01执行-addnode-操作">2.1 在host01执行<code>addnode</code>操作</h3>
+
+<p>以上检查部分报错可以忽略，如<code>/etc/resolv.conf</code>报错，我没有用DNS所以忽略。DNS服务器超时也可以忽略。此时要先导入<code>ignore_preaddnode_checks</code>环境变量，否则后面的命令无法安装</p>
+
+<pre><code>[grid@host01 ~]$ export IGNORE_PREADDNODE_CHECKS=Y
+[grid@host01 ~]$
+[grid@host01 ~]$ cd /u01/app/11.2.0/grid/oui/bin/
+[grid@host01 bin]$ ./addNode.sh &quot;CLUSTER_NEW_NODES={host03}&quot; &quot;CLUSTER_NEW_VIRTUAL_HOSTNAMES={host03-vip}&quot;
+Starting Oracle Universal Installer...
+Checking swap space: must be greater than 500 MB.   Actual 3932 MB    Passed
+Oracle Universal Installer, Version 11.2.0.4.0 Production
+Copyright (C) 1999, 2013, Oracle. All rights reserved.
+Performing tests to see whether nodes host02,host03 are available
+............................................................... 100% Done..
+-----------------------------------------------------------------------------
+Cluster Node Addition Summary
+Global Settings
+   Source: /u01/app/11.2.0/grid
+   New Nodes
+Space Requirements
+   New Nodes
+      host03
+         /: Required 5.07GB : Available 27.84GB
+Installed Products
+   Product Names
+      Oracle Grid Infrastructure 11g 11.2.0.4.0
+      Java Development Kit 1.5.0.51.10
+      Installer SDK Component 11.2.0.4.0
+      Oracle One-Off Patch Installer 11.2.0.3.4
+      Oracle Universal Installer 11.2.0.4.0
+      Oracle RAC Required Support Files-HAS 11.2.0.4.0
+      Oracle USM Deconfiguration 11.2.0.4.0
+      Oracle Configuration Manager Deconfiguration 10.3.1.0.0
+      Enterprise Manager Common Core Files 10.2.0.4.5
+      Oracle DBCA Deconfiguration 11.2.0.4.0
+      Oracle RAC Deconfiguration 11.2.0.4.0
+      Oracle Quality of Service Management (Server) 11.2.0.4.0
+      Installation Plugin Files 11.2.0.4.0
+      Universal Storage Manager Files 11.2.0.4.0
+      Oracle Text Required Support Files 11.2.0.4.0
+      Automatic Storage Management Assistant 11.2.0.4.0
+      Oracle Database 11g Multimedia Files 11.2.0.4.0
+      Oracle Multimedia Java Advanced Imaging 11.2.0.4.0
+      Oracle Globalization Support 11.2.0.4.0
+      Oracle Multimedia Locator RDBMS Files 11.2.0.4.0
+      Oracle Core Required Support Files 11.2.0.4.0
+      Bali Share 1.1.18.0.0
+      Oracle Database Deconfiguration 11.2.0.4.0
+      Oracle Quality of Service Management (Client) 11.2.0.4.0
+      Expat libraries 2.0.1.0.1
+      Oracle Containers for Java 11.2.0.4.0
+      Perl Modules 5.10.0.0.1
+      Secure Socket Layer 11.2.0.4.0
+      Oracle JDBC/OCI Instant Client 11.2.0.4.0
+      Oracle Multimedia Client Option 11.2.0.4.0
+      LDAP Required Support Files 11.2.0.4.0
+      Character Set Migration Utility 11.2.0.4.0
+      Perl Interpreter 5.10.0.0.2
+      PL/SQL Embedded Gateway 11.2.0.4.0
+      OLAP SQL Scripts 11.2.0.4.0
+      Database SQL Scripts 11.2.0.4.0
+      Oracle Extended Windowing Toolkit 3.4.47.0.0
+      SSL Required Support Files for InstantClient 11.2.0.4.0
+      SQL*Plus Files for Instant Client 11.2.0.4.0
+      Oracle Net Required Support Files 11.2.0.4.0
+      Oracle Database User Interface 2.2.13.0.0
+      RDBMS Required Support Files for Instant Client 11.2.0.4.0
+      RDBMS Required Support Files Runtime 11.2.0.4.0
+      XML Parser for Java 11.2.0.4.0
+      Oracle Security Developer Tools 11.2.0.4.0
+      Oracle Wallet Manager 11.2.0.4.0
+      Enterprise Manager plugin Common Files 11.2.0.4.0
+      Platform Required Support Files 11.2.0.4.0
+      Oracle JFC Extended Windowing Toolkit 4.2.36.0.0
+      RDBMS Required Support Files 11.2.0.4.0
+      Oracle Ice Browser 5.2.3.6.0
+      Oracle Help For Java 4.2.9.0.0
+      Enterprise Manager Common Files 10.2.0.4.5
+      Deinstallation Tool 11.2.0.4.0
+      Oracle Java Client 11.2.0.4.0
+      Cluster Verification Utility Files 11.2.0.4.0
+      Oracle Notification Service (eONS) 11.2.0.4.0
+      Oracle LDAP administration 11.2.0.4.0
+      Cluster Verification Utility Common Files 11.2.0.4.0
+      Oracle Clusterware RDBMS Files 11.2.0.4.0
+      Oracle Locale Builder 11.2.0.4.0
+      Oracle Globalization Support 11.2.0.4.0
+      Buildtools Common Files 11.2.0.4.0
+      HAS Common Files 11.2.0.4.0
+      SQL*Plus Required Support Files 11.2.0.4.0
+      XDK Required Support Files 11.2.0.4.0
+      Agent Required Support Files 10.2.0.4.5
+      Parser Generator Required Support Files 11.2.0.4.0
+      Precompiler Required Support Files 11.2.0.4.0
+      Installation Common Files 11.2.0.4.0
+      Required Support Files 11.2.0.4.0
+      Oracle JDBC/THIN Interfaces 11.2.0.4.0
+      Oracle Multimedia Locator 11.2.0.4.0
+      Oracle Multimedia 11.2.0.4.0
+      Assistant Common Files 11.2.0.4.0
+      Oracle Net 11.2.0.4.0
+      PL/SQL 11.2.0.4.0
+      HAS Files for DB 11.2.0.4.0
+      Oracle Recovery Manager 11.2.0.4.0
+      Oracle Database Utilities 11.2.0.4.0
+      Oracle Notification Service 11.2.0.3.0
+      SQL*Plus 11.2.0.4.0
+      Oracle Netca Client 11.2.0.4.0
+      Oracle Advanced Security 11.2.0.4.0
+      Oracle JVM 11.2.0.4.0
+      Oracle Internet Directory Client 11.2.0.4.0
+      Oracle Net Listener 11.2.0.4.0
+      Cluster Ready Services Files 11.2.0.4.0
+      Oracle Database 11g 11.2.0.4.0
+-----------------------------------------------------------------------------
+Instantiating scripts for add node (Friday, July 21, 2018 12:05:44 AM CST)
+.                                                                 1% Done.
+Instantiation of add node scripts complete
+Copying to remote nodes (Friday, July 21, 2018 12:08:48 AM CST)
+...............................................................................................                                 96% Done.
+Home copied to new nodes
+Saving inventory on nodes (Friday, July 21, 2018 12:09:06 AM CST)
+.                                                               100% Done.
+Save inventory complete
+WARNING:A new inventory has been created on one or more nodes in this session. However, it has not yet been registered as the central inventory of this system.
+To register the new inventory please run the script at '/u01/app/oraInventory/orainstRoot.sh' with root privileges on nodes 'host03'.
+If you do not register the inventory, you may not be able to update or patch the products you installed.
+The following configuration scripts need to be executed as the &quot;root&quot; user in each new cluster node. Each script in the list below is followed by a list of nodes.
+/u01/app/oraInventory/orainstRoot.sh #On nodes host03
+/u01/app/11.2.0/grid/root.sh #On nodes host03
+To execute the configuration scripts:
+    1. Open a terminal window
+    2. Log in as &quot;root&quot;
+    3. Run the scripts in each cluster node
+
+The Cluster Node Addition of /u01/app/11.2.0/grid was successful.
+Please check '/tmp/silentInstall.log' for more details.
+</code></pre>
+
+<h3 id="2-2-在host03上执行-orainstroot-sh-脚本">2.2 在host03上执行<code>orainstRoot.sh</code>脚本</h3>
+
+<pre><code>[root@host03 ~]# /u01/app/oraInventory/orainstRoot.sh
+Creating the Oracle inventory pointer file (/etc/oraInst.loc)
+Changing permissions of /u01/app/oraInventory.
+Adding read,write permissions for group.
+Removing read,write,execute permissions for world.
+Changing groupname of /u01/app/oraInventory to oinstall.
+The execution of the script is complete.
+[root@host03 ~]# /u01/app/11.2.0/grid/root.sh
+Performing root user operation for Oracle 11g
+The following environment variables are set as:
+    ORACLE_OWNER= grid
+    ORACLE_HOME=  /u01/app/11.2.0/grid
+Enter the full pathname of the local bin directory: [/usr/local/bin]:
+   Copying dbhome to /usr/local/bin ...
+   Copying oraenv to /usr/local/bin ...
+   Copying coraenv to /usr/local/bin ...
+Creating /etc/oratab file...
+Entries will be added to the /etc/oratab file as needed by
+Database Configuration Assistant when a database is created
+Finished running generic part of root script.
+Now product-specific root actions will be performed.
+Using configuration parameter file: /u01/app/11.2.0/grid/crs/install/crsconfig_params
+Creating trace directory
+User ignored Prerequisites during installation
+Installing Trace File Analyzer
+OLR initialization - successful
+Adding Clusterware entries to upstart
+CRS-4402: The CSS daemon was started in exclusive mode but found an active CSS daemon on node host01, number 1, and is terminating
+An active cluster was found during exclusive startup, restarting to join the cluster
+clscfg: EXISTING configuration version 5 detected.
+clscfg: version 5 is 11g Release 2.
+Successfully accumulated necessary OCR keys.
+Creating OCR keys for user 'root', privgrp 'root'..
+Operation successful.
+Preparing packages for installation...
+cvuqdisk-1.0.9-1
+Configure Oracle Grid Infrastructure for a Cluster ... succeeded
+</code></pre>
+
+<h3 id="2-3-检查集群的状态">2.3 检查集群的状态</h3>
+
+<p>配置成功，检查节点是否正常添加到GI，在任意一台主机上执行，查看后台进程是否正常</p>
+
+<pre><code>$ crs_stat -t
+</code></pre>
+
+<p>如上则正常添加，在这里有时候会因为网络原因导致配置host03所有步骤均对 但是host03最后只是把软件安装成功，进程却无法注册的现象，注意多检查预先检查时的报错，确保网络配置成功。</p>
+
+<h2 id="3-安装数据库软件">3.安装数据库软件</h2>
+
+<h3 id="3-1-给oracle用户配置ssh信任">3.1 给oracle用户配置ssh信任</h3>
+
+<p>首先在host03的oracle用户配置三台机器的ssh互信，配制方法见上面的grid用户配置方法</p>
+
+<h3 id="3-2-在-host01-下执行-addnode-脚本">3.2 在 host01 下执行<code>addNode</code>脚本</h3>
+
+<pre><code>[oracle@host01 .ssh]$ $ORACLE_HOME/oui/bin/addNode.sh &quot;CLUSTER_NEW_NODES={host03}&quot;
+Performing pre-checks for node addition 
+Checking node reachability...
+Node reachability check passed from node &quot;host01&quot;
+Checking user equivalence...
+User equivalence check passed for user &quot;oracle&quot;
+WARNING: 
+Node &quot;host03&quot; already appears to be part of cluster
+Pre-check for node addition was successful. 
+Starting Oracle Universal Installer...
+Checking swap space: must be greater than 500 MB.   Actual 3342 MB    Passed
+Oracle Universal Installer, Version 11.2.0.4.0 Production
+Copyright (C) 1999, 2013, Oracle. All rights reserved.
+Performing tests to see whether nodes host02,host03 are available
+............................................................... 100% Done..
+-----------------------------------------------------------------------------
+Cluster Node Addition Summary
+Global Settings
+   Source: /u01/app/oracle/product/11.2.0/dbhome_1
+   New Nodes
+Space Requirements
+   New Nodes
+      host03
+         /: Required 4.29GB : Available 23.93GB
+Installed Products
+   Product Names
+      Oracle Database 11g 11.2.0.4.0 
+      Java Development Kit 1.5.0.51.10 
+      Installer SDK Component 11.2.0.4.0 
+      Oracle One-Off Patch Installer 11.2.0.3.4 
+      Oracle Universal Installer 11.2.0.4.0 
+      Oracle USM Deconfiguration 11.2.0.4.0 
+      Oracle Configuration Manager Deconfiguration 10.3.1.0.0 
+      Oracle DBCA Deconfiguration 11.2.0.4.0 
+      Oracle RAC Deconfiguration 11.2.0.4.0 
+      Oracle Database Deconfiguration 11.2.0.4.0 
+      Oracle Configuration Manager Client 10.3.2.1.0 
+      Oracle Configuration Manager 10.3.8.1.0 
+      Oracle ODBC Driverfor Instant Client 11.2.0.4.0 
+      LDAP Required Support Files 11.2.0.4.0 
+      SSL Required Support Files for InstantClient 11.2.0.4.0 
+      Bali Share 1.1.18.0.0 
+      Oracle Extended Windowing Toolkit 3.4.47.0.0 
+      Oracle JFC Extended Windowing Toolkit 4.2.36.0.0 
+      Oracle Real Application Testing 11.2.0.4.0 
+      Oracle Database Vault J2EE Application 11.2.0.4.0 
+      Oracle Label Security 11.2.0.4.0 
+      Oracle Data Mining RDBMS Files 11.2.0.4.0 
+      Oracle OLAP RDBMS Files 11.2.0.4.0 
+      Oracle OLAP API 11.2.0.4.0 
+      Platform Required Support Files 11.2.0.4.0 
+      Oracle Database Vault option 11.2.0.4.0 
+      Oracle RAC Required Support Files-HAS 11.2.0.4.0 
+      SQL*Plus Required Support Files 11.2.0.4.0 
+      Oracle Display Fonts 9.0.2.0.0 
+      Oracle Ice Browser 5.2.3.6.0 
+      Oracle JDBC Server Support Package 11.2.0.4.0 
+      Oracle SQL Developer 11.2.0.4.0 
+      Oracle Application Express 11.2.0.4.0 
+      XDK Required Support Files 11.2.0.4.0 
+      RDBMS Required Support Files for Instant Client 11.2.0.4.0 
+      SQLJ Runtime 11.2.0.4.0 
+      Database Workspace Manager 11.2.0.4.0 
+      RDBMS Required Support Files Runtime 11.2.0.4.0 
+      Oracle Globalization Support 11.2.0.4.0 
+      Exadata Storage Server 11.2.0.1.0 
+      Provisioning Advisor Framework 10.2.0.4.3 
+      Enterprise Manager Database Plugin -- Repository Support 11.2.0.4.0 
+      Enterprise Manager Repository Core Files 10.2.0.4.5 
+      Enterprise Manager Database Plugin -- Agent Support 11.2.0.4.0 
+      Enterprise Manager Grid Control Core Files 10.2.0.4.5 
+      Enterprise Manager Common Core Files 10.2.0.4.5 
+      Enterprise Manager Agent Core Files 10.2.0.4.5 
+      RDBMS Required Support Files 11.2.0.4.0 
+      regexp 2.1.9.0.0 
+      Agent Required Support Files 10.2.0.4.5 
+      Oracle 11g Warehouse Builder Required Files 11.2.0.4.0 
+      Oracle Notification Service (eONS) 11.2.0.4.0 
+      Oracle Text Required Support Files 11.2.0.4.0 
+      Parser Generator Required Support Files 11.2.0.4.0 
+      Oracle Database 11g Multimedia Files 11.2.0.4.0 
+      Oracle Multimedia Java Advanced Imaging 11.2.0.4.0 
+      Oracle Multimedia Annotator 11.2.0.4.0 
+      Oracle JDBC/OCI Instant Client 11.2.0.4.0 
+      Oracle Multimedia Locator RDBMS Files 11.2.0.4.0 
+      Precompiler Required Support Files 11.2.0.4.0 
+      Oracle Core Required Support Files 11.2.0.4.0 
+      Sample Schema Data 11.2.0.4.0 
+      Oracle Starter Database 11.2.0.4.0 
+      Oracle Message Gateway Common Files 11.2.0.4.0 
+      Oracle XML Query 11.2.0.4.0 
+      XML Parser for Oracle JVM 11.2.0.4.0 
+      Oracle Help For Java 4.2.9.0.0 
+      Installation Plugin Files 11.2.0.4.0 
+      Enterprise Manager Common Files 10.2.0.4.5 
+      Expat libraries 2.0.1.0.1 
+      Deinstallation Tool 11.2.0.4.0 
+      Oracle Quality of Service Management (Client) 11.2.0.4.0 
+      Perl Modules 5.10.0.0.1 
+      JAccelerator (COMPANION) 11.2.0.4.0 
+      Oracle Containers for Java 11.2.0.4.0 
+      Perl Interpreter 5.10.0.0.2 
+      Oracle Net Required Support Files 11.2.0.4.0 
+      Secure Socket Layer 11.2.0.4.0 
+      Oracle Universal Connection Pool 11.2.0.4.0 
+      Oracle JDBC/THIN Interfaces 11.2.0.4.0 
+      Oracle Multimedia Client Option 11.2.0.4.0 
+      Oracle Java Client 11.2.0.4.0 
+      Character Set Migration Utility 11.2.0.4.0 
+      Oracle Code Editor 1.2.1.0.0I 
+      PL/SQL Embedded Gateway 11.2.0.4.0 
+      OLAP SQL Scripts 11.2.0.4.0 
+      Database SQL Scripts 11.2.0.4.0 
+      Oracle Locale Builder 11.2.0.4.0 
+      Oracle Globalization Support 11.2.0.4.0 
+      SQL*Plus Files for Instant Client 11.2.0.4.0 
+      Required Support Files 11.2.0.4.0 
+      Oracle Database User Interface 2.2.13.0.0 
+      Oracle ODBC Driver 11.2.0.4.0 
+      Oracle Notification Service 11.2.0.3.0 
+      XML Parser for Java 11.2.0.4.0 
+      Oracle Security Developer Tools 11.2.0.4.0 
+      Oracle Wallet Manager 11.2.0.4.0 
+      Cluster Verification Utility Common Files 11.2.0.4.0 
+      Oracle Clusterware RDBMS Files 11.2.0.4.0 
+      Oracle UIX 2.2.24.6.0 
+      Enterprise Manager plugin Common Files 11.2.0.4.0 
+      HAS Common Files 11.2.0.4.0 
+      Precompiler Common Files 11.2.0.4.0 
+      Installation Common Files 11.2.0.4.0 
+      Oracle Help for the  Web 2.0.14.0.0 
+      Oracle LDAP administration 11.2.0.4.0 
+      Buildtools Common Files 11.2.0.4.0 
+      Assistant Common Files 11.2.0.4.0 
+      Oracle Recovery Manager 11.2.0.4.0 
+      PL/SQL 11.2.0.4.0 
+      Generic Connectivity Common Files 11.2.0.4.0 
+      Oracle Database Gateway for ODBC 11.2.0.4.0 
+      Oracle Programmer 11.2.0.4.0 
+      Oracle Database Utilities 11.2.0.4.0 
+      Enterprise Manager Agent 10.2.0.4.5 
+      SQL*Plus 11.2.0.4.0 
+      Oracle Netca Client 11.2.0.4.0 
+      Oracle Multimedia Locator 11.2.0.4.0 
+      Oracle Call Interface (OCI) 11.2.0.4.0 
+      Oracle Multimedia 11.2.0.4.0 
+      Oracle Net 11.2.0.4.0 
+      Oracle XML Development Kit 11.2.0.4.0 
+      Oracle Internet Directory Client 11.2.0.4.0 
+      Database Configuration and Upgrade Assistants 11.2.0.4.0 
+      Oracle JVM 11.2.0.4.0 
+      Oracle Advanced Security 11.2.0.4.0 
+      Oracle Net Listener 11.2.0.4.0 
+      Oracle Enterprise Manager Console DB 11.2.0.4.0 
+      HAS Files for DB 11.2.0.4.0 
+      Oracle Text 11.2.0.4.0 
+      Oracle Net Services 11.2.0.4.0 
+      Oracle Database 11g 11.2.0.4.0 
+      Oracle OLAP 11.2.0.4.0 
+      Oracle Spatial 11.2.0.4.0 
+      Oracle Partitioning 11.2.0.4.0 
+      Enterprise Edition Options 11.2.0.4.0 
+-----------------------------------------------------------------------------
+Instantiating scripts for add node (Friday, July 21, 2018 13:06:13 AM CST)
+.                                                                 1% Done.
+Instantiation of add node scripts complete
+Copying to remote nodes (Friday, July 21, 2018 13:06:25 AM CST)
+...............................................................................................                                 96% Done.
+Home copied to new nodes
+Saving inventory on nodes (Friday, July 21, 2018 13:11:14 AM CST)
+.                                                               100% Done.Save inventory complete
+WARNING:
+The following configuration scripts need to be executed as the &quot;root&quot; user in each new cluster node. Each script in the list below is followed by a list of nodes.
+/u01/app/oracle/product/11.2.0/dbhome_1/root.sh #On nodes host03
+To execute the configuration scripts:
+    1. Open a terminal window
+    2. Log in as &quot;root&quot;
+    3. Run the scripts in each cluster node    
+The Cluster Node Addition of /u01/app/oracle/product/11.2.0/dbhome_1 was successful.
+Please check '/tmp/silentInstall.log' for more details.
+</code></pre>
+
+<h3 id="3-3-在host03上执行-root-sh-脚本">3.3 在host03上执行<code>root.sh</code>脚本</h3>
+
+<pre><code>[root@host03 ~]# /u01/app/oracle/product/11.2.0/dbhome_1/root.sh
+Performing root user operation for Oracle 11g
+
+The following environment variables are set as:
+    ORACLE_OWNER= oracle
+    ORACLE_HOME=  /u01/app/oracle/product/11.2.0/dbhome_1
+Enter the full pathname of the local bin directory: [/usr/local/bin]:
+The contents of &quot;dbhome&quot; have not changed. No need to overwrite.
+The contents of &quot;oraenv&quot; have not changed. No need to overwrite.
+The contents of &quot;coraenv&quot; have not changed. No need to overwrite.
+Entries will be added to the /etc/oratab file as needed by
+Database Configuration Assistant when a database is created
+Finished running generic part of root script.
+Now product-specific root actions will be performed.
+Finished product-specific root actions.
+</code></pre>
+
+<h2 id="4-安装数据库实例">4. 安装数据库实例</h2>
+
+<h3 id="4-1-在节点1上执行dbca">4.1 在节点1上执行dbca</h3>
+
+<p><img src="assets/markdown-img-paste-20190903113146349.png" alt="" /></p>
+
+<p><img src="assets/markdown-img-paste-20190903113157395.png" alt="" /></p>
+
+<p><img src="assets/markdown-img-paste-20190903113209663.png" alt="" /></p>
+
+<p><img src="assets/markdown-img-paste-20190903113219200.png" alt="" /></p>
+
+<p><img src="assets/markdown-img-paste-20190903113243193.png" alt="" /></p>
+
+<p><img src="assets/markdown-img-paste-2019090311325226.png" alt="" /></p>
+
+<p><img src="assets/markdown-img-paste-20190903113303622.png" alt="" /></p>
+
+<h3 id="4-2-检查">4.2 检查</h3>
+
+<p>在host03 上检测racdb是否正常添加</p>
+
+                
+
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/post/2019/06/golang-env-config/" data-toggle="tooltip" data-placement="top" title="golang环境配置">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/post/2019/09/8-11g-rac-delete-node/" data-toggle="tooltip" data-placement="top" title="11gRAC删除节点步骤">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+<div id="disqus-comment"></div>
+
+
+
+            </div>
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+				
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/istio" title="istio">
+                            istio
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/k8s" title="k8s">
+                            k8s
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/linux" title="linux">
+                            linux
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/oracle" title="oracle">
+                            oracle
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB" title="杂七杂八">
+                            杂七杂八
+                        </a>
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                   
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="蛋蛋的小黑屋" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fa fa-circle fa-stack-2x"></i>
+                               <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+                   
+                    
+                    <li>
+                        <a href="mailto:xrzp@qq.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+                    
+                    
+                    <li>
+                        <a href="suredandan">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+
+                    
+                    <li>
+                        <a target="_blank" href="suredandan">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+
+		    
+                    
+                    <li>
+                        <a target="_blank" href="/your%20wechat%20qr%20code%20image">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-wechat fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/googlebabaio">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+                    
+                    
+                    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://stackoverflow.com/users/suredandan">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-stack-overflow fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+            
+                    
+                    
+                    
+                </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; 蛋蛋的小黑屋 2019
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        async("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    async("https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+</body>
+</html>

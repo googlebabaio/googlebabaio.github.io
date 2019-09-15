@@ -5,18 +5,116 @@
     <link>https://googlebaba.io/</link>
     <description>Recent content on 蛋蛋的小黑屋</description>
     <generator>Hugo -- gohugo.io</generator>
-    <managingEditor>xrzp@qq.com (suredandan)</managingEditor>
-    <webMaster>xrzp@qq.com (suredandan)</webMaster>
-    <lastBuildDate>Tue, 30 Jul 2019 00:00:00 +0000</lastBuildDate>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 10 Sep 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://googlebaba.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>什么是virtual kubelet</title>
+      <link>https://googlebaba.io/post/2019/09/10-what-is-virtual-kubelet/</link>
+      <pubDate>Tue, 10 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/09/10-what-is-virtual-kubelet/</guid>
+      <description>&lt;p&gt;简单的介绍什么是&lt;code&gt;virtual kubelet&lt;/code&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>更换证书有效期--对于kubeadm安装的集群</title>
+      <link>https://googlebaba.io/post/2019/09/11-renew-ca-by-kubeadm/</link>
+      <pubDate>Tue, 10 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/09/11-renew-ca-by-kubeadm/</guid>
+      <description>&lt;p&gt;记录一下更换证书有效期的过程&amp;ndash;对于kubeadm安装的集群&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>更换证书有效期的其他办法--对于kubeadm安装的集群</title>
+      <link>https://googlebaba.io/post/2019/09/12-renew-ca-other-method/</link>
+      <pubDate>Tue, 10 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/09/12-renew-ca-other-method/</guid>
+      <description>&lt;p&gt;更新证书除了使用kubeadm这种正常途径外,还有一些&amp;rdquo;其他方法&amp;rdquo;也可以达到目的&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>k8s中的滚动更新</title>
+      <link>https://googlebaba.io/post/2019/08/15-what-about-rollback-upgrade/</link>
+      <pubDate>Sat, 17 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/08/15-what-about-rollback-upgrade/</guid>
+      <description>滚动更新是什么意思，是如何实现的呢？ 以这个 Deployment 为例，来为你讲解“滚动更新”的过程。 kubectl create -f nginx-deployment.yaml --record 在这里，我额外加了一个–record 参数。它的作用</description>
+    </item>
+    
+    <item>
+      <title>k8s中的控制器设计模式</title>
+      <link>https://googlebaba.io/post/2019/08/14-k8s-controller-model/</link>
+      <pubDate>Fri, 16 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/08/14-k8s-controller-model/</guid>
+      <description>Pod 这个看似复杂的 API 对象，实际上就是对容器的进一步抽象和封装而已。 “容器”镜像虽然好用，但是容器这样一个“沙盒”的概念，对于描述应用来说，还是</description>
+    </item>
+    
+    <item>
+      <title>pod的预设功能介绍</title>
+      <link>https://googlebaba.io/post/2019/08/13-pod-preset/</link>
+      <pubDate>Thu, 15 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/08/13-pod-preset/</guid>
+      <description>pod预设功能 你有没有产生这样一个想法：Pod 的字段这么多，我又不可能全记住，Kubernetes 能不能自动给 Pod 填充某些字段呢？ 这个需求实际</description>
+    </item>
+    
+    <item>
+      <title>k8s中volumn的四种类型介绍</title>
+      <link>https://googlebaba.io/post/2019/08/11-four-type-projected/</link>
+      <pubDate>Tue, 13 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/08/11-four-type-projected/</guid>
+      <description>四种projected 在 Kubernetes 中，有几种特殊的 Volume，它们存在的意义不是为了存放容器里的数据，也不是用来进行容器和宿主机之间的数据交换。这</description>
+    </item>
+    
+    <item>
+      <title>pod的健康检查</title>
+      <link>https://googlebaba.io/post/2019/08/12-pod-healty/</link>
+      <pubDate>Tue, 13 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/08/12-pod-healty/</guid>
+      <description>在 Kubernetes 中，你可以为 Pod 里的容器定义一个健康检查“探针”（Probe）。这样，kubelet 就会根据这个 Probe 的返回值决定这个容器的状态，而不是直接以</description>
+    </item>
+    
+    <item>
+      <title>认识pod的本质！</title>
+      <link>https://googlebaba.io/post/2019/08/10-pod-intro/</link>
+      <pubDate>Mon, 12 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/08/10-pod-intro/</guid>
+      <description>容器的本质到底是什么？ 容器的本质是进程。 容器，就是未来云计算系统中的进程；容器镜像就是这个系统里的“.exe”安装包。Kubernetes 就</description>
+    </item>
+    
+    <item>
+      <title>对docker的新的一些认识</title>
+      <link>https://googlebaba.io/post/2019/08/9-docker-new-find/</link>
+      <pubDate>Sun, 11 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/08/9-docker-new-find/</guid>
+      <description>在我以往的理解中，容器和镜像的关系就是： - 容器是运行的，活着的镜像，就像 instance - 镜像是静止的，就像 class - 当把镜像 run 起来变成容器，就像是吧 class new 了一个</description>
+    </item>
+    
+    <item>
+      <title>kubernetes介绍</title>
+      <link>https://googlebaba.io/post/2019/08/8-k8s-intro-1/</link>
+      <pubDate>Sat, 10 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/08/8-k8s-intro-1/</guid>
+      <description>跟很多基础设施领域先有工程实践、后有方法论的发展路线不同，Kubernetes 项目的理论基础则要比工程实践走得靠前得多，这当然要归功于 Google 公司</description>
+    </item>
+    
+    <item>
       <title>adg-1拖N切换填坑记录</title>
       <link>https://googlebaba.io/post/2019/07/adg-1vn-switchover-qa/</link>
       <pubDate>Tue, 30 Jul 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/07/adg-1vn-switchover-qa/</guid>
       <description>&lt;p&gt;adg 1拖N切换填坑记录&lt;/p&gt;</description>
     </item>
@@ -25,7 +123,7 @@
       <title>k8s文章链接</title>
       <link>https://googlebaba.io/post/2019/07/k8s-used-list/</link>
       <pubDate>Sun, 28 Jul 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/07/k8s-used-list/</guid>
       <description>&lt;p&gt;用于记录k8s使用的文章链接&lt;/p&gt;</description>
     </item>
@@ -34,7 +132,7 @@
       <title>docker使用文章链接</title>
       <link>https://googlebaba.io/post/2019/07/docker-used-list/</link>
       <pubDate>Sat, 27 Jul 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/07/docker-used-list/</guid>
       <description>&lt;p&gt;主要用于用于记录docker使用的相关文章的链接&lt;/p&gt;</description>
     </item>
@@ -43,7 +141,7 @@
       <title>给 IDE 配置 markdown 的选项</title>
       <link>https://googlebaba.io/post/2019/07/config-markdown-in-ideas/</link>
       <pubDate>Sat, 27 Jul 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/07/config-markdown-in-ideas/</guid>
       <description>&lt;p&gt;记录一下给 ide(atom/vscode) 配置 markdown 的配置选项&lt;/p&gt;</description>
     </item>
@@ -52,7 +150,7 @@
       <title>介绍katacontainer</title>
       <link>https://googlebaba.io/post/2019/07/kata-container-intro/</link>
       <pubDate>Wed, 24 Jul 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/07/kata-container-intro/</guid>
       <description>&lt;p&gt;介绍使用katacontainer&lt;/p&gt;</description>
     </item>
@@ -61,7 +159,7 @@
       <title>11g Adg 参数说明</title>
       <link>https://googlebaba.io/post/2019/07/dg-parameter/</link>
       <pubDate>Fri, 19 Jul 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/07/dg-parameter/</guid>
       <description>&lt;p&gt;以表格的形式展示 adg 的参数说明&lt;/p&gt;</description>
     </item>
@@ -70,7 +168,7 @@
       <title>ADG迁移经验分享</title>
       <link>https://googlebaba.io/post/2019/07/adg-qianyi-exp/</link>
       <pubDate>Fri, 19 Jul 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/07/adg-qianyi-exp/</guid>
       <description>&lt;p&gt;最近做了几个地方的双活，遇到的情况几乎都是要将以前老版本的10g迁移到11g上，并搭建双活。
 方便今后参考，特总结一下&lt;/p&gt;</description>
@@ -80,7 +178,7 @@
       <title>ADG查漏补缺</title>
       <link>https://googlebaba.io/post/2019/07/adg-clbq-1/</link>
       <pubDate>Thu, 18 Jul 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/07/adg-clbq-1/</guid>
       <description>&lt;p&gt;11g ADG的一些查漏补缺&lt;/p&gt;</description>
     </item>
@@ -89,7 +187,7 @@
       <title>设置Oracle开机自动启动</title>
       <link>https://googlebaba.io/post/2019/07/config-oracle-auto-startup-reboot/</link>
       <pubDate>Thu, 18 Jul 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/07/config-oracle-auto-startup-reboot/</guid>
       <description>&lt;p&gt;记录一下Oracle开机自动启动步骤&lt;/p&gt;</description>
     </item>
@@ -98,7 +196,7 @@
       <title>说说mTLS是什么</title>
       <link>https://googlebaba.io/post/2019/07/mtls-jiehuo/</link>
       <pubDate>Thu, 18 Jul 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/07/mtls-jiehuo/</guid>
       <description>&lt;p&gt;简单说说tls的工作原理及配置方式&lt;/p&gt;</description>
     </item>
@@ -107,7 +205,7 @@
       <title>删除redo后的恢复</title>
       <link>https://googlebaba.io/post/2019/07/after-delete-redo/</link>
       <pubDate>Mon, 15 Jul 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/07/after-delete-redo/</guid>
       <description>&lt;p&gt;记录一下删除&lt;code&gt;redo log&lt;/code&gt;后的恢复步骤&lt;/p&gt;</description>
     </item>
@@ -116,7 +214,7 @@
       <title>helmV2在k8s上的安装步骤</title>
       <link>https://googlebaba.io/post/2019/07/helm-k8s-install/</link>
       <pubDate>Tue, 09 Jul 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/07/helm-k8s-install/</guid>
       <description></description>
     </item>
@@ -125,7 +223,7 @@
       <title>Oracle的审计</title>
       <link>https://googlebaba.io/post/2019/07/oracle-audit/</link>
       <pubDate>Mon, 08 Jul 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/07/oracle-audit/</guid>
       <description>&lt;p&gt;本文简明扼要的说了下&lt;code&gt;标准审计&lt;/code&gt;和&lt;code&gt;细粒度审计&lt;/code&gt;&lt;/p&gt;</description>
     </item>
@@ -134,7 +232,7 @@
       <title>使用kubernetes的几大优势</title>
       <link>https://googlebaba.io/post/2019/07/why-kubernetes/</link>
       <pubDate>Mon, 08 Jul 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/07/why-kubernetes/</guid>
       <description>&lt;p&gt;整理了一些使用k8s的理由和优势!&lt;/p&gt;</description>
     </item>
@@ -143,34 +241,34 @@
       <title>istio-bookinfo 示例 </title>
       <link>https://googlebaba.io/post/2019/07/istio2-bookinfo-example-1/</link>
       <pubDate>Fri, 05 Jul 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/07/istio2-bookinfo-example-1/</guid>
       <description>&lt;p&gt;本文以&lt;code&gt;bookinfo&lt;/code&gt;为demo，测试istio的&lt;code&gt;配置请求路由&lt;/code&gt;功能。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Hello, Istio !</title>
-      <link>https://googlebaba.io/post/2019/07/istio1-hello-istio-arch/</link>
-      <pubDate>Thu, 04 Jul 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
-      <guid>https://googlebaba.io/post/2019/07/istio1-hello-istio-arch/</guid>
-      <description>&lt;p&gt;本文简要的介绍了什么是&lt;code&gt;istio&lt;/code&gt;、架构、组件，以及在k8s的安装部署步骤。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>`limitrange`和`resourcequota`两者的区别</title>
       <link>https://googlebaba.io/post/2019/07/limitrange-resourcequota/</link>
       <pubDate>Thu, 04 Jul 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/07/limitrange-resourcequota/</guid>
       <description>&lt;p&gt;本文将介绍下&lt;code&gt;limitrange&lt;/code&gt;和&lt;code&gt;resourcequota&lt;/code&gt;两者的区别&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Hello, Istio !</title>
+      <link>https://googlebaba.io/post/2019/07/istio1-hello-istio-arch/</link>
+      <pubDate>Thu, 04 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/07/istio1-hello-istio-arch/</guid>
+      <description>&lt;p&gt;本文简要的介绍了什么是&lt;code&gt;istio&lt;/code&gt;、架构、组件，以及在k8s的安装部署步骤。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>2019年下半年目标计划</title>
       <link>https://googlebaba.io/post/2019/07/second-half-plan/</link>
       <pubDate>Mon, 01 Jul 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/07/second-half-plan/</guid>
       <description>&lt;p&gt;给自己列了几个下半年需要达成的目标&lt;/p&gt;</description>
     </item>
@@ -179,7 +277,7 @@
       <title>pod-hostalias</title>
       <link>https://googlebaba.io/post/2019/07/pod-hostalias/</link>
       <pubDate>Mon, 01 Jul 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/07/pod-hostalias/</guid>
       <description>&lt;p&gt;利用k8s中提供的host-alias来为pod定制化域名&lt;/p&gt;</description>
     </item>
@@ -188,7 +286,7 @@
       <title>client-go 示例</title>
       <link>https://googlebaba.io/post/2019/06/client-go-example/</link>
       <pubDate>Sat, 29 Jun 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/06/client-go-example/</guid>
       <description>&lt;p&gt;给出一个简单的client-go示例&lt;/p&gt;</description>
     </item>
@@ -197,7 +295,7 @@
       <title>grafana</title>
       <link>https://googlebaba.io/post/2019/06/config-grafana/</link>
       <pubDate>Sat, 29 Jun 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/06/config-grafana/</guid>
       <description></description>
     </item>
@@ -206,7 +304,7 @@
       <title>给dashboard加入CA认证</title>
       <link>https://googlebaba.io/post/2019/06/config-k8s-dashboard-for-other-browser/</link>
       <pubDate>Sat, 29 Jun 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/06/config-k8s-dashboard-for-other-browser/</guid>
       <description>&lt;p&gt;在部署完k8s集群后,往往会部署dashborad作为基础监控的一个手段.
 但有时候,部署好的dashboard在其他浏览器上无法正常访问,本文将提供解决的一个参考.&lt;/p&gt;</description>
@@ -216,7 +314,7 @@
       <title>kubeadm 命令说明</title>
       <link>https://googlebaba.io/post/2019/06/kubeadm-cmd-option/</link>
       <pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/06/kubeadm-cmd-option/</guid>
       <description>&lt;p&gt;在k8s1.14之后,kubeadm安装已经快要成为事实的标准,在之前参加的CKA考试中,发现部署的环境以及是使用kubeadm部署的了，所以对kubeadm的使用也必需要有所了解了！&lt;/p&gt;</description>
     </item>
@@ -225,16 +323,34 @@
       <title>利用job来完成download的示例</title>
       <link>https://googlebaba.io/post/2019/06/job-for-download/</link>
       <pubDate>Fri, 28 Jun 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/06/job-for-download/</guid>
       <description>&lt;p&gt;给出一个利用job来完成download的示例&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>11gRAC删除节点步骤</title>
+      <link>https://googlebaba.io/post/2019/09/8-11g-rac-delete-node/</link>
+      <pubDate>Wed, 19 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/09/8-11g-rac-delete-node/</guid>
+      <description>&lt;p&gt;给出11gRAC删除节点步骤，以供参考&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>11gRAC添加节点步骤</title>
+      <link>https://googlebaba.io/post/2019/09/5-11g-rac-add-node/</link>
+      <pubDate>Wed, 19 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/09/5-11g-rac-add-node/</guid>
+      <description>&lt;p&gt;给出11gRAC添加节点步骤，以供参考&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>golang环境配置</title>
       <link>https://googlebaba.io/post/2019/06/golang-env-config/</link>
       <pubDate>Wed, 19 Jun 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/06/golang-env-config/</guid>
       <description>&lt;p&gt;给出一个常用的golang环境配置的步骤&lt;/p&gt;</description>
     </item>
@@ -243,7 +359,7 @@
       <title>pod示例</title>
       <link>https://googlebaba.io/post/2019/06/pod-all-example/</link>
       <pubDate>Wed, 19 Jun 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/06/pod-all-example/</guid>
       <description>&lt;p&gt;给出一个pod的使用示例,包括: &lt;code&gt;volume&lt;/code&gt;,&lt;code&gt;initContainer&lt;/code&gt;,&lt;code&gt;hook&lt;/code&gt;&lt;/p&gt;</description>
     </item>
@@ -252,7 +368,7 @@
       <title>centos7.4上给apache加上https的步骤</title>
       <link>https://googlebaba.io/post/2019/06/add-https-using-tencent/</link>
       <pubDate>Tue, 11 Jun 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/06/add-https-using-tencent/</guid>
       <description>&lt;p&gt;现在一般网站都要加上https访问,才让人有安全,所以本文记录一下怎么给自己的网站加上https安全证书的&lt;/p&gt;</description>
     </item>
@@ -261,7 +377,7 @@
       <title>etcd的备份与恢复</title>
       <link>https://googlebaba.io/post/2019/06/etcd-backup-recover/</link>
       <pubDate>Mon, 10 Jun 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/06/etcd-backup-recover/</guid>
       <description>&lt;p&gt;记录一下etcd的备份与恢复命令&lt;/p&gt;</description>
     </item>
@@ -270,7 +386,7 @@
       <title>harbor中物理删除不要的镜像</title>
       <link>https://googlebaba.io/post/2019/06/harbor-hard-delete-imgs/</link>
       <pubDate>Mon, 10 Jun 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/06/harbor-hard-delete-imgs/</guid>
       <description>&lt;p&gt;记录下在harbor中物理删除不要的镜像&lt;/p&gt;</description>
     </item>
@@ -279,7 +395,7 @@
       <title>给pod里的集群添加自定义DNS解析</title>
       <link>https://googlebaba.io/post/2019/06/add-dns-in-pod/</link>
       <pubDate>Mon, 10 Jun 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/06/add-dns-in-pod/</guid>
       <description>&lt;p&gt;有时候的需求是需要集群中的pod能访问自定义的一些域名,但又不能都一一写在container里面的/etc/hosts中，这样就需要用自定义dns来实现。
 coredns 自带 hosts 插件， 允许像配置 hosts 一样配置自定义 DNS 解析，修改 kube-system 中 configMap 的 coredns 添加&lt;code&gt;hosts&lt;/code&gt;那一段设置即可。&lt;/p&gt;</description>
@@ -289,7 +405,7 @@ coredns 自带 hosts 插件， 允许像配置 hosts 一样配置自定义 DNS �
       <title>记录一下用lvm的步骤</title>
       <link>https://googlebaba.io/post/2019/06/cncf-total/</link>
       <pubDate>Mon, 10 Jun 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/06/cncf-total/</guid>
       <description>&lt;p&gt;经常使用lvm进行目录的扩展,记录一下相关命令.&lt;/p&gt;</description>
     </item>
@@ -298,7 +414,7 @@ coredns 自带 hosts 插件， 允许像配置 hosts 一样配置自定义 DNS �
       <title>记录一下用lvm的步骤</title>
       <link>https://googlebaba.io/post/2019/06/lvm-manage/</link>
       <pubDate>Mon, 10 Jun 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/06/lvm-manage/</guid>
       <description>&lt;p&gt;经常使用lvm进行目录的扩展,记录一下相关命令.&lt;/p&gt;</description>
     </item>
@@ -307,7 +423,7 @@ coredns 自带 hosts 插件， 允许像配置 hosts 一样配置自定义 DNS �
       <title>hugo&#43;github搭建自己的博客</title>
       <link>https://googlebaba.io/post/2019/06/buildblogfromgithub/</link>
       <pubDate>Thu, 06 Jun 2019 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/06/buildblogfromgithub/</guid>
       <description>&lt;p&gt;记录一下用hugo+github搭建自己的博客的一些关键点&lt;/p&gt;</description>
     </item>
@@ -316,17 +432,16 @@ coredns 自带 hosts 插件， 允许像配置 hosts 一样配置自定义 DNS �
       <title>关于我</title>
       <link>https://googlebaba.io/page/about/</link>
       <pubDate>Wed, 20 Mar 2019 23:28:02 +0800</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/page/about/</guid>
-      <description> 自我介绍 我叫蛋蛋，是一名女儿奴，热爱技术。
-会如下的技能栈:  Java Python Oracle MySQL Cloud Native  Docker Kuernetes Istio Prometheus   有如下一些认证:  Oracle 10gOCM Oracle 11gOCM CNCF CKA  </description>
+      <description>自我介绍 我叫蛋蛋，是一名女儿奴，热爱技术。 会如下的技能栈: Java Python Oracle MySQL Cloud Native Docker Kuernetes Istio Prometheus 有如下一些认证: Oracle 10gOCM Oracle 11gOCM CNCF CKA</description>
     </item>
     
     <item>
       <title></title>
       <link>https://googlebaba.io/post/2019/07/adg-check-list/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/07/adg-check-list/</guid>
       <description>adg检查列表</description>
     </item>
@@ -335,16 +450,159 @@ coredns 自带 hosts 插件， 允许像配置 hosts 一样配置自定义 DNS �
       <title></title>
       <link>https://googlebaba.io/post/2019/07/oracle-second-half-plan/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/07/oracle-second-half-plan/</guid>
       <description>oracle下半年计划</description>
     </item>
     
     <item>
       <title></title>
+      <link>https://googlebaba.io/post/2019/08/16-talk-about-stateful/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/08/16-talk-about-stateful/</guid>
+      <description>Deployment 实际上并不足以覆盖所有的应用编排问题。
+造成这个问题的根本原因，在于 Deployment 对应用做了一个简单化假设。
+它认为，一个应用的所有 Pod，是完全一样的。所以，它们互相之间没有顺序，也无所谓运行在哪台宿主机上。需要的时候，Deployment 就可以通过 Pod 模板创建新的 Pod；不需要的时候，Deployment 就可以“杀掉”任意一个 Pod。
+但是，在实际的场景中，并不是所有的应用都可以满足这样的要求。
+尤其是分布式应用，它的多个实例之间，往往有依赖关系，比如：主从关系、主备关系。
+还有就是数据存储类应用，它的多个实例，往往都会在本地磁盘上保存一份数据。而这些实例一旦被杀掉，即便重建出来，实例与数据之间的对应关系也已经丢失，从而导致应用失败。
+所以，这种实例之间有不对等关系，以及实例对外部数据有依赖关系的应用，就被称为“有状态应用”（Stateful Application）。
+一旦你想要用容器运行“有状态应用”，其困难程度就会直线上升。而且，这个问题解决起来，单纯依靠容器技术本身已经无能为力，这也就导致了很长一段时间内，“有状态应用”几乎成了容器技术圈子的“忌讳”
+不过，Kubernetes 项目还是成为了“第一个吃螃蟹的人”。
+得益于“控制器模式”的设计思想，Kubernetes 项目很早就在 Deployment 的基础上，扩展出了对“有状态应用”的初步支持。这个编排功能，就是：StatefulSet。
+StatefulSet 的设计其实非常容易理解。它把真实世界里的应用状态，抽象为了两种情况： 拓扑状态。这种情况意味着，应用的多个实例之间不是完全对等的关系。这些应用实例，必须按照某些顺序启动，比如应用的主节点 A 要先于从节点 B 启动。而如果你把 A 和 B 两个 Pod 删除掉，它们再次被创建出来时也必须严格按照这个顺序才行。并且，新创建出来的 Pod，必须和原来 Pod 的网络标识一样，这样原先的访问者才能使用同样的方法，访问到这个新 Pod。 存储状态。这种情况意味着，应用的多个实例分别绑定了不同的存储数据。对于这些应用实例来说，Pod A 第一次读取到的数据，和隔了十分钟之后再次读取到的数据，应该是同一份，哪怕在此期间 Pod A 被重新创建过。这种情况最典型的例子，就是一个数据库应用的多个存储实例。 所以，StatefulSet 的核心功能，就是通过某种方式记录这些状态，然后在 Pod 被重新创建时，能够为新 Pod 恢复这些状态。
+Headless Service Service 是 Kubernetes 项目中用来将一组 Pod 暴露给外界访问的一种机制。比如，一个 Deployment 有 3 个 Pod，那么我就可以定义一个 Service。然后，用户只要能访问到这个 Service，它就能访问到某个具体的 Pod。</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://googlebaba.io/post/2019/08/17-pvc-pv-example/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/08/17-pvc-pv-example/</guid>
+      <description>pvc与pv示例
+https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes
+kind: PersistentVolumeClaim apiVersion: v1 metadata: name: pv-claim spec: accessModes: - ReadWriteOnce resources: requests: storage: 1Gi  apiVersion: v1 kind: Pod metadata: name: pv-pod spec: containers: - name: pv-container image: nginx ports: - containerPort: 80 name: &amp;quot;http-server&amp;quot; volumeMounts: - mountPath: &amp;quot;/usr/share/nginx/html&amp;quot; name: pv-storage volumes: - name: pv-storage persistentVolumeClaim: claimName: pv-claim  kind: PersistentVolume apiVersion: v1 metadata: name: pv-volume labels: type: local spec: capacity: storage: 10Gi rbd: monitors: - &#39;10.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://googlebaba.io/post/2019/08/18-what-about-daemonset/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/08/18-what-about-daemonset/</guid>
+      <description>daemonset</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://googlebaba.io/post/2019/08/19-what-is-service-mesh/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/08/19-what-is-service-mesh/</guid>
+      <description>what is service mesh
+Service Mesh 这个概念的定义则是 Buoyant, Inc 公司的 CEO William Morgan 于 2017 年 4 月 25 日在公司官网发布的题为 **&amp;ldquo;What’s a service mesh? And why do I need one?&amp;rdquo; **的文章中给出的。下面我们来看一下定义的内容：
+ WHAT IS A SERVICE MESH? A service mesh is a dedicated infrastructure layer for handling service-to-service communication. It’s responsible for the reliable delivery of requests through the complex topology of services that comprise a modern, cloud native application.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://googlebaba.io/post/2019/08/20-helm-some-useful/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/08/20-helm-some-useful/</guid>
+      <description>helm的一些理解
+tiller怎么去配置
+helm client怎么去配置
+参考下微软的
+创作自己的东西</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://googlebaba.io/post/2019/08/21-oracle-sql-tools/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/08/21-oracle-sql-tools/</guid>
+      <description>直方图
+ndv = 2 100w的记录
+软软解析生效需要代码部分加声明
+AWR默认保留8天，间隔1小时 AWR保留建议：一个月 默认
+想保留久一点儿的，不需要保留太长时间，直接做基线，每个月做一个基线
+并发：很多session 并行：1个session
+返回一条记录，几个buffer正常
+open_cursor 针对的是单个session
+sequence order=n cache=1000
+正常的硬解析每秒10以下
+index contention 是高并发 row lock contention 是dml的问题
+gather_plan_statistics使用 http://blog.itpub.net/7569309/viewspace-2134168/
+BIND_AWARE http://blog.itpub.net/28539951/viewspace-2132051/
+sql_monitor
+备份策略优化 block_trace
+sqlt /util /coe_load_sql
+xfr 是用来做系统间的执行计划的迁移的，所以其实不用，太麻烦了，用coe_load_sql就可以了
+coe_profile.sql 用来代替 coe_load_sql_profile.sql
+signature
+查看统计计划的变化以及有多少统计计划 ora pc
+hashjoin build表一定会扫描完的
+3 100 30
+100 3 1
+直方图只有在使用过的谓词字段，才会收集 可以用explain去收集
+ACS? bind_warea
+========== filter有两个或以上的子操作，往往效率比较低
+cluseter factor
+58W的，需要23W次的io
+======================
+标量子查询是必须要改写的
+index fast full scan 是不回表的
+=====================</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://googlebaba.io/post/2019/08/3-ora-opidcl-aborting-with-ora-28/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/08/3-ora-opidcl-aborting-with-ora-28/</guid>
+      <description>查询一下scanip下注册的服务 有没有包括 sessoin数少的那个节点的监听信息
+lsnrctl status listener_scan1  然后检查一下两个节点的remote_listener
+1、两个实例的内存消耗，差异，具有又差多少呢？
+其他：
+1、你看看内存消耗比较高的实例，会话数是否高于另外一个实例。 select inst_id,count(*) from gv$session; 2、负载均衡的效果不平均，主要受限于以下两个因素： A、连接风暴，很短的时间内发出大量的连接请求。 B、系统负载过高。 C、从理论上来说，RAC运行时间越长，LB的效果会更好。
+这个是 alert log 中记录异常退出的进程
+最后那个ora-28代表是session被kill了
+可以参考： https://www.cnblogs.com/bicewow/p/10729632.html https://www.cnblogs.com/tianlesoftware/archive/2012/08/04/3609196.html https://blog.csdn.net/tianlesoftware/article/details/7829166/
+ https://blog.csdn.net/weixin_33829657/article/details/92499772  </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://googlebaba.io/post/2019/08/5-docker-intro-2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/08/5-docker-intro-2/</guid>
+      <description>容器里的进程看到的文件系统又是什么样子的呢？
+Mount Namespace 跟其他 Namespace 的使用略有不同的地方：它对容器进程视图的改变，一定是伴随着挂载操作（mount）才能生效。
+在 Linux 操作系统里，有一个名为 chroot 的命令可以帮助你在 shell 中方便地完成这个工作。顾名思义，它的作用就是帮你“change root file system”，即改变进程的根目录到你指定的位置。它的用法也非常简单。
+假设，我们现在有一个 $HOME/test 目录，想要把它作为一个 /bin/bash 进程的根目录。
+首先，创建一个 test 目录和几个 lib 文件夹：</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://googlebaba.io/post/2019/08/7-k8s-runtime-intro/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/08/7-k8s-runtime-intro/</guid>
+      <description>k8s的容器运行时介绍</description>
+    </item>
+    
+    <item>
+      <title></title>
       <link>https://googlebaba.io/post/2019/08/k8s-hardway/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/08/k8s-hardway/</guid>
       <description>hardwway
 https://github.com/kelseyhightower/kubernetes-the-hard-way</description>
@@ -352,9 +610,213 @@ https://github.com/kelseyhightower/kubernetes-the-hard-way</description>
     
     <item>
       <title></title>
+      <link>https://googlebaba.io/post/2019/08/k8s-troubleshooting/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/08/k8s-troubleshooting/</guid>
+      <description>记录 k8s 集群的 troubleshooting 的一些方法 二进制安装的集群 master 节点需要注意的三个进程是否已经启动起来 node 节点的两个进程是否已经启动起来 如果启动不了，可以看相应的日志
+master 节点kubectl get node 如果 timeout 了，有空能是 etcd 没有启动问题。如果要启动 etcd，又 etcd 是多块的话，应该保证同时被启动，否则很有可能其中一个节点 hang 住 node 还有 kubelet 启动不了的问题，有可能是master还没有把 etcd 拉起来，造成了数据没法读取，从而使得有些使用了分布式存储的pod 拉不起来
+kubeadm 安装的集群 保证 kubelet 启动了的，因为使用的是 static pod，所以只需要保证kubelet进程是启动起来了即可。</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://googlebaba.io/post/2019/08/kubelet-intro/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/08/kubelet-intro/</guid>
+      <description>计算节点上最核心的部分，则是一个叫作 kubelet 的组件。
+在 Kubernetes 项目中，kubelet 主要负责同容器运行时（比如 Docker 项目）打交道。而这个交互所依赖的，是一个称作 CRI（Container Runtime Interface）的远程调用接口，这个接口定义了容器运行时的各项核心操作，比如：启动一个容器需要的所有参数。 这也是为何，Kubernetes 项目并不关心你部署的是什么容器运行时、使用的什么技术实现，只要你的这个容器运行时能够运行标准的容器镜像，它就可以通过实现 CRI 接入到 Kubernetes 项目当中。
+而具体的容器运行时，比如 Docker 项目，则一般通过 OCI 这个容器运行时规范同底层的 Linux 操作系统进行交互，即：把 CRI 请求翻译成对 Linux 操作系统的调用（操作 Linux Namespace 和 Cgroups 等）。
+此外，kubelet 还通过 gRPC 协议同一个叫作 Device Plugin 的插件进行交互。这个插件，是 Kubernetes 项目用来管理 GPU 等宿主机物理设备的主要组件，也是基于 Kubernetes 项目进行机器学习训练、高性能作业支持等工作必须关注的功能。
+而kubelet 的另一个重要功能，则是调用网络插件和存储插件为容器配置网络和持久化存储。这两个插件与 kubelet 进行交互的接口，分别是 CNI（Container Networking Interface）和 CSI（Container Storage Interface）。
+可以说，kubelet 完全就是为了实现 Kubernetes 项目对容器的管理能力而重新实现的一个组件，与 Borg 之间并没有直接的传承关系。
+为什么我们不把kubelet容器化 kubelet 是 Kubernetes 项目用来操作 Docker 等容器运行时的核心组件。可是，除了跟容器运行时打交道外，kubelet 在配置容器网络、管理容器数据卷时，都需要直接操作宿主机。</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://googlebaba.io/post/2019/09/1-promethues-intro/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/09/1-promethues-intro/</guid>
+      <description>promethues介绍</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://googlebaba.io/post/2019/09/13-insecure-kubeconfig-create/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/09/13-insecure-kubeconfig-create/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://googlebaba.io/post/2019/09/14-how-to-do-when-redo-lost/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/09/14-how-to-do-when-redo-lost/</guid>
+      <description>Redo丢失场景和处理方法
+type of Failure | Status Column of V$LOG | Action &amp;ndash;|&amp;mdash;|&amp;ndash; One member failed in multiplexed group | N/A | Re-create member All members of group | INACTIVE | Clear logfile All members of group | ACTIVE | Attempt checkpoint,and if successful, clearlogfile.If checkpoint is unsuccessful, perform incomplete recovery| All members of group | CURRENT | Attempt to clear log,if unsuccessful, perform incomplete recovery
+v$log和v$logfile视图中，都有status列，不过二者有不同的含义：
+　v$log中反映log group的状态；
+　v$logfile中反映物理的online redo log的状态。</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://googlebaba.io/post/2019/09/15-mind-make-pod-ip-unchange-after-reboot/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/09/15-mind-make-pod-ip-unchange-after-reboot/</guid>
+      <description>创建自定义网络(指定ip需要重启docker服务)
+docker network create mynet &amp;amp;&amp;amp; service docker restart  Docker支持对自定义网络使用&amp;ndash;ip制定自定义网络容器ip地址，如果未制定&amp;ndash;ip参数（即首次创建容器会自动分配一个）。
+ 创建脚本文件 recreateContainer.sh
+#!/bin/sh export DOCKER_NETWORK=mynet export DOCKER_REGISTRY=172.16.1.160:5000 ip=`docker inspect $1 | jq .[].NetworkSettings.Networks.$DOCKER_NETWORK.IPAddress` if [ &amp;quot;$ip&amp;quot; = &#39;&amp;quot;&amp;quot;&#39; ] then #container stoped,cannot get ip from docker inspect, try to get ip from hosts hostname=`docker inspect $1 | jq .[].Config.Hostname|sed &#39;s/\&amp;quot;//g&#39;` id=`docker inspect $hostname | jq .[].Id | sed &#39;s/\&amp;quot;//g&#39; ` ip=`cat /var/lib/docker/containers/$id/hosts| grep $hostname | awk &#39;{print $1}&#39;` fi #replace &amp;quot; ip=`echo $ip |sed &#39;s/\&amp;quot;//g&#39;` docker rm -f $1 if [ &amp;quot;$ip&amp;quot; = &#39;&#39; ] then docker run -d --restart=always --name=$1 --hostname=$1 --network=$DOCKER_NETWORK $DOCKER_REGISTRY/centos /bin/tail -f /etc/hosts else docker run -d --restart=always --name=$1 --hostname=$1 --network=$DOCKER_NETWORK --ip=$ip $DOCKER_REGISTRY/centos /bin/tail -f /etc/hosts fi  安装json解析工具jq</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://googlebaba.io/post/2019/09/2-pg-intro/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/09/2-pg-intro/</guid>
+      <description>postgreSQL介绍</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://googlebaba.io/post/2019/09/20190907/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/09/20190907/</guid>
+      <description>一些想法:
+kata+db
+serveless + k8s + vitural kubelet + 多租户
+kata + knative = fpps</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://googlebaba.io/post/2019/09/3-sql-gaixie/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/09/3-sql-gaixie/</guid>
+      <description>SQL改写示例</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://googlebaba.io/post/2019/09/4-how-to-use-k8s-fast/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/09/4-how-to-use-k8s-fast/</guid>
+      <description>如何快速的使用上k8s
+为何要上容器？
+首先了解下公司背景，如下图所示：
+随着公司业务高发展，市场变化莫测，业务也要及时作出反应，这要求我们能更快速的交付和部署。
+系统资源利用率可提升空间大，随着业务规模不断扩大后，会引起服务器资源浪费。
+系统环境多，久而久之存在环境差异严重的可能性增大，影响业务交付效率，同时环境相对较复杂，维护管理成本较大。
+综上所述3大原因导致运维团队迫不及待推进容器云平台，主要为了达到以下三大点收益：
+容器编排如何选择？
+从生产经验、学习和运维成本几个维度对比现阶段的几个主流编排工具优缺点后，公司运维团队成员在技术选型上毅然一致性选择Kubernetes。Kubernetes（简称为K8s）是用于自动部署、扩展和管理容器化（containerized）应用程序的开源系统。它适用于多种生产环境，包括裸机，内部部署虚拟机，大多数云提供商，以及三者的组合/混合。目前已经从CNCF毕业，已然成为容器编排领域的标准，Kubernete包括以下所列功能：
+服务发现
+健康检测
+实例复制
+弹性伸缩、自动扩展
+负载均衡
+自动部署和回滚
+资源监控
+调试应用程序
+提供认证和授权
+……
+如何推动应用落地Kubernetes？
+上面列举Kubernetes能实现如此之多功能，那么到底应该如何快速落地？经团队商议研究简单归纳总结了以下五大痛点：
+变更不能太大（包括开发修改难度、原发布系统修改、日志访问等）
+需要解决哪些问题？（如：Dubbo连接，网络等）
+如何快速安装扩容节点？
+如何保证高可用？（如：集群等）
+监控告警如何做？
+如何做到变更不能太大？
+尽可能减少开发人员代码变改，不能单纯地为了上容器而推翻原有代码。如涉及到代码变更或需重构过大，会影响业务开发进度，进而加慢Kubernetes落地速度。同时建议Dockerfile编写尽可能掌握在运维手上，减少开发人员学习成本，同时有效减少分层问题发生。
+兼容原来发布系统，在此采取新增容器发布页面，原来应用发布方式保留，应用在Jenkins构建过程中推送多一份镜像到Harbor仓库，原来的压缩包方式保留。
+简单画了下架构图如下所示：
+发布过程此处并没有使用Helm，当然Helm是管理Kubernetes应用程序非常友好的打包工具。发布平台发布主要是基于Kubernetes Api调用执行指定的yaml文件，进而达到更新、回滚、重启效果，具体可参考：https://github.com/kubernetes-client/python。
+日志访问，兼容原有日志访问方式，原来的日志采取上传到阿里云的日志服务，上容器后保留原有的方式，同时为了保证磁盘IO问题，日志采取不落盘模式（建议大家根据司情出发，如原使用EFK方式查看，可以兼容原有系统，毕竟让开发去改变已经习惯的事情时候，还是需要点时间适应）。
+具体架构图如上所示：Java/Node &amp;ndash;&amp;gt; Syslog&amp;ndash;&amp;gt; Logstash&amp;ndash;&amp;gt; Kafka &amp;ndash;&amp;gt; Logstash &amp;ndash;&amp;gt; 阿里云日志服务。
+网络问题如何解决？
+注册中心（如Dubbo或Eureka）的注册IP网络问题等可以采取路由跳转方式解决
+DNS采取Kubernetes集群内CoreDNS+原来外置自建DNS方式，原内网域名依然支持使用
+为了减少发布过程网络推送慢问题，本地和生产采取Harbor自带复制模式，镜像推送后自动同步到生产仓库，减少异地拉取镜像慢问题出现。
+如何快速安装扩容节点？
+Node节点部署方式主要采取基于Ansible快速安装，建议初学者采取二进制安装一次集群，主要加深各组件认知，以便出现问题时能快速定位问题所在。
+Pod伸缩提供变更页面。
+如何保证高可用？
+首先保证组件高可用，特别是Master组件高可用，具体可参考：https://k8smeetup.github.io/docs/admin/high-availability/。
+为何上面强调建议二进制安装一次，主要加深对下图（来源于网络）每个组件的认识。
+在Master组件中需保证的高可用组件包括：Apiserver（提供认证、授权、访问控制、API注册和发现等机制）、Controller Manager（负责维护集群的状态，比如故障检测、自动扩展、滚动更新等）、Scheduler（负责资源的调度），可以采取手段为：Haproxy+ Keepalived（如果是使用云服务器也可使用相应的负载均衡器，例如阿里云的SLB）
+Keepalived提供Kube-apiserver对外服务访问的VIP
+Haproxy提供健康检查和负载均衡功能，后端服务为Kube-apiserver
+保证etcd数据库高可用，etcd保存了整个集群的状态，基本上核心不能再核心的组件了。所以推荐部署多节点，组成etcd集群模式，在etcd高可用集群中可挂节点数为（n-1）/2个，所以推荐部署3个节点或以上，同时养成良好备份习惯，定时备份。注意下v2和v3版本数据结构完全不同，互不兼容，各自创建的数据只能使用对应的版本访问。
+保证镜像仓库高可用，Harbor高可用可包括以下方案，公司采取两者混合使用（测试高可用仓库&amp;ndash; &amp;gt; 生产高可用仓库）：
+多实例共享后端存储（采取挂载文件系统方式）
+多实例相互数据同步（基于镜像复制模式）
+进行容灾演练，提前预知风险问题点，可以参考以下图（篇幅问题截取部分内容），具体可依据司情制定方案：
+监控告警如何做？
+监控方面采取主流监控方案Prometheus，Prometheus是一个云原生计算基础项目，是一个系统和服务监控系统。目前Prometheus已经从CNCF孵化完成，应该可以说是容器云场景中监控的首选方案，具体架构图如下：
+安装方式采取用了Prometheus-operator，当然也推荐使用Helm chart安装部署，可参考：https://github.com/coreos/prometheus-operator。
+网页图形展示使用Grafana UI如下所示（截取测试环境某台Node）：</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://googlebaba.io/post/2019/09/6-db-passwd-limit-check/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/09/6-db-passwd-limit-check/</guid>
+      <description>1.还在使用默认密码的用户
+select * from DBA_USERS_WITH_DEFPWD  弱口令需要自查
+2.启用登录失败处理功能
+查看视图dba_profiles可找出数据库中有哪些PROFILE
+select distinct profile from dba_profiles;  (1)对数据库资源做限制
+{ { SESSIONS_PER_USER 每个用户名所允许的并行会话数 | CPU_PER_SESSION 一个会话一共可以使用的CPU时间，单位是百分之一秒 | CPU_PER_CALL 一次SQL调用(解析、执行和获取)允许使用的CPU时间 | CONNECT_TIME 限制会话连接时间，单位是分钟 | IDLE_TIME 允许空闲会话的时间，单位是分钟 | LOGICAL_READS_PER_SESSION 限制会话对数据块的读取，单位是块 | LOGICAL_READS_PER_CALL 限制SQL调用对数据块的读取，单位是块 | COMPOSITE_LIMIT “组合打法” } { integer | UNLIMITED | DEFAULT } | PRIVATE_SGA 限制会话在SGA中Shared Pool中私有空间的分配 { size_clause | UNLIMITED | DEFAULT} }  (2)对密码做限制
+{ { FAILED_LOGIN_ATTEMPTS 帐户被锁定之前可以错误尝试的次数 | PASSWORD_LIFE_TIME 密码可以被使用的天数，单位是天，默认值180天 | PASSWORD_REUSE_TIME 密码可重用的间隔时间(结合PASSWORD_REUSE_MAX) | PASSWORD_REUSE_MAX 密码的最大改变次数(结合PASSWORD_REUSE_TIME) | PASSWORD_LOCK_TIME 超过错误尝试次数后，用户被锁定的天数，默认1天 | PASSWORD_GRACE_TIME 当密码过期之后还有多少天可以使用原密码 } { expr | UNLIMITED | DEFAULT } | PASSWORD_VERIFY_FUNCTION { function | NULL | DEFAULT } }  修改profile：</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://googlebaba.io/post/2019/09/7-oracle-recover-truncate/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/09/7-oracle-recover-truncate/</guid>
+      <description>恢复truncate的表的数据
+下载工具：http://www.hellodba.com/Download/FY_Recover_Data.zip
+安装工具
+SQL&amp;gt; @/home/oracle/FY_Recover_Data.pck  测试一把:
+恢复:
+ 建议把输出和时间都打开
+ set time on; set timing on; set serveroutput on;   执行恢复
+SQL&amp;gt; exec Fy_Recover_data.recover_truncated_table(&#39;SCOTT&#39;,&#39;MYTEST&#39;,1,null,null);   表truncate后不能再写新数据，否则恢复的都是新的数据
+ </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://googlebaba.io/post/2019/09/9-oracle-luanma/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/09/9-oracle-luanma/</guid>
+      <description>经常碰到SQLPLUS展现乱码的问题，字符集和相关的定义都有说明但是很少有能把这些关系说的很简单易懂的。
+在此之前我们需要搞清楚三个概念，操作系统字符集，客户端字符集，Oracle字符集：</description>
+    </item>
+    
+    <item>
+      <title></title>
       <link>https://googlebaba.io/post/2019/todo/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <author>xrzp@qq.com (suredandan)</author>
+      
       <guid>https://googlebaba.io/post/2019/todo/</guid>
       <description>https://www.cnblogs.com/cocowool/p/kubernetes_resource_quota.html
 ambassador https://www.cnblogs.com/rongfengliang/category/1248215.html https://www.getambassador.io/
@@ -362,6 +824,33 @@ k8s使用helm打包chart并上传到腾讯云TencentHub https://www.cnblogs.com/
 consul https://www.cnblogs.com/cuishuai/p/8194345.html#4277186
 helm之chartmuseum https://www.cnblogs.com/cuishuai/p/9836600.html https://blog.csdn.net/weixin_34226182/article/details/86278522
 harbor helm 仓库使用 https://www.cnblogs.com/rongfengliang/p/9649337.html https://blog.csdn.net/lsysafe/article/details/94754991</description>
+    </item>
+    
+    <item>
+      <title>Filco 蓝牙配对方法</title>
+      <link>https://googlebaba.io/post/2019/09/filco-connect/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/09/filco-connect/</guid>
+      <description>&lt;p&gt;记录一下filco键盘的配对方法&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>我眼中的kubernetes</title>
+      <link>https://googlebaba.io/post/2019/08/6-k8s-in-my-eyes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/08/6-k8s-in-my-eyes/</guid>
+      <description>我眼中的kubernetes 架构 容器运行时 编排 和大商场类比 每一层楼 对应 namespace 每一个店 对应 pod 每一个店店大小 对应 使用磁盘的大小 每一个店的关注度 对应 使</description>
+    </item>
+    
+    <item>
+      <title>深入解析下docker的 `隔离`与`限制`</title>
+      <link>https://googlebaba.io/post/2019/08/4-docker-intro-1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://googlebaba.io/post/2019/08/4-docker-intro-1/</guid>
+      <description>&lt;p&gt;深入解析下docker的 &lt;code&gt;隔离&lt;/code&gt;与&lt;code&gt;限制&lt;/code&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>
